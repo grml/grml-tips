@@ -134,7 +134,7 @@ Initialize:
 
 # grml-crypt format /mnt/external1/encrypted_file /mnt/test
 # cp big_file /mnt/test
-# grml-crypt stop /mnt/test 
+# grml-crypt stop /mnt/test
 
 Use:
 
@@ -210,13 +210,16 @@ On the grml-ISO if not running grml:
 When running grml:
 % most /usr/share/doc/grml-docs/grml-cheatcodes.txt.gz
 -- 
-Report bugs:
+Report bugs to Debian's Bug Tracking System (BTS):
 
-% reportbug
+% reportbug --bts debian
+
+or adjust /etc/reportbug.conf to your needs.
 
 See:
+
   http://grml.org/bugs/
-  http://bugs.grml.org/
+  http://www.debian.org/Bugs/
 -- 
 Offline documentation:
 
@@ -500,7 +503,7 @@ Switch language / keyboard:
 Or run one of the following commands:
 
 % grml-lang de
-or 
+or
 # loadkeys i386/qwertz/de-latin1-nodeadkeys.kmap.gz # console
 % setxkbmap de                                      # X11
 -- 
@@ -849,7 +852,7 @@ local host:
 % netcat -v -l -p 3333 -e /bin/sh
 
 remote host:
-% netcat 192.168.0.1 3333 
+% netcat 192.168.0.1 3333
 -- 
 Remove empty directories with zsh:
 
@@ -1004,7 +1007,7 @@ apt-get install linux-headers-2.6-686 linux-image-2.6.15-1-686  # install curren
 
 echo "127.0.0.1       localhost" > /etc/hosts   # adjust /etc/hosts and network:
 cat >> /etc/network/interfaces << EOF
-iface lo inet loopback 
+iface lo inet loopback
 iface eth0 inet dhcp
 auto lo
 auto eth0
@@ -1015,7 +1018,7 @@ cat >> /etc/fstab << EOF
 sysfs          /sys         sysfs   auto                       0   0
 proc           /proc        proc    defaults                   0   0
 /dev/sda1      /            ext3    defaults,errors=remount-ro 0   1
-/dev/sda2      none         swap    sw                         0   0 
+/dev/sda2      none         swap    sw                         0   0
 /dev/cdrom     /mnt/cdrom0  iso9660 ro,user,noauto             0   0
 EOF
 passwd             # set password of user root
@@ -1172,7 +1175,7 @@ Change Windows NT password(s):
 Notice: if mounting the partition read-write did not work (check syslog!)
 try using mount.ntfs-3g instead: mount.ntfs-3g /dev/hda1 /mnt/hda1
 
-(Be careful with deactivating syskey!) 
+(Be careful with deactivating syskey!)
 -- 
 glark - replacement for grep written in Ruby:
 
@@ -1350,7 +1353,7 @@ If you don't see dir_index in the list, then enable it:
 
 # tune2fs -O dir_index /dev/iceX
 
-Now run e2fsck with the -D option to have the directories optimized: 
+Now run e2fsck with the -D option to have the directories optimized:
 
 # e2fsck -D /dev/iceX
 
@@ -1432,7 +1435,7 @@ or:
 Mount wikipedia local via fuse:
 
 Adjust configuration:
-% cat ~/.wikipediafs/config.xml 
+% cat ~/.wikipediafs/config.xml
 <wfs-config>
     <general>
        <article-cache-time>300</article-cache-time>
@@ -1743,7 +1746,7 @@ Install initrd via yaird for currently running kernel:
 
 Install initrd via yaird for specific kernel:
 
-# mount /proc 
+# mount /proc
 # mount /sys
 # yaird -o /boot/initrd.img-2.6.15-1-686 2.6.15-1-686
 -- 
@@ -1855,7 +1858,7 @@ resize2fs /dev/md0
 Notice: online resizing works as soon as the kernel can re-read the
 partition table. So it works for example with LVM and SW-RAID but not with
 a plain device (/dev/[sh]d*). The kernel does not re-read the partition
-table if the device is already mounted. 
+table if the device is already mounted.
 -- 
 Use vim as an outline editor:
 
@@ -1901,10 +1904,10 @@ Add another disk to existing RAID setup (hotadd):
 # mdadm --grow /dev/md0 --raid-devices=4
 
 Assemble and start all arrays:
-# mdadm --assemble --scan 
+# mdadm --assemble --scan
 
 Assemble a specific array:
-# mdadm --assemble /dev/md0 /dev/sda1 /dev/sdb1 /dev/sdc1 
+# mdadm --assemble /dev/md0 /dev/sda1 /dev/sdb1 /dev/sdc1
 
 Resync:
 # mdadm --assemble --run --force --update=resync /dev/md0 /dev/sda1 /dev/sda2
@@ -1914,7 +1917,7 @@ Stop and rebuild:
 # mdadm --assemble /dev/md0 --auto --scan --update=summaries --verbose
 
 Monitoring the sw raid
-# nohup mdadm --monitor --mail=root@localhost --delay=300 /dev/md0 
+# nohup mdadm --monitor --mail=root@localhost --delay=300 /dev/md0
 
 See also: man mdadm | less -p "^EXAMPLES"
           http://www.tldp.org/HOWTO/Software-RAID-HOWTO.html
@@ -1973,10 +1976,10 @@ Resize a logical volume:
 Create a snapshot of a logical volume:
 # lvcreate -L 500M --snapshot -n mysnap /dev/testvg/test_lv
 
-Deactivate a volume group: 
+Deactivate a volume group:
 # vgchange -a n my_volume_group
 
-Actually remove a volume group: 
+Actually remove a volume group:
 # vgremove my_volume_group
 
 Display information about physical volume:
@@ -2063,7 +2066,7 @@ More usage examples: man zsplit + man unzsplit
 Measure network performance using ipserf
 
 Server side:
-% iperf -s -V 
+% iperf -s -V
 
 Client side:
 % iperf -c <server_address> -V
@@ -2130,13 +2133,13 @@ Upgrade system but disable apt-listbugs:
 
 APT_LISTBUGS_FRONTEND=none apt-get ...
 -- 
-Set up a Transparent Debian Proxy 
+Set up a Transparent Debian Proxy
 
-Install of apt-cacher, the default config will do: 
+Install of apt-cacher, the default config will do:
 # apt-get install apt-cacher
 
 Check out the ip address of debian mirror(s).
-Then add this to your firewall script: 
+Then add this to your firewall script:
 
 DEBIAN_MIRRORS="141.76.2.4 213.129.232.18"
 for ip in ${DEBIAN_MIRRORS} ; do
@@ -2154,4 +2157,57 @@ To use apt-cacher on the router itself, add the following
 line to your /etc/apt/apt.conf:
 
 Acquire::http::Proxy "http://localhost:3142/";
+-- 
+Version control using Mercurial
+
+Setting up a Mercurial project:
+
+% cd project
+% hg init           # creates .hg
+% hg add            # add all files
+% hg commit         # commit all changes, edit changelog entry
+
+Branching and merging:
+
+% hg clone linux linux-work  # create a new branch
+% cd linux-work
+<make changes>
+% hg commit
+% cd ../linux
+% hg pull ../linux-work     # pull changesets from linux-work
+% hg merge                  # merge the new tip from linux-work into
+                            # (old versions used "hg update -m" instead)
+                            # our working directory
+% hg commit                 # commit the result of the merge
+
+Importing patches:
+
+% cat ../p/patchlist | xargs hg import -p1 -b ../p
+
+Exporting a patch:
+
+(make changes)
+% hg commit
+% hg tip
+1234:af3b5cd57dd5
+% hg export 1234 > foo.patch    # export changeset 1234
+
+Export your current repo via HTTP with browsable interface:
+
+% hg serve -n "My repo" -p 80
+
+Pushing changes to a remote repo with SSH:
+
+% hg push ssh://user@example.com/~/hg/
+
+Merge changes from a remote machine:
+
+host1% hg pull http://foo/
+host2% hg merge # merge changes into your working directory
+
+Set up a CGI server on your webserver:
+% cp hgwebdir.cgi ~/public_html/hg/index.cgi
+% $EDITOR ~/public_html/hg/index.cgi # adjust the defaults
+
+Mercurial repositories of grml can be found at http://hg.grml.org/
 -- 
