@@ -1,0 +1,2157 @@
+Install grml to harddisk:
+
+# grml2hd
+
+Notice: You can pre-select the partition for the partition selector
+and mbr dialogs inside grml2hd using:
+# grml2hd /dev/hda1 -mbr /dev/hda
+
+See: man grml2hd + http://grml.org/grml2hd/
+-- 
+Install grml on software RAID level 1:
+
+Create /dev/md0 (and some more /dev/md* devices) first of all:
+# cd /dev && MAKEDEV dev
+
+Create RAID:
+# mdadm --create --verbose /dev/md0 --level=raid1 \
+        --raid-devices=2   /dev/hda1  /dev/hdc1
+
+Finally install grml on it:
+# SWRAID='mbr-only' grml2hd /dev/md0 -mbr /dev/md0
+
+See: man grml2hd + http://grml.org/grml2hd/
+-- 
+Install grml in non interactive mode with grml2hd:
+
+Adjust configuration as needed:
+# vim /etc/grml2hd/config
+
+Then execute:
+
+# GRML2HD_NONINTERACTIVE=yes grml2hd
+
+or run:
+
+# grml2hd -i
+
+Use with care and only if you really know what you are doing!
+
+See: man grml2hd + http://grml.org/grml2hd/
+-- 
+Configure network:
+
+# grml-network
+-- 
+Boot grml via network:
+
+# grml-terminalserver
+
+See: man grml-terminalserver + http://grml.org/terminalserver/
+-- 
+Deactivate error correction of zsh:
+
+% NOCOR=1 zsh
+
+Run zsh-help for more information regarding zsh.
+-- 
+Disable automatic setting of title in GNU screen:
+
+% NOPRECMD=1 zsh
+
+Set it manually e.g. via:
+
+% screen -X title foobar
+
+Run zsh-help for more information regarding zsh.
+-- 
+Do not use menu completion in zsh:
+
+% NOMENU=1 zsh
+
+Run zsh-help for more information regarding zsh.
+-- 
+Run GNU screen with grml-configuration:
+
+% grml-screen
+
+or
+
+% screen -c /etc/grml/screenrc
+-- 
+Print out grml-version:
+
+% grml-version
+-- 
+Configure mutt:
+
+% grml-mutt
+-- 
+Configure mutt-ng / muttng:
+
+% grml-muttng
+-- 
+Set up Inode-PPTP connection:
+
+# grml-pptp-inode
+or
+# grml-pptp-xdsl-students
+-- 
+Set up VPN / WLAN connection at TUG (TU Graz):
+
+Set ESSID and request for ip-address via DHCP:
+# iwconfig $DEVICE essid tug
+# dhclient $DEVICE
+
+Now run the main script:
+# grml-vpnc-tugraz
+
+After running the script an init script is available:
+
+# /etc/init.d/vpnctug [start|stop]
+-- 
+Set up PPTP connection at VCG (Virtual Campus Graz):
+
+# grml-pptp-vcgraz
+-- 
+Set up VPN:
+
+# grml-vpn <options>
+
+Usage example:
+
+# grml-vpn -k 2005 add 1000 192.168.20.1 192.168.20.2
+
+See: man grml-vpn
+-- 
+Use encrypted files / partitions:
+
+# grml-crypt <options>
+
+Usage example:
+
+Initialize:
+
+# grml-crypt format /mnt/external1/encrypted_file /mnt/test
+# cp big_file /mnt/test
+# grml-crypt stop /mnt/test 
+
+Use:
+
+# grml-crypt start /mnt/external1/encrypted_file /mnt/test
+# grml-crypt stop /mnt/test
+
+See: man grml-crypt
+-- 
+Change resolution of X:
+
+% xrandr -s '1024x768'
+-- 
+Change resolution of framebuffer:
+
+# fbset 800x600-60
+-- 
+Configure newsreader slrn:
+
+% grml-slrn
+-- 
+Configure grml system:
+
+# grml-config
+
+Or directly run scripts:
+
+# grml-config-root
+% grml-config-user
+-- 
+Lock screen (X / console):
+
+% grml-lock
+
+Press ctrl-alt-x to lock a GNU screen session.
+-- 
+Change wallpaper in X:
+
+% grml-wallpaper <press-tab>
+-- 
+Start X window system (XFree86 / Xorg / X.org):
+
+% grml-x $WINDOWMANAGER
+
+Usage examples:
+
+% grml-x fluxbox
+% grml-x -mode '1024x768' wmii
+% grml-x -nosync wm-ng
+-- 
+Collect hardware information:
+
+% grml-hwinfo
+
+or run as root to collect some more information:
+
+# grml-hwinfo
+
+will generate a file named info.tar.bz2.
+-- 
+Configure hardware detection features of harddisk installation:
+
+# grml-autoconfig
+
+or manually edit /etc/grml/autoconfig[.small]
+
+See: man grml-autoconfig
+-- 
+Bootoptions / cheatcodes / bootparams for booting grml:
+
+On the grml-ISO if not running grml:
+% less /cdrom/GRML/grml-cheatcodes.txt
+
+When running grml:
+% most /usr/share/doc/grml-docs/grml-cheatcodes.txt.gz
+-- 
+Report bugs:
+
+% reportbug
+
+See:
+  http://grml.org/bugs/
+  http://bugs.grml.org/
+-- 
+Offline documentation:
+
+% grml-info
+
+Online documentation:
+
+  http://grml.org/faq/
+  http://grml.org/docs/
+  http://wiki.grml.org/doku.php
+-- 
+Mount ntfs partition (read-write):
+
+# modprobe fuse
+# ntfsmount /dev/hda1 /mnt/hda1
+-- 
+Overwrite specific file on an NTFS partition:
+
+ntfscp /dev/hda1 /tmp/file_source path/to/file_target
+-- 
+Resize an NTFS partition:
+
+# ntfsresize ..
+
+Usage example:
+
+ntfsresize -n -s 10G /dev/hda1 # testcase
+ntfsresize -s 10G /dev/hda1    # testing was successfull, now really resize partition
+cfdisk /dev/hda   # delete partition hda1, create new one with 10000MB and fs-type 07 (NTFS)
+-- 
+Modify resolution for intel graphic chipsets:
+
+# 915resolution ..
+
+Usage example:
+
+# 915resolution 4d 1400 1050
+-- 
+Connect bluetooth mouse:
+
+# bt-hid start
+
+... and press 'connect' button on your bluetooth device.
+-- 
+Connect bluetooth headset:
+
+# bt-audio start
+
+... and press 'connect' button on your bluetooth device.
+-- 
+Secure delete file / directory / partition:
+
+# wipe -kq /dev/hda1
+
+See: man wipe
+
+Also take a look at shred(1), sfill(1) and http://dban.sourceforge.net/
+-- 
+Use grml on Samsung X20 laptop:
+
+# apt-get install grml-samsung-x20
+
+See: http://www.michael-prokop.at/computer/samsung_x20.html
+-- 
+Development information regarding grml:
+
+  http://grml.supersized.org/
+-- 
+Contact grml team:
+
+#grml on irc.freenode.org - http://grml.org/irc/
+http://grml.org/contact/
+-- 
+Join the grml mailinglist:
+
+http://grml.org/mailinglist/
+-- 
+Help us - donate!
+
+http://grml.org/donations/
+-- 
+Commercial support / system administration / adjusted live-cds:
+
+grml-solutions: http://grml.org/solutions/
+-- 
+Information regarding the kernel provided by grml:
+
+  http://grml.org/kernel/
+-- 
+SMTP command-line test tool:
+
+% swaks <options>
+
+Usage example:
+
+% swaks -s $MAILSERVER -tlsc -a -au $ACCOUNT -ap $PASSWORD -f $MAILADRESSE -t $MAILADRESSE
+
+See: man swaks
+-- 
+NTFS related packages:
+
+scrounge-ntfs
+salvage-ntfs
+ntfsprogs
+-- 
+Modify service through init script:
+
+# Start ssh
+# Stop samba
+# Restart apache
+# Reload postfix
+# service gpm start
+# /etc/init.d/lvm start
+-- 
+Test joystick:
+
+# jstest /dev/input/js0
+-- 
+Play movie:
+
+% mplayer /path/to/movie
+-- 
+Use webcam with mplayer:
+
+% mplayer tv:// -tv driver=v4l:width=352:height=288:outfmt=yv12:device=/dev/video0
+-- 
+Powerful network discovery tool:
+
+# scapy
+-- 
+Grab an entire CD and compress it to Ogg/Vorbis,
+MP3, FLAC, Ogg/Speex and/or MPP/MP+(Musepack) format:
+
+% abcde
+-- 
+Show a console session in several terminals:
+
+% gems
+-- 
+Switch behaviour of caps lock key:
+
+% caps-ctrl
+-- 
+grep with Perl-compatible regular expressions:
+
+% pcregrep
+-- 
+ncp: a fast file copy tool for LANs
+
+Local (send file):
+% npush file_to_copy
+
+Remote (receive file):
+% npoll
+-- 
+utility for sorting records in complex ways:
+
+% msort
+-- 
+a smaller, cheaper, faster SED implementation:
+
+% minised
+-- 
+zsh tips:
+
+% man zsh-lovers
+
+See: http://grml.org/zsh/
+-- 
+zsh reference card for grml system:
+
+http://grml.org/zsh/
+/usr/share/doc/grml-docs/zsh/grml-zsh-refcard.pdf.gz
+-- 
+Multiple rename:
+
+% for i in foo* ; do mv "$i" "bar${i/foo}" ; done
+% qmv foo*
+% prename 's/foo/bar/' foo*
+% mmv "foo*"   "bar#1"
+% zmv 'foo(*)' 'bar$1'
+-- 
+Test TFT / LCD display:
+
+% lcdtest
+-- 
+Test sound:
+
+% soundtest
+-- 
+Improved grep version:
+
+% glark
+
+glark grep extract-matches
+-- 
+Highlith
+
+grepc
+hgrep
+-- 
+Output text as sound:
+
+% say 'ghroummel'
+% xsay            # when running X and text selected via mouse
+-- 
+Adjust a grml harddisk (grml2hd) installation:
+
+# grml2hd-utils
+-- 
+Get information on movie files:
+
+% tcprobe -i file.avi
+-- 
+Get an overview of your image files:
+
+% convert 'vid:*.jpg' thumbnails.jpg
+-- 
+List all standard defines:
+
+% gcc -dM -E - < /dev/null
+-- 
+Send a mail as reminder:
+
+echo "mail -s 'check TODO-list' $MAILADDRESS < /dev/null" | at 23:42
+-- 
+ncurses-based presentation tool:
+
+% tpp
+
+See: man tpp and /usr/share/doc/tpp/examples/
+-- 
+Use ICQ / Jabber / Yahoo! / AIM / MSN /... on command line:
+
+% centericq
+-- 
+Use IRC on command line:
+
+% irssi
+-- 
+Diff / merge files:
+
+% vimdiff file1 file2
+
+Re-diffing:
+
+:diffupdate
+
+Moving between diffs:
+
+[c
+]c
+
+Synchronizing:
+
+:diffget
+:diffput
+-- 
+Hardware monitoring without kernel dependencies:
+
+% mbmon
+-- 
+Install grml-iso to usb-stick:
+
+% grml2usb grml.iso /mount/point
+-- 
+Use mplayer on framebuffer console:
+
+% mplayer -vo fbdev ...
+-- 
+Use links2 on framebuffer console:
+
+% links2 -driver fb ...
+-- 
+Switch language / keyboard:
+
+* use the bootparam lang to set language environment ($LANG, $LC_ALL, $LANGUAGE)
+* use the bootparams keyboard / xkeyboard to activate specific keyboard layout
+  Usage example: 'grml lang=us keyboard=de xkeyboard=de'
+
+Or run one of the following commands:
+
+% grml-lang de
+or 
+# loadkeys i386/qwertz/de-latin1-nodeadkeys.kmap.gz # console
+% setxkbmap de                                      # X11
+-- 
+Switch setting of caps-control key (switch between ctrl + shift) on keyboard:
+
+# caps-ctrl
+-- 
+Mount usb device / usb stick:
+
+% mount /mnt/external1   # corresponds to /dev/sda1
+or
+% mount /mnt/external    # corresponds to /dev/sda
+-- 
+Install Sun Java packages:
+
+Download j2re.bin-file from http://java.sun.com/downloads/index.html and run
+
+# apt-get install java-package
+# fakeroot make-jpkg j2re-*.bin
+# dpkg -i sun-j2re*.deb
+# update-alternatives --config java
+-- 
+Improved dd version:
+
+ddrescue is an improved version of dd which tries to read and
+if it fails it will go on with the next sectors, where tools
+like dd will fail.
+
+% ddrescue ...
+
+See: man ddrescue
+-- 
+How to make an audio file (e.g. Musepack format) out of a DVD track:
+
+% mkfifo /tmp/fifo.wav
+% mppenc /tmp/fifo.wav track06.mpc &
+% mplayer -vo null -vc null -ao pcm:fast:file=/tmp/fifo.wav -dvd-device /dev/dvd dvd://1 -chapter 6-6
+
+Adjust the mppenc line with the encoder you would like to use,
+for example 'oggenc -o track06.ogg /tmp/fifo.wav' for ogg files.
+
+Alternative:
+
+% mplayer -vo null -dumpaudio -dumpfile track06.raw -aid N -dvd-device /dev/dvd dvd://1 -chapter 6-6
+to extract audio without processing, where 'N' is the corresponding audio channel (see 'man mplayer')
+
+Usage example for getting a PCM/wave file from audio channel 128:
+% mplayer -vo null -vc null -ao pcm:fast:file=track06.wav -aid 128 -dvd-device /dev/dvd dvd://6
+-- 
+Create simple chroot:
+
+# make_chroot_jail $USERNAME
+-- 
+Convert DOS formated file to unix format:
+
+sed 's/.$//'    dosfile > unixfile       # assumes that all lines end with CR/LF
+sed 's/^M$//'   dosfile > unixfile       # in bash/tcsh, press Ctrl-V then Ctrl-M
+sed 's/\x0D$//' dosfile > unixfile       # gsed 3.02.80, but top script is easier
+awk '{sub(/\r$/,"");print}'              # assumes EACH line ends with Ctrl-M
+gawk -v BINMODE="w" '1' infile >outfile  # in DOS environment; cannot be done with
+                                         # DOS versions of awk, other than gawk
+tr -d \r < dosfile > unixfile            # GNU tr version 1.22 or higher
+tr -d '\015' < dosfile > unixfile        # use octal value for "\r" (see man ascii)
+tr -d '[\015\032]' < dosfile > unixfile  # sometimes ^Z is appended to DOS-files
+vim -c ":set ff=unix" -c ":wq" file      # convert using vim
+vim -c "se ff=dos|x" file                # ... and even shorter ;)
+recode ibmpc..lat1 file                  # convert using recode
+echo -e "s/\r//g" > dos2unix.sed; sed -f dos2unix.sed < dosfile > unixfile
+-- 
+Save live stream to file:
+
+% mplayer -ao pcm -aofile $FILE
+
+or
+
+% mencoder mms://file.wmv -o $FILE -ovc copy -oac copy
+-- 
+Merge video files:
+
+AVI:
+
+% avimerge -i *.avi -o blub.avi
+
+MPEG:
+
+% cat *.mpg > blub.mpg
+
+WMV:
+
+% mencoder file1.wmv -ovc lavc -oac lavc -ofps 25 -srate 48000 -o file1.avi
+% mencoder file2.wmv -ovc lavc -oac lavc -ofps 25 -srate 48000 -o file2.avi
+% avimerge -i file1.avi file2.avi -o blub.avi
+-- 
+Display MS-Word file:
+
+% strings file.doc | fmt | less
+
+or
+
+% antiword file.doc
+-- 
+Convert MS-Word file to postscript:
+
+% antiword -p a4 file.doc > file.ps
+-- 
+Convert manual to postscript:
+
+% zcat /usr/share/man/man1/zsh.1.gz | groff -man > zsh.1.ps
+or
+% man -t zsh > zsh.ps
+-- 
+Read BIOS:
+
+% dd if=/dev/mem bs=1k skip=768 count=256 2>/dev/null | strings -n 8
+-- 
+Read HTTP via netcat:
+
+echo "GET / HTTP/1.0\r\n\r\n" | netcat $DOMAIN 80
+-- 
+Get X ressources for specific program:
+
+% xrdb -q |grep -i xterm
+-- 
+Get windowid of specific X-window:
+
+% xwininfo -int | grep "Window id:" | cut -d ' ' -f 4
+-- 
+Get titel of specific X-window:
+
+% xprop WM_CLASS
+-- 
+check locale - LC_MESSAGES:
+
+% locale -ck LC_MESSAGES
+-- 
+Create random password:
+
+% pwgen
+or
+% dd if=/dev/urandom bs=14 count=1 | hexdump | cut -c 9-
+-- 
+Get tarballs of various Linux Kernel trees:
+
+% ketchup 2.6
+to get the current stable 2.6 release
+
+% ketchup -l
+to get a list of all supported trees
+-- 
+Transfer your SSH public key to another host:
+
+% ssh-copy-id -i ~/.ssh/id_dsa.pub user@remote-system
+or
+% cat $HOME/.ssh/id_rsa.pub  | ssh user@remote-system 'cat >> .ssh/authorized_keys'
+-- 
+Update /etc/fstab entries:
+
+# grml-rebuildfstab
+
+See "man grml-rebuildfstab" for more details about
+generation of /etc/fstab (including stuff like
+fs LABELs / UUIDs,...).
+-- 
+Fetch and potentially change SCSI device parameters:
+
+# sdparm /dev/sda
+
+See: man sdparm
+-- 
+reclaim disk space by linking identical files together:
+
+% dupmerge...
+-- 
+Find and remove duplicate files:
+
+% dupseek ...
+-- 
+Perform layer 2 attacks:
+
+# yersinia ...
+-- 
+rootsh
+-- 
+Guess PC-type hard disk partitions / partition table:
+
+# gpart <options>
+
+Perform a standard scan:
+# gpart /dev/ice
+
+Write back the guessed table:
+# gpart -W /dev/ice /dev/ice
+-- 
+Develop, test and use exploit code with the Metasploit Framework:
+
+cd /tmp
+unp /usr/share/grml-sectools/tools/metasploit_framework*.tar.gz
+cd framework*
+./msfcli
+-- 
+Useful documentation:
+
+% w3m   /usr/share/doc/Debian/reference/reference.en.html
+or
+% xpdf =(zcat /usr/share/doc/Debian/reference/reference.en.pdf.gz)
+
+http://grml.org/docs/           grml Documentation
+http://wiki.grml.org/           grml Wiki
+http://www.debian.org/doc/      Debian Documentation
+http://wiki.debian.org/         Debian Wiki
+http://www.gentoo.org/doc/en/   Gentoo Documentation
+http://gentoo-wiki.com/         Gentoo Wiki
+http://www.tldp.org/            The Linux Documentation Project
+
+Tips and tricks:
+
+% fortune debian-hints
+-- 
+Fun stuff:
+
+% fortune debian-hints
+% dpkg -L funny-manpages
+-- 
+Backup master boot record (MBR):
+
+# dd if=/dev/ice of=/tmp/backup_of_mbr bs=512 count=1
+-- 
+Backup partition table:
+
+# sfdisk -d /dev/hda > hda.out
+
+Restore partition table:
+
+# sfdisk /dev/hda < hda.out
+-- 
+Clone disk via network using netcat:
+
+Listener:
+# nc -vlp 30000 > hda1.img
+Source:
+# dd if=/dev/hda1 | nc -vq 0 192.168.1.2 30000
+
+Adjust blocksize (dd's option bs=...) and include 'gzip -c'
+to tune speed:
+
+# dd if=/dev/hda1 bs=32M | gzip -c | nc -vq 0 192.168.1.2 30000
+-- 
+Backup specific directories via cpio and ssh:
+
+# for f in directory_list; do find $f >> backup.list done
+# cpio -v -o --format=newc < backup.list | ssh user@host "cat > backup_device"
+-- 
+Clone disk via ssh:
+
+This one uses CPU cycles on the remote server to compare the files:
+# ssh target_address cat remotefile | diff - localfile
+# cat localfile | ssh target_address diff - remotefile
+
+This one uses CPU cycles on the local server to compare the files:
+# ssh target_address cat <localfile "|" diff - remotefile
+-- 
+Useful tools for cloning / backups:
+
+* dd: convert and copy a file
+* dd_rescue: copies data from one file (or block device) to another
+* pcopy: a replacement for dd
+* partimage: back up and restore disk partitions
+* dirvish: Disk based virtual image network backup system
+* devclone: in-place filesystem conversion -- device cloning
+* ntfsclone: efficiently clone, image, restore or rescue an NTFS
+* dump: ext2/3 filesystem backup
+* udpcast: multicast file transfer tool
+* cpio: copy files to and from archives
+* pax: read and write file archives and copy directory hierarchies
+* netcat / ssh / tar / gzip / bzip2: additional helper tools
+-- 
+Use grml as a rescue system:
+
+Different tools:
+
+  * dd: convert and copy a file
+  * ddrescue: copies data from one file or block device to another
+  * partimage: Linux/UNIX utility to save partitions in a compressed image file
+  * cfdisk: Partition a hard drive
+  * nparted: Newt and GNU Parted based disk partition table manipulator
+  * parted-bf: The GNU Parted disk partition resizing program, small version
+  * testdisk: Partition scanner and disk recovery tool
+  * gpart: Guess PC disk partition table, find lost partitions
+
+ext2/ext3:
+
+  * e2fsprogs: ext2 file system utilities and libraries
+  * e2tools: utilities for manipulating files in an ext2/ext3 filesystem
+  * e2undel: Undelete utility for the ext2 file system
+  * ext2resize: an ext2 filesystem resizer
+  * recover: Undelete files on ext2 partitions
+
+ReiserFS/Reiser4:
+
+  * reiser4progs: administration utilities for the Reiser4 filesystem
+  * reiserfsprogs: User-level tools for ReiserFS filesystems
+
+XFS:
+
+  * xfsdump: Administrative utilities for the XFS filesystem
+  * xfsprogs: Utilities for managing the XFS filesystem
+
+JFS:
+
+  * jfsutils: utilities for managing the JFS filesystem
+
+NTFS:
+
+  * ntfsprogs: tools for doing neat things in NTFS partitions from Linux
+  * salvage-ntfs: free NTFS data recovery tools
+  * scrounge-ntfs: data recovery program for NTFS file systems
+  * ntfsresize: resize ntfs partitions
+-- 
+Get ASCII value of a character with zsh:
+
+% char=N ; print $((#char))
+-- 
+Convert a collection of mp3 files to wave or cdr using zsh:
+
+% for i (./*.mp3){mpg321 --w - $i > ${i:r}.wav}
+-- 
+Convert images (foo.gif to foo.png) using zsh:
+
+% for i in **/*.gif; convert $i $i:r.png
+-- 
+Remove all "non txt" files using zsh:
+
+% rm ./^*.txt
+-- 
+Remote Shell Using SSH:
+
+remote host:
+% ssh -NR 3333:localhost:22 user@yourhost
+
+local host:
+% ssh user@localhost -p 3333
+-- 
+Reverse Shell with Netcat:
+
+local host:
+% netcat -v -l -p 3333 -e /bin/sh
+
+remote host:
+% netcat 192.168.0.1 3333 
+-- 
+Remove empty directories with zsh:
+
+% rmdir ./**/*(/od) 2> /dev/null
+-- 
+Find all the empty directories in a tree with zsh:
+
+% ls -ld *(/^F)
+-- 
+Find all files without a valid owner and change ownership with zsh:
+
+% chmod user /**/*(D^u:${(j.:u:.)${(f)"$(</etc/passwd)"}%%:*}:)
+-- 
+Display the 5-10 last modified files with zsh:
+
+% print -rl -- /path/to/dir/**/*(D.om[5,10])
+-- 
+Find and list the ten newest files in directories and subdirs (recursive) with zsh:
+
+% print -rl -- **/*(Dom[1,10])
+-- 
+Find most recent file in a directory with zsh:
+
+% setopt dotglob ; print directory/**/*(om[1])
+-- 
+Tunnel all traffic through an external server:
+
+% ssh -ND 3333 username@external.machine
+
+Then set the SOCKS4/5 proxy to localhost:3333.
+Check whether it's working by surfing e.g. to checkip.dyndns.org
+-- 
+Tunnel everything through SSH via tsocks:
+
+set up the SSH proxy on the client side:
+
+% ssh -ND 3333 user@remote.host.example.com
+
+Adjust /etc/tsocks.conf afterwards (delete all other lines):
+
+server = 127.0.0.1
+server_port = 3333
+
+For programs who natively support proxying connections (e.g. Mozilla
+Firefox) you can now set the proxy address to localhost port 3333.
+
+All other programs which's connections you want to tunnel through your
+external host are prefixed with tsocks, e.g.:
+
+% tsocks netcat example.com 80
+% tsocks irssi -c irc.quakenet.eu.org -p 6667
+
+If you call tsocks without parameters it executes a shell witht the
+LD_PRELOAD environment variable already set and exported.
+-- 
+smartctl - control and monitor utility for harddisks using Self-Monitoring,
+Analysis and Reporting Technology (SMART):
+
+# smartctl --all /dev/ice
+
+If you want to use smartctl on S-ATA (sata) disks use:
+
+# smartctl -d ata --all /dev/sda
+
+Start offline test:
+# smartctl -t offline /dev/ice
+
+Start short test:
+# smartctl -t short /dev/ice
+
+Display results of test:
+# smartctl -l selftest /dev/ice
+
+Query device information:
+# smartctl -i /dev/ice
+-- 
+Mount a BSD / Solaris partition:
+
+# mount -t ufs -o ufstype=ufs2 /dev/hda1 /mnt/hda1
+
+Use ufstype 44bsd  for FreeBSD, NetBSD, OpenBSD (read-write).
+Use ufstype ufs2   for >= FreeBSD 5.x (read-only).
+Use ufstype sun    for SunOS (Solaris) (read-write).
+Use ufstype sunx86 for SunOS for Intel (Solarisx86) (read-write).
+
+See /usr/share/doc/linux-doc-$(uname -r)/Documentation/filesystems/ufs.txt.gz
+for more details.
+-- 
+Read BIOS (and or BIOS) password:
+
+# dd if=/dev/mem bs=512 skip=2 count=1 | hexdump -C | head
+-- 
+Clone one of the kernel trees via git:
+
+ git clone rsync://rsync.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This path defines the tree. See http://kernel.org/git/ for an overview.
+-- 
+Mount filesystems over ssh protocol:
+
+% sshfs user@host:/remote_dir /mnt/test
+
+Unmount via:
+
+% fusermount -u /mnt/test
+
+(Notice: requires fuse kernel module)
+-- 
+Install Gentoo using grml:
+
+See http://www.gentoo.org/doc/en/altinstall.xml
+-- 
+Install (plain) Debian (sarge release) via grml:
+
+Assuming you want to install Debian to sda1:
+
+mkfs.ext3 /dev/sda1           # make an ext3 filesystem on /dev/sda1
+mount -o rw,suid,dev /dev/sda1 /mnt/test # now mount the new partition
+debootstrap sarge /mnt/test ftp://ftp.tugraz.at/mirror/debian # get main packages from a debian-mirror
+chroot /mnt/test /bin/bash    # let's chroot into the new system
+mount -t devpts none /dev/pts # ...otherwise running base-config might fail ("Terminated" or "openpty failed")
+mount -t proc   none /proc    # make sure we also have a mounted /proc
+base-config                   # now configure some main settings
+vi /etc/mkinitrd/mkinitrd.conf # adjust $ROOT (to /dev/sda1) for your new partition, autodetection will fail in chroot
+cd /dev ; ./MAKEDEV generic                                # make sure we have all necessary devices for lilo
+apt-get install lilo linux-image-2.6.12-1-386              # install lilo and a kernel which fits your needs
+cp /usr/share/doc/lilo/examples/conf.sample /etc/lilo.conf # let's use a template
+vi /etc/lilo.conf && lilo                                  # adjust the file for your needs and run lilo afterwards
+umount /proc ; umount /dev/pts                             # we do not need them any more
+exit                                                       # now leave chroot
+cp /etc/hosts /etc/fstab /mnt/test/etc/           # you might want to take the existing files...
+cp /etc/network/interfaces /mnt/test/etc/network/ # ...from the running grml system for your new system
+umount /mnt/test && reboot    # unmount partition and reboot...
+
+See also: http://www.debian.org/releases/stable/i386/apcs04.html.en
+-- 
+Install (plain) Debian (etch release) via grml
+
+Assuming you want to install Debian to sda1:
+
+mkfs.ext3 /dev/sda1           # make an ext3 filesystem on /dev/sda1
+mount -o rw,suid,dev /dev/sda1 /mnt/test # now mount the new partition
+debootstrap etch /mnt/test ftp://ftp.tugraz.at/mirror/debian # get main packages from a debian-mirror
+chroot /mnt/test /bin/bash    # let's chroot into the new system
+mount -t proc   none /proc    # make sure we have a mounted /proc
+apt-get install locales console-data  # install locales
+dpkg-reconfigure locales console-data # adjust locales to your needs
+apt-get install vim most zsh screen less initrd-tools file grub     \
+        usbutils pciutils bzip2 sysfsutils dhcp3-client resolvconf  \
+        strace lsof w3m # install useful software
+apt-get install linux-headers-2.6-686 linux-image-2.6.15-1-686  # install current kernel
+
+echo "127.0.0.1       localhost" > /etc/hosts   # adjust /etc/hosts and network:
+cat >> /etc/network/interfaces << EOF
+iface lo inet loopback 
+iface eth0 inet dhcp
+auto lo
+auto eth0
+EOF
+
+ln -sf /usr/share/zoneinfo/Europe/Vienna /etc/localtime # adjust timezone and /etc/fstab:
+cat >> /etc/fstab << EOF
+sysfs          /sys         sysfs   auto                       0   0
+proc           /proc        proc    defaults                   0   0
+/dev/sda1      /            ext3    defaults,errors=remount-ro 0   1
+/dev/sda2      none         swap    sw                         0   0 
+/dev/cdrom     /mnt/cdrom0  iso9660 ro,user,noauto             0   0
+EOF
+passwd             # set password of user root
+
+mkdir /boot/grub   # setup grub
+cp /usr/share/doc/grub/examples/menu.lst /boot/grub
+cat >> /boot/grub/menu.lst << EOF
+title           Debian Etch, kernel 2.6.15-1-686 (on /dev/sda1)
+root            (hd0,0)
+kernel          /boot/vmlinuz-2.6.15-1-686 root=/dev/sda1 ro
+initrd          /boot/initrd.img-2.6.15-1-686
+EOF
+vim /boot/grub/menu.lst               # adjust grub configuration to your needs
+cd /dev && MAKEDEV generic            # create default devices
+cp -i /lib/grub/i386-pc/* /boot/grub/ # copy stage-files to /boot/grub/
+grub install  # now install grub, run in grub-cmdline following commands:
+> root (hd0,0)
+> setup (hd0)
+> quit
+umount -a # unmount all filesystems in chroot and finally:
+exit      # exit the chroot and:
+reboot
+
+If you want to use lilo instead of grub take a look at
+/usr/share/doc/lilo/examples/conf.sample or use the following template:
+
+cat > /etc/lilo.conf << EOF
+# This allows booting from any partition on disks with more than 1024 cylinders.
+lba32
+
+# Specifies the boot device
+boot=/dev/sda1
+
+# Specifies the device that should be mounted as root.
+root=/dev/sda1
+
+# use Debian on software raid:
+# raid-extra-boot=mbr-only
+
+install=text
+# prompt
+timeout=1
+map=/boot/map
+vga=normal
+
+image=/boot/vmlinuz-2.6.17-grml
+        label="2.6.17-grml"
+        #append="...."
+        read-only
+        initrd=/boot/initrd.img-2.6.17-grml
+EOF
+
+See also: http://www.debian.org/releases/stable/i386/apcs04.html.en
+-- 
+Convert files from Unicode / UTF to ISO:
+
+% iconv -f utf8 -t iso-8859-15 < utffile > isofile
+
+and vice versa:
+
+% iconv -f iso-8859-15 -t utf8 < isofile > utffile
+-- 
+Assign static setup for network cards (eth0 and eth1) via udev:
+
+First method - manual:
+~~~~~~~~~~~~~~~~~~~~~~
+Get information for SYSFS address:
+# udevinfo -a -p /sys/class/net/eth0/ | grep address
+
+Then create udev rules:
+# cat /etc/udev/network.rules
+# match eth* stuff:
+KERNEL=="eth*", SYSFS{address}=="00:00:00:00:00:01", NAME="wlan0"
+KERNEL=="eth*", SYSFS{address}=="00:00:00:00:00:02", NAME="lan0"
+# do not match eth* drivers but also e.g. firewire stuff:
+ACTION=="add", SUBSYSTEM=="net", SYSFS{address}=="00:00:00:00:00:03", NAME="1394"
+
+Now activate the rules:
+# cd /etc/udev/rules.d/ && ln -s ../network.rules z35_network.rules
+
+Unload the drivers, restart udev and load the drivers again to activate
+the settings.
+
+Second method - automatic:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Run /lib/udev/write_net_rules shipped with recent udev versions:
+
+# INTERFACE=wlan1 /lib/udev/write_net_rules 00:00:00:00:00:04
+
+This command will create /etc/udev/rules.d/z25_persistent-net.rules containing:
+
+SUBSYSTEM=="net", DRIVER=="?*", SYSFS{address}=="00:00:00:00:00:04", NAME=wlan1
+
+See /usr/share/doc/udev/writing_udev_rules/index.html for more information.
+-- 
+Change the suffix from *.sh to *.pl using zsh:
+
+% autoload zmv
+% zmv -W '*.sh' '*.pl'
+-- 
+Generate SSL certificate:
+
+Create self signed certificate (adjust /etc/ssl/openssl.cnf if necessary):
+# openssl req -x509 -newkey rsa:1024 -keyout keyfile -out certfile -days 9999 -nodes
+
+Check certfile:
+# openssl x509 -in certfile -text
+
+Verify against CA certificate:
+# openssl verify -CAfile cacert.crt -verbose -purpose sslserver
+
+Generate 2048bit RSA-key:
+# openssl req -new -x509 -keyout pub-sec-key.pem -out pub-sec-key.pem -days 365 -nodes
+
+As before but add request to existing key pub-sec-key.pem:
+# openssl req -new -out request.pem -keyin pub-sec-key.pem
+
+Show request request.pem:
+# openssl req -text -noout -in request.pem
+
+Verify signature of request request.pem:
+# openssl req -verify -noout -in request.pem
+
+Generate SHA1 fingerprint (modulo key) of request.pem:
+# openssl req -noout -modulus -in request.pem | openssl sha1 -c
+
+Generate 2048bit RSA-key and put it to pub-sec-key.pem. Save self signed certificate in self-signed-certificate.pem:
+# openssl req -x509 -days 365 -newkey rsa:2048 -out self-signed-certificate.pem -keyout pub-sec-key.pem
+
+As before but create self signed certificate based on existing key pub-sec-key.pem:
+# openssl req -x509 -days 365 -new -out self-signed-certificate.pem -key pub-sec-key.pem
+
+Generate new request out of existing self signed certificate:
+# openssl x509 -x509toreq -in self-signed-certificate.pem -signkey pub-sec-key.pem -out request.pem
+
+Display certificate self-signed-certificate.pem in plaintext:
+# openssl x509 -text -noout -md5 -in self-signed-certificate.pem
+
+Check self signed certificate:
+# openssl verify -issuer_checks -CAfile self-signed-certificate.pem self-signed-certificate.pem
+
+Estable OpenSSL-connection using self-signed-certificate.pem and display certificate:
+# openssl s_client -showcerts -CAfile self-signed-certificate.pem -connect www.example.com:443
+
+Also take a look at make-ssl-cert (debconf wrapper for openssl)
+and mod-ssl-makecert (utility to create SSL certificates in /etc/apache/ssl.*/).
+-- 
+Change Windows NT password(s):
+
+# mount -o rw /mnt/hda1
+# cd /mnt/hda1/WINDOWS/system32/config/
+# chntpw SAM SECURITY system
+
+Notice: if mounting the partition read-write did not work (check syslog!)
+try using mount.ntfs-3g instead: mount.ntfs-3g /dev/hda1 /mnt/hda1
+
+(Be careful with deactivating syskey!) 
+-- 
+glark - replacement for grep written in Ruby:
+
+A replacement for (or supplement to) the grep family, glark offers:
+Perl compatible regular expressions, highlighting of matches,
+context around matches, complex expressions and automatic exclusion
+of non-text files.
+
+Usage examples:
+
+% glark -y keyword file      # display only the region that matched, not the entire line
+% glark -o format print *.h  # search for either "printf" or "format"
+
+More information: man glark
+-- 
+Find CD burning device(s):
+
+General information on CD-ROM:
+% cat /proc/sys/dev/cdrom/info
+
+Scan using ATA Packet specific SCSI transport:
+# cdrecord -dev=ATA -scanbus
+# cdrecord-prodvd -s -scanbus dev=ATA
+
+Get specific information for /dev/ice:
+# cdrecord dev=/dev/ice -scanbus
+-- 
+Create devices in /dev on udev:
+
+For example create md devices (/dev/md0, /dev/md1,...):
+# cd /dev ; WRITE_ON_UDEV=1 ./MAKEDEV md
+-- 
+Identify network device (NIC):
+
+# ethtool -i $DEVICE
+
+Show NIC statistics:
+
+# ethtool -S $DEVICE
+
+If your NIC shows some aging signs, you may want to be sure:
+
+# ethtool -t $DEVICE
+
+Disable TCP/UDP checksums:
+
+# ethtool -K $DEVICE tx off
+-- 
+grml2hd seems to hang? Getting Squashfs errors? Problems while booting?
+
+Switch to tty12 and take a look at the syslog. If you see something like:
+
+  SQUASHFS error: zlib_fs returned unexpected result 0x........
+  SQUASHFS error: Unable to read cache block [.....]
+  SQUASHFS error: Unable to read inode [.....]
+
+your ISO/CD-ROM very probably is not ok. Verify it via booting with grml testcd.
+Check your CD low-level via running:
+
+# readcd -c2scan dev=/dev/cdrom
+
+If the medium really is ok and it still fails try to boot with deactivated DMA
+via using grml nodma at the bootprompt.
+-- 
+Write a Microsoft compatible boot record (MBR) using ms-sys
+
+Write a Windows 2000/XP/2003 MBR to device:
+
+# ms-sys -m /dev/ice
+-- 
+Use a Vodafone 3G Datacard (UMTS) with Linux:
+
+Plug in your vodafone card and check in syslog whether the appropriate
+(probably /dev/ttyUSB0 or /dev/noz0 when using newer vodafone cards) has
+been created. If so run:
+
+# gcom -d $DEVICE
+# wvdial --config /etc/wvdial.conf.umts $PROFILE
+
+Usage examples:
+# gcom -d /dev/ttyUSB0
+# wvdial --config /etc/wvdial.conf.umts a1usb
+
+# gcom -d /dev/noz0
+# wvdial --config /etc/wvdial.conf.umts tmnozomi
+
+# gcom -d /dev/noz0
+# wvdial --config /etc/wvdial.conf.umts dreiusb
+
+Notice: newer vodafone cards require the nozomi driver. Run 'modprobe nozomi' on
+your grml system.
+-- 
+hdparm - get/set hard disk parameters
+
+Display the identification info that was obtained from the drive at boot time,
+if available:
+# hpdarm -i /dev/ice
+
+Request identification info directly from the drive:
+# hpdarm -I /dev/ice
+
+Perform timings of device + cache reads for benchmark and comparison purposes:
+# hdparm -tT /dev/ice
+-- 
+bonnie++ - program to test hard drive performance.
+
+# mkdir /mnt/benchmark
+# mount /dev/ice /mnt/benchmark
+# chmod go+w /mnt/benchmark
+# bonnie -u grml -d /mnt/benchmark -s 2000M
+-- 
+Use gizmo with a bluetooth headset:
+
+% DEVICE="/dev/dsp$(awk '/- BT Headset/ {print $1}' /proc/asound/cards)"
+% gizmo --mic $DEVICE --speaker $DEVICE
+-- 
+Scan a v4l device for TV stations:
+
+% scantv -c /dev/video0 -C /dev/vbi0 -o ~/.xawtv
+
+Then running xawtv should work:
+
+% xawtv
+-- 
+Run apt-get with timeout of 3 seconds:
+
+# apt-get -o acquire::http::timeout=3  update
+-- 
+Debian GNU/Linux device driver check page
+
+% $BROWSER http://kmuto.jp/debian/hcl/index.cgi
+-- 
+Use dd with status line:
+
+# dd if=/dev/ice conv=noerror,notrunc,sync | buffer -S 100k | dd of=/tmp/file
+-- 
+Generate a 512k file of random data with status bar:
+
+% dd if=/dev/random bs=1024 count=512 | bar -s 512k -of ./random
+-- 
+Install Grub instead of lilo on grml installation (grml2hd):
+
+install grml:
+# grml2hd ....
+
+adjust grub's configuration file menu.lst:
+# $EDITOR /boot/grub/menu.lst
+
+now install grub (usage example for /dev/sda1):
+# grub install
+root (hd0,0)
+setup (hd0)
+-- 
+Install Ubuntu using grml:
+
+See https://wiki.ubuntu.com/Installation/FromKnoppix
+-- 
+Resize ext2 / ext3 partition:
+
+# tune2fs -O '^has_journal' /dev/iceX # disable journaling
+# fsck.ext2 -v -y -f /dev/iceX        # check the filesystem
+# resize2fs -p /dev/iceX  $SIZE       # resize it (adjust $SIZE)
+# fdisk /dev/ice                      # adjust partition in partition table
+# fsck.ext2 -v -y -f /dev/iceX        # check filesystem again
+# resize2fs -p /dev/iceX              # resize it to maximum
+# tune2fs -j /dev/iceX                # re-enable journal
+-- 
+Tune ext2 / ext3 filesystem:
+
+Check partition first:
+
+# tune2fs -l /dev/iceX
+
+If you don't see dir_index in the list, then enable it:
+
+# tune2fs -O dir_index /dev/iceX
+
+Now run e2fsck with the -D option to have the directories optimized: 
+
+# e2fsck -D /dev/iceX
+
+Notice: since e2fsprogs (1.39-1) filesystems are created with
+directory indexing and on-line resizing enabled by default.
+-- 
+Search for printers via network:
+
+# pconf_detect -m NETWORK -i 192.168.0.1/24
+-- 
+Mount a remote directory via webdav (e.g. Mediacenter of GMX):
+
+# mount -t davfs https://mediacenter.gmx.net/ /mnt/test
+-- 
+System-Profiling using oprofile:
+
+Prepare setup:
+
+# opcontrol --reset
+# opcontrol --setup --no-vmlinux --event=CPU_CLK_UNHALTED:500000:0:1:1 --separate=library
+
+Start logging:
+# opcontrol --start
+
+Now $DO_SOME_TASKS...
+
+Stop logging:
+# opcontrol --shutdown
+
+Then take a look at the reports using something like e.g.:
+# opreport -t 0.5 --exclude-dependent
+# opreport -t 0.5 /path/to/executable_to_check
+# opannotate -t 0.5 --source --assembly
+-- 
+Install ATI's fglrx driver for Xorg / X.org:
+
+Usually there already exist drivers for the grml-system:
+# apt-get update ; apt-get install fglrx-driver fglrx-kernel-`uname -r`
+
+After installing adjust xorg.conf via running:
+# aticonfig --initial --input=/etc/X11/xorg.conf
+
+For more information take a look at http://wiki.grml.org/doku.php?id=ati
+-- 
+Install nvidia driver for Xorg / X.org:
+
+Usually there already exist drivers for the grml-system:
+# apt-get update ; apt-get install nvidia-glx nvidia-kernel-`uname -r`
+
+Then switch from module nv to nvidia:
+
+# sed -i 's/Driver.*nv.*/Driver      "nvidia"/' /etc/X11/xorg.conf
+-- 
+glxgears - a GLX demo that draws three rotating gears
+
+To print frames per second (fps) use:
+% glxgears -printfps
+-- 
+You forgot to boot with 'grml noeject noprompt' to avoid
+ejecting and prompting for CD removal when rebooting/halting
+the system?
+
+Either run:
+
+# noeject reboot
+
+or:
+
+# noeject halt
+
+If you want to avoid only the prompting part, run:
+
+# noprompt reboot
+
+or:
+
+# noprompt halt
+-- 
+Mount wikipedia local via fuse:
+
+Adjust configuration:
+% cat ~/.wikipediafs/config.xml 
+<wfs-config>
+    <general>
+       <article-cache-time>300</article-cache-time>
+    </general>
+    <sites>
+      <site>
+        <dirname>wikipedia-de</dirname>
+        <host>de.wikipedia.org</host>
+        <basename>/w/index.php</basename>
+      </site>
+      <site>
+        <dirname>wikipedia-en</dirname>
+        <host>en.wikipedia.org</host>
+        <basename>/w/index.php</basename>
+      </site>
+    </sites>
+</wfs-config>
+
+Mount it (/wiki must exist of course):
+% mount.wikipediafs /wiki
+% cat /wiki/wikipedia-en/Cat
+
+Unmount via:
+% fusermount -u /wiki
+-- 
+Remote notification on X via osd (on screen display):
+
+Start osd_server.py at your local host (listens on port 1234 by default):
+% osd_server.py
+
+Then login to a $REMOTEHOST
+% ssh -R 1234:localhost:1234 $REMOTEHOST
+
+Now send the text to your local display via running something like:
+% echo "text to send" | nc localhost 1234
+
+Very useful when you are waiting for a long running job
+but want to do something else in the meanwhile:
+
+% ./configure && make && echo "finished compiling" | netcat localhost 1234
+
+You can use this in external programs as well of course. Examples:
+
+Use osd in centericq:
+
+% cat ~/.centericq/external
+[...]
+%action osd notify
+event msg
+proto all
+status all
+options nowait
+%exec
+#!/bin/bash
+if [ -x /usr/bin/socat -a -x /bin/netcat ] ; then
+  CONTACT_CUSTOM_NICK=$(cat ${CONTACT_INFODIR}/info | head -n 46 | tail -n 1)
+  osd_msg="*** CenterICQ: new ${EVENT_NETWORK} ${EVENT_TYPE} from ${CONTACT_CUSTOM_NICK} ***"
+  if echo | socat - TCP4:localhost:1234 &>/dev/null ; then
+    echo "${osd_msg}" | netcat localhost 1234
+  fi
+fi
+
+Use it in the IRC console client irssi via running:
+
+/script load osd.pl
+
+You can even activate the port forwarding by default globally:
+
+% cat ~/.ssh/config
+[...]
+Host *
+RemoteForward 1234 127.0.0.1:1234
+ForwardAgent yes
+-- 
+Avoid automatical startup of init scripts via invoke-rc.d:
+
+First of all make sure the package policyrcd-script-zg2 (which
+provides the /usr/sbin/policy-rc.d interface) is installed.
+
+In policyrcd-script-zg2's configuration file named
+/etc/zg-policy-rc.d.conf the script /usr/sbin/grml-policy-rc.d is
+defined as the interface for handling invoke-rc.d's startup policy.
+
+grml-policy-rc.d can be configure via /etc/policy-rc.d.conf.  By
+default you won't notice any differences to Debian's default
+behaviour, except that invoke-rc.d won't be executed if a chroot has
+been detected (detection: /proc is missing).
+
+If you want to disable automatical startup of newly installed packages
+(done via the invoke-rc.d mechanism) just set EXITSTATUS to '101' in
+/etc/policy-rc.d.conf.
+
+To restore the default behaviour set EXITSTATUS back to '0' in
+/etc/policy-rc.d.conf.
+-- 
+Install VMware-Tools for grml:
+
+First of all make sure a CD-ROM device in VMware is available.
+
+Mount the CD-ROM device to /mnt/cdrom, then unpack and install
+the tools running:
+
+cd /tmp
+unp /mnt/cdrom/vmware-linux-tools.tar.gz
+cd vmware-tools-distrib
+./vmware-install.pl
+
+/etc/init.d/networking stop
+rmmod pcnet32
+rmmod vmxnet
+depmod -a
+modprobe vmxnet
+/etc/init.d/networking start
+
+In an X terminal, launch the VMware Tools running:
+
+vmware-toolbox
+-- 
+Some important Postfix stuff
+
+List mail queue:
+
+# mailq
+or
+# postqueue -p
+
+Send all messages in the queue:
+
+# postqueue -f
+
+Send all messages in the queue for a specific site:
+
+# postqueue -s site
+
+Delete a specific message
+# postsuper -d 12345678942
+
+Deletes all messages held in the queue for later delivery
+# postsuper -d ALL deferred
+
+Mail queues in postfix:
+
+    incoming -> mail who just entered the system
+    active   -> mail to be delivered
+    deferred -> mail to be delivered later because there were problems
+    hold     -> mail that should not be delivered until released from hold
+
+For configuration of postfix take a look at
+/etc/postfix/master.cf  - man 5 master
+/etc/postfix/main.cf    - man 5 postconf
+and http://www.postfix.org/documentation.html.
+-- 
+File permissions
+
+mode 4000 - set user ID (suid):
+
+- for executable files: run as the user who owns the file, instead of the
+  user who runs the file
+- for directories: not used
+
+mode 2000 - set group ID (guid):
+
+- for executable files: run as the group who owns the file, instead of the
+  group of the user who runs the file
+- for directories: when a file is created inside the directory, it belongs
+  to the group of the directory instead of the default group of the user who
+  created the file
+
+mode 1000 - sticky bit:
+
+- for files: not used
+- for directories: only the owner of a file can delete or rename the file
+-- 
+Create MySQL database
+
+# apt-get install mysql-client mysql-server
+
+Run 'mysql' as root - create a database with:
+
+create database grml
+
+Give a user access to the database (without password):
+
+grant all on grml.* to mika;
+
+Give a user access to the database (with password):
+
+grant all on grml.* to enrico identified by "PASSWORD";
+-- 
+Setup an HTTPS website:
+
+create a certificate:
+
+/usr/sbin/apache2-ssl-certificate -days 365
+
+Create a virtual host on port 443:
+
+<VirtualHost www.foo.invalid:443>
+[...]
+</VirtualHost>
+
+Enable SSL in the VirtualHost:
+
+SSLEngine On
+SSLCertificateFile /etc/apache2/ssl/apache.pem
+
+Enable listening on the HTTPS port (/etc/apache2/ports.conf):
+
+Listen 443
+-- 
+Useful Apache / Apache2 stuff
+
+Check configuration file via running:
+
+# apache2ctl configtest
+
+Enable a site:
+
+# a2ensite sitename
+
+Enable a module
+
+# a2enmod modulename
+-- 
+Create tar archive and store it on remote machine:
+
+% tar zcf - /sourcedir | ssh user@targethost "cat >file.tgz"
+-- 
+Pick out and displays images from network traffic:
+
+# driftnet
+-- 
+Install Flash plugin:
+
+# dpkg-reconfigure flashplugin-nonfree
+-- 
+To test a proxy, low level way:
+
+% telnet proxy 8080
+[...]
+GET http://www.google.com HTTP/1.0 [press enter twice]
+-- 
+Adjust system for use of qemu with kqemu:
+
+Make sure you have all you need:
+# apt-get update ; apt-get install qemu grml-kerneladdons
+
+Then set up kqemu:
+
+modprobe kqemu
+mknod /dev/kqemu c 250 0
+chmod 666 /dev/kqemu
+chmod 666 /dev/net/tun
+
+Check kqemu support via starting qemu, press
+Ctrl-Alt-2 and entering 'info kqemu'.
+-- 
+(High-Load) Debugging related tools:
+
+mpstat  # report processors related statistics
+iostat  # report CPU statistics and input/output statistics for devices and partitions
+vmstat  # report virtual memory statistics
+slabtop # display kernel slab cache information in real time
+atsar   # system activity report
+dstat   # versatile tool for generating system resource statistics
+
+Usage examples:
+
+# mptstat -P ALL
+# iostat -x 1
+# iostat -xtc 5 3
+# vmstat 1
+# atsar -t 60 10
+# dstat -af
+-- 
+Using WPA for network setup manually:
+
+# wpa_supplicant -Dwext -iwlan0 -c/etc/wpa_supplicant.conf
+
+Adjust the options and configuration file to your needs.
+Also take a look at 'grml-network'.
+-- 
+Start X and lock console via exiting:
+
+% startx 2>~/.xsession-errors &| exit
+-- 
+Which process is writing to disk?
+
+# echo 1 > /proc/sys/vm/block_dump
+
+Warning: you must disable syslogd before you do this, or you must
+make sure that kernel output is not logged.
+
+When you're done, disable block dump using:
+# echo 0 > /proc/sys/vm/block_dump
+
+Alternative:
+laptop-mode-tools provides a tool named lm-profiler (laptop mode profiler)
+which handles block_dump on its own.
+-- 
+Install initrd via initramfs-tools for currently running kernel:
+
+# update-initramfs -u -t -k $(uname -r)
+-- 
+Install initrd via yaird for currently running kernel:
+
+# yaird -o /boot/initrd.img-$(uname -r)
+
+Install initrd via yaird for specific kernel:
+
+# mount /proc 
+# mount /sys
+# yaird -o /boot/initrd.img-2.6.15-1-686 2.6.15-1-686
+-- 
+Reinstall package with its original configuration files:
+
+# apt-get install --reinstall -o DPkg::Options::=--force-confmiss -o \
+  DPkg::Options::=--force-confnew package
+-- 
+grml 0.8 funkenzutzler - rt2x00 drivers:
+
+To avoid conflicts with the other rt2x00-drivers the package rt2x00 (which
+includes beta-version drivers) is not installed by default. If you want to
+use the kernel modules rt2400pci, rt2500pci, rt2500usb, rt61pci and/or
+rt73usb please install the package manually running:
+
+# dpkg -i /usr/src/rt2x00-modules-*.deb
+-- 
+Use Java with jikes and jamvm on grml:
+
+Simple demo:
+
+% cp /usr/share/doc/grml-templates/template.java .
+% jikes template.java
+% jamvm HelloWorld
+
+Notice that grml exports $JIKESPATH (/usr/share/classpath/glibj.zip),
+so you do not have to manually run
+jikes --bootclasspath /usr/share/classpath/glibj.zip
+-- 
+Online resizing of (Software-)RAID5:
+
+# Initiate a RAID5 setup for testing purposes:
+mdadm --create --verbose /dev/md0 --level=5 --raid-devices=3 /dev/hda1 /dev/hdb1 /dev/hdd1
+
+# Create filesystem, mount md0, create a testfile and save md5sum for
+# later check:
+mkfs.ext3 /dev/md0
+mount /dev/md0 /mnt/test
+dd if=/dev/urandom of=/mnt/test/dd bs=512 count=10000
+md5sum /mnt/test/dd > md5sum
+
+# Make sure the RAID is synched via checking:
+cat /proc/mdstat
+
+# Now remove one partition:
+mdadm /dev/md0 --fail /dev/hdd1 --remove /dev/hdd1
+
+# Delete partition, create a new + bigger one and set partition type to fd
+# (Linux raid autodetect):
+cfdisk /dev/hdd
+
+# And re-add the partition:
+mdadm -a /dev/md0 /dev/hdd1
+
+# Make sure the RAID is synched via checking:
+cat /proc/mdstat
+
+# Repeat the steps for all other disks/partitions as well:
+mdadm /dev/md0 --fail /dev/hdb1 --remove /dev/hdb1
+cfdisk /dev/hdb
+mdadm -a /dev/md0 /dev/hdb1
+cat /proc/mdstat
+mdadm /dev/md0 --fail /dev/hda1 --remove /dev/hda1
+cfdisk /dev/hda
+mdadm -a /dev/md0 /dev/hda1
+cat /proc/mdstat
+
+# Now resize the RAID5 system online [see 'man mdadm' for details]:
+mdadm --detail /dev/md0 | grep -e 'Array Size' -e 'Device Size'
+mdadm --grow /dev/md0 -z max
+mdadm --detail /dev/md0 | grep -e "Array Size" -e 'Device Size'
+
+# Last step - resize the filesystem (online again):
+resize2fs /dev/md0
+-- 
+ext3 online resizing:
+
+Starting with Linux kernel 2.6.10 you can resize ext3 online.  With
+e2fsprogs >=1.39-1 new filesystems are created with directory indexing and
+on-line resizing enabled by default (see /etc/mke2fs.conf).
+
+Demo:
+
+cfdisk /dev/hda                           # create a partition with type 8e (lvm)
+pvcreate /dev/hda2                        # create a physical volume
+vgcreate resize_me /dev/hda2              # create volume group
+lvcreate -n resize_me -L100 resize_me     # create a logical volume
+mkfs.ext3 /dev/resize_me/resize_me        # now create a new filesystem
+mount /dev/resize_me/resize_me /mnt/test  # mount the new fs for demonstrating online resizing
+df -h                                     # check the size of the partition
+lvextend -L+100M /dev/resize_me/resize_me # let's extend the logical volume
+resize2fs /dev/resize_me/resize_me        # and finally resize the filesystem
+df -h                                     # recheck the size of the partition
+
+This also works for Software-RAID. Demo:
+
+mdadm --create --verbose /dev/md0 --level=raid1 --raid-devices=2 /dev/hda2 /dev/hdb1
+mkfs.ext3 /dev/md0
+mount /dev/md0 /mnt/test
+mdadm /dev/md0 --fail /dev/hda2 --remove /dev/hda2
+cfdisk /dev/hda                                  # adjust partition size for hda2
+mdadm /dev/md0 --add /dev/hda2
+mdadm /dev/md0 --fail /dev/hdb1 --remove /dev/hdb1
+cfdisk /dev/hdb                                  # adjust partition size for hdb1
+mdadm /dev/md0 --add /dev/hdb1
+mdadm --grow /dev/md0 --size=max
+resize2fs /dev/md0
+
+Notice: online resizing works as soon as the kernel can re-read the
+partition table. So it works for example with LVM and SW-RAID but not with
+a plain device (/dev/[sh]d*). The kernel does not re-read the partition
+table if the device is already mounted. 
+-- 
+Use vim as an outline editor:
+
+% $PAGER /usr/share/doc/vim-vimoutliner/README.Debian
+% vim ~/foo.otl
+:he vo
+-- 
+Monitor directories/files for changes using iwatch
+
+Monitor /tmp for changes:
+% iwatch /tmp/
+
+Monitor files/directories specified in /etc/iwatch.xml
+and send mail on changes:
+% iwatch
+-- 
+Some often used mdadm commands:
+
+Set up RAID1:
+# mdadm --create --verbose /dev/md0 --level=raid1 --raid-devices=2 /dev/hda1 /dev/hdb1
+
+Display details of specific RAID:
+# mdadm --detail /dev/md0
+# cat /proc/mdstat
+
+Simulating a drive failure by software:
+# mdadm --manage --set-faulty /dev/md0 /dev/hda1
+
+Remove disk from RAID:
+# mdadm /dev/md0 -r /dev/hda1
+
+Set disk as faulty and remove from RAID:
+# mdadm /dev/md0 --fail /dev/hda1 --remove /dev/hda1
+
+Stop a RAID-device:
+# mdadm -S /dev/md0
+
+Restart a RAID-device:
+# mdadm -R /dev/md0
+
+Add another disk to existing RAID setup (hotadd):
+# mdadm /dev/md0 -a /dev/hde1
+# mdadm --grow /dev/md0 --raid-devices=4
+
+Assemble and start all arrays:
+# mdadm --assemble --scan 
+
+Assemble a specific array:
+# mdadm --assemble /dev/md0 /dev/sda1 /dev/sdb1 /dev/sdc1 
+
+Resync:
+# mdadm --assemble --run --force --update=resync /dev/md0 /dev/sda1 /dev/sda2
+
+Stop and rebuild:
+# mdadm --stop --scan
+# mdadm --assemble /dev/md0 --auto --scan --update=summaries --verbose
+
+Monitoring the sw raid
+# nohup mdadm --monitor --mail=root@localhost --delay=300 /dev/md0 
+
+See also: man mdadm | less -p "^EXAMPLES"
+          http://www.tldp.org/HOWTO/Software-RAID-HOWTO.html
+-- 
+A quick summary of the most commonly used RAID levels:
+
+RAID 0: Striped Set
+ => 2 disks each 160 GB: 320 GB data
+RAID 1: Mirrored Set
+ => 2 disks each 160 GB: 160 GB data
+RAID 5: Striped Set with Parity
+ => 3 disks each 160 GB: 320 GB data; 160 GB redundancy
+
+Common nested RAID levels:
+RAID 01: A mirror of stripes
+RAID 10: A stripe of mirrors
+RAID 30: A stripe across dedicated parity RAID systems
+RAID 100: A stripe of a stripe of mirrors
+
+  -- http://en.wikipedia.org/wiki/RAID
+-- 
+Logical Volume Management (LVM) with Linux
+
+LVM setup layout:
+~~~~~~~~~~~~~~~~~
+
+|    hda1   hdc1      (PV:s on partitions or whole disks)
+|       \   /
+|        \ /
+|       diskvg        (VG)
+|       /  |  \
+|      /   |   \
+|  usrlv rootlv varlv (LV:s)
+|    |      |     |
+| ext3    ext3  xfs   (filesystems)
+
+Often used commands:
+~~~~~~~~~~~~~~~~~~~~
+
+Create a physical volume:
+# pvcreate /dev/hda2
+
+Create a volume group:
+# vgcreate testvg /dev/hda2
+
+Create a logical volume:
+# lvcreate -n test_lv -L100 testvg
+
+Resize a logical volume:
+# lvextend -L+100M /dev/resize_me/resize_me
+# resize2fs /dev/resize_me/resize_me               # ext2/3
+# xfs_growfs  /dev/resize_me/resize_me             # xfs
+# resize_reiserfs -f /dev/resize_me/resize_me      # reiserfs online
+# mount -o remount,resize /dev/resize_me/resize_me # jfs
+
+Create a snapshot of a logical volume:
+# lvcreate -L 500M --snapshot -n mysnap /dev/testvg/test_lv
+
+Deactivate a volume group: 
+# vgchange -a n my_volume_group
+
+Actually remove a volume group: 
+# vgremove my_volume_group
+
+Display information about physical volume:
+# pvdisplay /dev/hda1
+
+Remove physical volume:
+# vgreduce my_volume_group /dev/hda1
+
+Remove logical volume:
+# umount /dev/myvg/homevol
+# lvremove /dev/myvg/homevol
+
+See also: man lvm
+          http://www.tldp.org/HOWTO/LVM-HOWTO/
+-- 
+How to use APT locally
+
+Sometimes you have lots of packages .deb that you would like to use APT to
+install so that the dependencies would be automatically solved. Solution:
+
+mkdir ~debs
+dpkg-scanpackages debs /dev/null | gzip > debs/Packages.gz
+echo "  deb file:/root debs/" >> /etc/apt/sources.list
+dpkg-scansources debs | gzip > debs/Sources.gz
+echo "  deb-src file:/root debs/" >> /etc/apt/sources.list
+
+See also: http://www.debian.org/doc/manuals/apt-howto/ch-basico.en.html
+-- 
+Check filesystem's LABEL:
+
+generic way:
+# vol_id -l /dev/sda1
+
+ext2/3 without vol_id:
+# dumpe2fs /dev/sda1 | grep "Filesystem volume name"
+
+xfs without vol_id:
+# xfs_admin -l /dev/sda1
+
+reiserfs without vol_id:
+# debugreiserfs /dev/sda1 | grep UUID
+
+reiser4 without vol_id:
+# debugfs.reiser4 /dev/sda1 | grep uuid
+-- 
+Check filesystem's UUID:
+
+generic way:
+# vol_id -u /dev/sda1
+
+ext2/3 without vol_id:
+# dumpe2fs /dev/sda1 | grep UUID
+
+xfs without vol_id:
+# xfs_admin -u /dev/sda1
+
+reiserfs without vol_id:
+# debugreiserfs /dev/sda1 | grep LABEL
+
+reiser4 without vol_id:
+# debugfs.reiser4 /dev/sda1 | grep label
+-- 
+Disable pdiffs feature of APT:
+
+Permanent:
+# echo 'Acquire::PDiffs "false";' >> /etc/apt/apt.conf
+
+Temporary:
+# apt-get update -o Acquire::Pdiffs=false
+-- 
+Backup big devices or files and create compressed splitted
+image chunks of it using zsplit
+
+Create backup of /dev/sda named archiveofsda_#.spl.zp in directory
+/mnt/sda1/backup, split the files up into chunks of 1GB each and set
+read/write buffer to 256kB:
+# zsplit -b 256 -N archiveofsda -o /mnt/sda1/backup/ -s 1G /dev/sda
+
+Restore the backup using unzsplit:
+# unzsplit -D /dev/sda -d archiveofsda
+
+More usage examples: man zsplit + man unzsplit
+-- 
+Measure network performance using ipserf
+
+Server side:
+% iperf -s -V 
+
+Client side:
+% iperf -c <server_address> -V
+
+or
+
+Server with 128k TCP window size:
+% iperf -s -w128k
+
+Client with running for 60 seconds and bidirectional test:
+% iperf -c <server_address> -r -w128k -t60
+-- 
+Framebuffer resolutions:
+
+                              Resolution in pixels
+Color depth      |   640x480      800x600      1024x768      1280x1024
+256        (8bit)|     769          771           773           775
+32000     (15bit)|     784          787           790           793
+65000     (16bit)|     785          788           791           794
+16.7 Mill.(24bit)|     786          789           792           795
+
+vga=0x... modes:
+
+  Mode 0x0300: 640x400 (+640), 8 bits
+  Mode 0x0301: 640x480 (+640), 8 bits
+  Mode 0x0303: 800x600 (+800), 8 bits
+  Mode 0x0303: 800x600 (+832), 8 bits
+  Mode 0x0305: 1024x768 (+1024), 8 bits
+  Mode 0x0307: 1280x1024 (+1280), 8 bits
+  Mode 0x030e: 320x200 (+640), 16 bits
+  Mode 0x030f: 320x200 (+1280), 24 bits
+  Mode 0x0311: 640x480 (+1280), 16 bits
+  Mode 0x0312: 640x480 (+2560), 24 bits
+  Mode 0x0314: 800x600 (+1600), 16 bits
+  Mode 0x0315: 800x600 (+3200), 24 bits
+  Mode 0x0317: 1024x768 (+2048), 16 bits
+  Mode 0x0318: 1024x768 (+4096), 24 bits
+  Mode 0x031a: 1280x1024 (+2560), 16 bits
+  Mode 0x031b: 1280x1024 (+5120), 24 bits
+  Mode 0x0330: 320x200 (+320), 8 bits
+  Mode 0x0331: 320x400 (+320), 8 bits
+  Mode 0x0332: 320x400 (+640), 16 bits
+  Mode 0x0333: 320x400 (+1280), 24 bits
+  Mode 0x0334: 320x240 (+320), 8 bits
+  Mode 0x0335: 320x240 (+640), 16 bits
+  Mode 0x0336: 320x240 (+1280), 24 bits
+  Mode 0x033c: 1400x1050 (+1408), 8 bits
+  Mode 0x033d: 640x400 (+1280), 16 bits
+  Mode 0x033e: 640x400 (+2560), 24 bits
+  Mode 0x0345: 1600x1200 (+1600), 8 bits
+  Mode 0x0346: 1600x1200 (+3200), 16 bits
+  Mode 0x034d: 1400x1050 (+2816), 16 bits
+  Mode 0x035c: 1400x1050 (+5632), 24 bits
+-- 
+Portscan using netcat:
+
+# netcat -v -w2 <host|ip-addr.> 1-1024
+-- 
+Run apt-get but disable apt-listchanges:
+
+APT_LISTCHANGES_FRONTEND=none apt-get ...
+
+Upgrade system but disable apt-listbugs:
+
+APT_LISTBUGS_FRONTEND=none apt-get ...
+-- 
+Set up a Transparent Debian Proxy 
+
+Install of apt-cacher, the default config will do: 
+# apt-get install apt-cacher
+
+Check out the ip address of debian mirror(s).
+Then add this to your firewall script: 
+
+DEBIAN_MIRRORS="141.76.2.4 213.129.232.18"
+for ip in ${DEBIAN_MIRRORS} ; do
+  ${IPTABLES} -t nat -A PREROUTING -s $subnet -d $ip -p tcp --dport 80 -j REDIRECT --to-port 3142
+done
+
+where ${IPTABLES} is the location of your iptables binary
+and $subnet is your internal subnet.
+
+Now everybody in your subnet who does access either
+ftp.de.debian.org or ftp.at.debian.org will actually
+access your apt-cacher instead.
+
+To use apt-cacher on the router itself, add the following
+line to your /etc/apt/apt.conf:
+
+Acquire::http::Proxy "http://localhost:3142/";
+-- 
