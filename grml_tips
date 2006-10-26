@@ -593,8 +593,8 @@ MPEG:
 
 WMV:
 
-% mencoder file1.wmv -ovc lavc -oac lavc -ofps 25 -srate 48000 -o file1.avi
-% mencoder file2.wmv -ovc lavc -oac lavc -ofps 25 -srate 48000 -o file2.avi
+% mencoder file1.wmv -ovc lavc -oac lavc -ofps 25 -srate 48000 -mc 0 -noskip -forceidx -o file1.avi
+% mencoder file2.wmv -ovc lavc -oac lavc -ofps 25 -srate 48000 -mc 0 -noskip -forceidx -o file2.avi
 % avimerge -i file1.avi file2.avi -o blub.avi
 -- 
 Display MS-Word file:
@@ -1003,7 +1003,7 @@ dpkg-reconfigure locales console-data # adjust locales to your needs
 apt-get install vim most zsh screen less initrd-tools file grub     \
         usbutils pciutils bzip2 sysfsutils dhcp3-client resolvconf  \
         strace lsof w3m # install useful software
-apt-get install linux-headers-2.6-686 linux-image-2.6.15-1-686  # install current kernel
+apt-get install linux-headers-2.6-686 linux-image-686  # install current kernel
 
 echo "127.0.0.1       localhost" > /etc/hosts   # adjust /etc/hosts and network:
 cat >> /etc/network/interfaces << EOF
@@ -1026,14 +1026,14 @@ passwd             # set password of user root
 mkdir /boot/grub   # setup grub
 cp /usr/share/doc/grub/examples/menu.lst /boot/grub
 cat >> /boot/grub/menu.lst << EOF
-title           Debian Etch, kernel 2.6.15-1-686 (on /dev/sda1)
+title           Debian Etch, kernel 2.6.17-2-686 (on /dev/sda1)
 root            (hd0,0)
-kernel          /boot/vmlinuz-2.6.15-1-686 root=/dev/sda1 ro
-initrd          /boot/initrd.img-2.6.15-1-686
+kernel          /boot/vmlinuz-2.6.17-2-686 root=/dev/sda1 ro
+initrd          /boot/initrd.img-2.6.17-2-686
 EOF
 vim /boot/grub/menu.lst               # adjust grub configuration to your needs
 cd /dev && MAKEDEV generic            # create default devices
-cp -i /lib/grub/i386-pc/* /boot/grub/ # copy stage-files to /boot/grub/
+cp -i /usr/lib/grub/i386-pc/* /boot/grub/ # copy stage-files to /boot/grub/
 grub install  # now install grub, run in grub-cmdline following commands:
 > root (hd0,0)
 > setup (hd0)
@@ -2211,3 +2211,12 @@ Set up a CGI server on your webserver:
 
 Mercurial repositories of grml can be found at http://hg.grml.org/
 -- 
+Download binary codecs for mplayer:
+
+# /usr/share/mplayer/scripts/win32codecs.sh
+
+To play encrypted DVDs and if you are living in a country where using
+libdvdcss code is not illegal can install Debian package libdvdread3
+and use the script /usr/share/doc/libdvdread3/install-css.sh.
+-- 
+

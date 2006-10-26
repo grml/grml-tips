@@ -1,3 +1,13 @@
+grml-tips (0.3-8) unstable; urgency=low
+
+  * Fix 'grml-tips etch': it's /usr/lib/grub/i386-pc/ and not
+    /lib/grub/i386-pc/ of course, thanks - mabu!
+  * Update kernel-version for "debootstrap->etch tip".
+  * Update mencoder tip (thanks, wuehlmaus).
+  * Added /usr/share/mplayer/scripts/win32codecs.sh tip for mplayer.
+
+ -- Michael Prokop <mika@grml.org>  Sun, 22 Oct 2006 23:08:34 +0200
+
 grml-tips (0.3-7) unstable; urgency=low
 
   * Added mercurial tip, update reportbugs tip and removed some
