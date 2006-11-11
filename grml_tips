@@ -700,7 +700,8 @@ Write back the guessed table:
 Develop, test and use exploit code with the Metasploit Framework:
 
 cd /tmp
-unp /usr/share/grml-sectools/tools/metasploit_framework*.tar.gz
+wget http://www.metasploit.com/tools/framework-2.7-snapshot.tar.gz
+unp framework-2.7-snapshot.tar.gz
 cd framework*
 ./msfcli
 -- 
