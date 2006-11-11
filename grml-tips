@@ -4,10 +4,13 @@
 # Authors:       grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
 # Bug-Reports:   see http://grml.org/bugs/
 # License:       This file is licensed under the GPL v2.
-# Latest change: Sat Mar 25 17:59:52 CET 2006 [mika]
+# Latest change: Mit Nov 01 12:02:06 CET 2006 [mika]
 ################################################################################
 
 TIPSFILE='/usr/share/grml-tips/grml_tips'
+
+# another approach:
+# awk 'BEGIN { RS = "-- " } /$1/' $TIPSFILE
 
 if [ -r "$TIPSFILE" ] ; then
   if [ -n "$1" ] ; then

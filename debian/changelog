@@ -1,3 +1,12 @@
+grml-tips (0.3-9) unstable; urgency=low
+
+  * Updated grml-tips.
+  * Use "Architecture: all" in debian/control to support architectures
+    not running on x86 as well.
+  * Bumb Standard Version to 3.7.2 (no further changes). 
+
+ -- Michael Prokop <mika@grml.org>  Wed,  1 Nov 2006 11:29:56 +0100
+
 grml-tips (0.3-8) unstable; urgency=low
 
   * Fix 'grml-tips etch': it's /usr/lib/grub/i386-pc/ and not
