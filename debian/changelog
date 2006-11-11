@@ -1,3 +1,10 @@
+grml-tips (0.3-10) unstable; urgency=low
+
+  * Added workaround for systems without agrep using awk.
+  * Updated manpage.
+
+ -- Michael Prokop <mika@grml.org>  Sat, 11 Nov 2006 20:01:41 +0100
+
 grml-tips (0.3-9) unstable; urgency=low
 
   * Updated grml-tips.

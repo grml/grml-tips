@@ -1,4 +1,4 @@
-.TH GRML-TIPS 1 "Dezember 11, 2005"
+.TH GRML-TIPS 1
 .SH NAME
 grml-tips \- query a signature file for a specific keyword and display results
 .SH SYNOPSIS
@@ -10,15 +10,20 @@ This manual page documents briefly the
 command.
 .PP
 .SH Usage example
-.PP
-grml-tips ntfs
-.PP
+.TP
+.BR "grml-tips ntfs"
 Query grml-tips file for tips / hints including keyword "ntfs".
+.TP
+.BR "grml-tips ."
+Display all available grml-tips at once.
 .SH FILES
 .PP
-/etc/grml/grml_tips
+/usr/share/grml-tips/grml_tips
 .PP
-Signature file with tips.
+Signature file containing the tips.
+.SH NOTES
+By default grml-tips uses agrep for searching through the signature file.
+If agrep is not available it falls back to use of awk.
 .SH OPTIONS
 This program does not support any options.
 .SH SEE ALSO
@@ -26,5 +31,5 @@ This program does not support any options.
 .SH AUTHOR
 grml-tips was written by Michael Prokop <mika@grml.org>
 .PP
-This manual page was written by Michael Prokop <mika@grml.org>,
+This manual page was written by Michael Prokop <mika@grml.org>
 for the grml project (but may be used by others).

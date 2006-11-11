@@ -7,10 +7,10 @@ Standards-Version: 3.7.2
 
 Package: grml-tips
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, agrep
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: agrep
 Description: search for tips and hints via a keyword
  The provided script grml-tips queries a signature file
- with agrep for a specific keyword and displays results
- on stdout.
+ for a specific keyword and displays results on stdout.
  .
   Homepage: http://grml.org/
