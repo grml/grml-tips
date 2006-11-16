@@ -1632,9 +1632,9 @@ grant all on grml.* to enrico identified by "PASSWORD";
 -- 
 Setup an HTTPS website:
 
-create a certificate:
+Create a certificate:
 
-/usr/sbin/apache2-ssl-certificate -days 365
+# make-ssl-cert
 
 Create a virtual host on port 443:
 
@@ -2250,5 +2250,71 @@ Server:
 
 Client:
 # netperf -t TCP_STREAM -H 192.168.0.41
+-- 
+Setup Xen within 20 minutes on Debian/grml
+
+Install relevant software und update grub's menu.lst (Xen does not work with
+usual lilo so install grub instead if not done already):
+
+apt-get install linux-image-2.6.18-1-xen-686 xen-hypervisor-3.0.3-1-i386 \
+                 xen-utils-3.0.3-1 xen-tools bridge-utils
+update-grub
+
+Example for installation of Debian etch as DomU:
+
+mkdir /mnt/md1/xen
+xen-create-image --debootstrap --dir=/mnt/md1/xen --size=2Gb --memory=512Mb --fs=ext3 \
+   --cache=yes --dist=etch --hostname=xengrml1 --ip 192.168.1.2 --netmask 255.255.255.0 \
+  --gateway 192.168.1.1 --initrd=/boot/initrd.img-2.6.18-1-xen-686 \
+  --kernel=/boot/vmlinuz-2.6.18-1-xen-686 --mirror=http://ftp.at.debian.org/debian/
+
+Start services:
+
+/etc/init.d/xend start
+/etc/init.d/xendomains start
+
+Setup a bridge for network, either manually:
+
+brctl addbr xenintbr
+brctl stp xenintbr off
+brctl sethello xenintbr 0
+brctl setfd xenintbr 0
+ifconfig xenintbr 192.168.1.1 netmask 255.255.255.0 up
+
+or via /etc/network/interfaces (run ifup xenintbr to bring up the device then
+without rebooting):
+
+auto xenintbr
+iface xenintbr inet static
+  pre-up brctl addbr xenintbr
+  post-down brctl delbr xenintbr
+  address 192.168.1.1
+  netmask 255.255.255.0
+  bridge_fd 0
+  bridge_hello 0
+  bridge_stp off
+
+Setup forwarding (adjust $PUBLIC_IP; for permanet setup use /etc/sysctl.conf and
+add the iptables commands to a startup script like /etc/init.d/rc.local):
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -o eth0 -s 192.168.0.0/24 -j SNAT --to $PUBLIC_IP
+iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to $PUBLIC_IP
+
+Adjust network configuration of Xend:
+
+cat >> /etc/xen/xend-config.sxp << EOF
+(network-script    network-route)
+(vif-bridge        xenintbr)
+(vif-script        vif-bridge)
+EOF
+
+List domains, start up a DomU, shutdown later again:
+
+xm create -c /etc/xen/xengrml1.cfg
+xm list
+xm shutdown 1
+
+This HowTo is also available online at http://grml.org/xen/
 -- 
 

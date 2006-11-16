@@ -1,3 +1,11 @@
+grml-tips (0.3-12) unstable; urgency=low
+
+  * Added tip for Xen (see http://grml.org/xen/ for online version)
+    and updated tip for creating a certificate (it's make-ssl-cert
+    now as /usr/sbin/apache2-ssl-certificate isn't available anymore).
+
+ -- Michael Prokop <mika@grml.org>  Thu, 16 Nov 2006 20:53:57 +0100
+
 grml-tips (0.3-11) unstable; urgency=low
 
   * Updated grml-tips (update metasploit framework tip).
