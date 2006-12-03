@@ -989,6 +989,7 @@ cp /etc/network/interfaces /mnt/test/etc/network/ # ...from the running grml sys
 umount /mnt/test && reboot    # unmount partition and reboot...
 
 See also: http://www.debian.org/releases/stable/i386/apcs04.html.en
+Avoid all of the above steps - use grml-debootstrap(8) instead!
 -- 
 Install (plain) Debian (etch release) via grml
 
@@ -1027,10 +1028,10 @@ passwd             # set password of user root
 mkdir /boot/grub   # setup grub
 cp /usr/share/doc/grub/examples/menu.lst /boot/grub
 cat >> /boot/grub/menu.lst << EOF
-title           Debian Etch, kernel 2.6.17-2-686 (on /dev/sda1)
+title           Debian Etch, kernel 2.6.18-3-686 (on /dev/sda1)
 root            (hd0,0)
-kernel          /boot/vmlinuz-2.6.17-2-686 root=/dev/sda1 ro
-initrd          /boot/initrd.img-2.6.17-2-686
+kernel          /boot/vmlinuz-2.6.18-3-686 root=/dev/sda1 ro
+initrd          /boot/initrd.img-2.6.18-3-686
 EOF
 vim /boot/grub/menu.lst               # adjust grub configuration to your needs
 cd /dev && MAKEDEV generic            # create default devices
@@ -1065,14 +1066,15 @@ timeout=1
 map=/boot/map
 vga=normal
 
-image=/boot/vmlinuz-2.6.17-grml
-        label="2.6.17-grml"
+image=/boot/vmlinuz-2.6.18-grml
+        label="2.6.18-grml"
         #append="...."
         read-only
-        initrd=/boot/initrd.img-2.6.17-grml
+        initrd=/boot/initrd.img-2.6.18-grml
 EOF
 
 See also: http://www.debian.org/releases/stable/i386/apcs04.html.en
+Avoid all of the above steps - use grml-debootstrap(8) instead!
 -- 
 Convert files from Unicode / UTF to ISO:
 
