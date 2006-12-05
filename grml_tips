@@ -2022,7 +2022,7 @@ How to use APT locally
 Sometimes you have lots of packages .deb that you would like to use APT to
 install so that the dependencies would be automatically solved. Solution:
 
-mkdir ~debs
+mkdir debs
 dpkg-scanpackages debs /dev/null | gzip > debs/Packages.gz
 echo "  deb file:/root debs/" >> /etc/apt/sources.list
 dpkg-scansources debs | gzip > debs/Sources.gz
