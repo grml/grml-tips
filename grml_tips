@@ -573,9 +573,9 @@ vim -c "se ff=dos|x" file                # ... and even shorter ;)
 recode ibmpc..lat1 file                  # convert using recode
 echo -e "s/\r//g" > dos2unix.sed; sed -f dos2unix.sed < dosfile > unixfile
 -- 
-Save live stream to file:
+Save live audio stream to file:
 
-% mplayer -ao pcm -aofile $FILE
+% mplayer -ao pcm:file=$FILE
 
 or
 
@@ -1166,7 +1166,17 @@ Check self signed certificate:
 Estable OpenSSL-connection using self-signed-certificate.pem and display certificate:
 # openssl s_client -showcerts -CAfile self-signed-certificate.pem -connect www.example.com:443
 
-Also take a look at make-ssl-cert (debconf wrapper for openssl)
+Generate ssl-certificate for use with apache2:
+
+export RANDFILE=/dev/random
+mkdir /etc/apache2/ssl/
+openssl req $@ -new -x509 -days 365 -nodes -out /etc/apache2/ssl/apache.pem -keyout /etc/apache2/ssl/apache.pem
+chmod 600 /etc/apache2/ssl/apache.pem
+
+Also take a look at make-ssl-cert (debconf wrapper for openssl):
+
+# /usr/sbin/make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/apache.pem
+
 and mod-ssl-makecert (utility to create SSL certificates in /etc/apache/ssl.*/).
 -- 
 Change Windows NT password(s):
@@ -1636,7 +1646,8 @@ Setup an HTTPS website:
 
 Create a certificate:
 
-# make-ssl-cert
+# mkdir /etc/apache2/ssl
+# make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/ssl/apache.pem
 
 Create a virtual host on port 443:
 
@@ -1652,6 +1663,10 @@ SSLCertificateFile /etc/apache2/ssl/apache.pem
 Enable listening on the HTTPS port (/etc/apache2/ports.conf):
 
 Listen 443
+
+and make sure the SSL module is used:
+
+# a2enmod ssl
 -- 
 Useful Apache / Apache2 stuff
 
@@ -1711,7 +1726,7 @@ dstat   # versatile tool for generating system resource statistics
 
 Usage examples:
 
-# mptstat -P ALL
+# mpstat -P ALL
 # iostat -x 1
 # iostat -xtc 5 3
 # vmstat 1
@@ -2319,4 +2334,48 @@ xm shutdown 1
 
 This HowTo is also available online at http://grml.org/xen/
 -- 
+Play tetris with zsh:
 
+autoload -U tetris
+zle -N tetris
+bindkey "^Xt" tetris
+
+Now press 'ctrl-x t'.
+-- 
+Set up a router with grml
+
+Run grml-router script:
+# grml-router
+
+Install dnsmasq if not already present:
+# apt-get update ; apt-get install dnsmasq
+
+Adjust /etc/dnsmasq.conf according to your needs:
+# cat >> /etc/dnsmasq.conf << EOF
+domain-needed
+bogus-priv
+dhcp-range=19.168.0.124,192.168.0.254,1m # dhcp range
+dhcp-option=3,192.168.0.1   # dns server
+dhcp-option=1,255.255.255.0 # netmask
+EOF
+
+Start dnsmasq finally:
+# Restart dnsmasq
+-- 
+Find out which process(es) cause the disk to spin up:
+
+# echo 1 > /proc/sys/vm/block_dump
+
+The command sets a sysctl to cause the kernel to log all disk
+writes. Please notice that there is a lot of data.
+
+See: $KERNEL-SOURCE/Documentation/laptop-mode.txt
+
+Also take a look at event-viewer(8).
+-- 
+Display stats about memory allocations performed by a program:
+
+Usage example for 'ls':
+
+% LD_PRELOAD=/lib/libmemusage.so ls > /dev/null
+-- 
