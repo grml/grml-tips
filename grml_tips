@@ -855,6 +855,14 @@ local host:
 remote host:
 % netcat 192.168.0.1 3333
 -- 
+Reverse Shell via SSH:
+
+local host (inside the network):
+% ssh -NR 1234:localhost:22 remote_host
+
+remote host (outside the network):
+% ssh localhost -p 1234
+-- 
 Remove empty directories with zsh:
 
 % rmdir ./**/*(/od) 2> /dev/null
@@ -2378,4 +2386,15 @@ Display stats about memory allocations performed by a program:
 Usage example for 'ls':
 
 % LD_PRELOAD=/lib/libmemusage.so ls > /dev/null
+-- 
+Use KVM (Kernel-based Virtual Machine for Linux):
+
+Make sure to install the relevant tools:
+# apt-get update ; apt-get install kvm
+# modprobe kvm
+
+Test it with a minimal system like ttylinux:
+# wget http://www.minimalinux.org/ttylinux/packages/bootcd-i386-5.3.iso.gz
+# gzip -d bootcd-i386-5.3.iso.gz
+# kvm -cdrom bootcd-i386-5.3.iso
 -- 

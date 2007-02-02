@@ -1,3 +1,9 @@
+grml-tips (0.3-17) unstable; urgency=low
+
+  * Added some more tips (reverse shell via ssh, kvm,...).
+
+ -- Michael Prokop <mika@grml.org>  Fri,  2 Feb 2007 20:40:18 +0100
+
 grml-tips (0.3-16) unstable; urgency=low
 
   * Fix package name for grml-kerneladdons in 'qemu tip'.
