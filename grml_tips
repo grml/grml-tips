@@ -413,13 +413,17 @@ Test sound:
 Improved grep version:
 
 % glark
-
-glark grep extract-matches
 -- 
-Highlith
+Grep with highlighting:
 
-grepc
-hgrep
+% grep --color=auto ...
+% hgrep ...
+-- 
+Extract matches when grepping:
+
+Usage examples:
+% ifconfig | grepc 'inet addr:(.*?)\s'
+% ifconfig | glark --extract-matches 'inet addr:(.*?)\s'
 -- 
 Output text as sound:
 
