@@ -1,3 +1,9 @@
+grml-tips (0.3-18) unstable; urgency=low
+
+  * Fix 'highlighting'-tip, thanks for hint - Nico.
+
+ -- Michael Prokop <mika@grml.org>  Thu,  8 Feb 2007 19:22:28 +0100
+
 grml-tips (0.3-17) unstable; urgency=low
 
   * Added some more tips (reverse shell via ssh, kvm,...).
