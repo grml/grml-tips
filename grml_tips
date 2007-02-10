@@ -2402,3 +2402,8 @@ Test it with a minimal system like ttylinux:
 # gzip -d bootcd-i386-5.3.iso.gz
 # kvm -cdrom bootcd-i386-5.3.iso
 -- 
+EEPROM data decoding for SDRAM DIMM modules:
+
+# modprobe eeprom
+# /usr/share/doc/lm-sensors/examples/eeprom/decode-dimms.pl
+-- 
