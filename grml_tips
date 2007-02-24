@@ -2264,6 +2264,12 @@ Download binary codecs for mplayer:
 
 # /usr/share/mplayer/scripts/win32codecs.sh
 
+or
+
+# /usr/share/mplayer/scripts/binary_codecs.sh install
+
+(depending on the mplayer version you have).
+
 To play encrypted DVDs and if you are living in a country where using
 libdvdcss code is not illegal can install Debian package libdvdread3
 and use the script /usr/share/doc/libdvdread3/install-css.sh.
@@ -2406,4 +2412,28 @@ EEPROM data decoding for SDRAM DIMM modules:
 
 # modprobe eeprom
 # /usr/share/doc/lm-sensors/examples/eeprom/decode-dimms.pl
+-- 
+Set up and use DVB:
+
+Make sure your device is supported by Linux and running.
+See http://www.linuxtv.org/ for more details.
+
+If the DVB device works on your system (see 'hwinfo --usb'
+when using a DVB usb device for example), then make sure you
+have the scan util from dvb-utils available:
+
+# aptitude install dvb-utils
+
+Then create a channels.conf configuration file:
+
+% scan /usr/share/doc/dvb-utils/examples/scan/... > ~/.mplayer/channels.conf
+
+You can find some example configuration files on
+your grml system in ~/.channels. Usage example:
+
+% ln -s ~/.mplayer/channels.conf-AT-graz ~/.mplayer/channels.conf
+
+Tip: w_scan (see http://free.pages.at/wirbel4vdr/w_scan/index2.html)
+might be useful if you do not know the initial configuration
+details.
 -- 
