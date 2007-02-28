@@ -1,3 +1,9 @@
+grml-tips (0.3-21) unstable; urgency=low
+
+  * Add mercurial tip.
+
+ -- Michael Prokop <mika@grml.org>  Wed, 28 Feb 2007 10:31:41 +0100
+
 grml-tips (0.3-20) unstable; urgency=low
 
   * Updated 'Download binary codecs for mplayer' tip and added

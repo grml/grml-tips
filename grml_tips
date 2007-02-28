@@ -2437,3 +2437,22 @@ Tip: w_scan (see http://free.pages.at/wirbel4vdr/w_scan/index2.html)
 might be useful if you do not know the initial configuration
 details.
 -- 
+Get the lastest mercurial snapshot:
+
+Make sure you have the python-dev package available:
+# apt-get update ; apt-get install python-dev
+
+Get and build the source:
+% hg clone http://selenic.com/repo/hg mercurial
+% cd mercurial
+% make local
+% export PYTHONPATH=$(pwd)
+% export PATH=$PATH:$(pwd)
+
+now you should have the newest version of mercurial whenever you execute hg.
+
+To update to the lastest development snapshot, additionally use
+the following commands:
+% hg pull -u http://hg.intevation.org/mercurial/crew
+% make local
+-- 
