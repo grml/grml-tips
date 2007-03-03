@@ -10,12 +10,13 @@
 #export DH_VERBOSE=1
 
 build:
-	echo "nothing to be done"
+	 pod2man grml-tips > grml-tips.1
 
 clean:
 	dh_testdir
 	dh_testroot
 	dh_clean 
+	rm -f grml-tips.1
 
 install:
 	dh_testdir

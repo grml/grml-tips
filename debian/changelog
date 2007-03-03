@@ -1,3 +1,10 @@
+grml-tips (0.3-22) unstable; urgency=low
+
+  * Rewrite of grml-tips script to get rid of (non-free) agrep.
+    Thanks, formorer!
+
+ -- Michael Prokop <mika@grml.org>  Sat,  3 Mar 2007 15:37:20 +0100
+
 grml-tips (0.3-21) unstable; urgency=low
 
   * Add mercurial tip.

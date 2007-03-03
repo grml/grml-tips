@@ -1,41 +1,107 @@
-#!/bin/sh
+#!/usr/bin/perl
 # Filename:      grml-tips
 # Purpose:       query a signature file for a specific keyword and display results
-# Authors:       grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
+# Authors:       grml-team (grml.org), (c) Michael Prokop <mika@grml.org>, (c) Alexander Wirt <formorer@grml.org>
 # Bug-Reports:   see http://grml.org/bugs/
 # License:       This file is licensed under the GPL v2.
-# Latest change: Sam Nov 11 20:01:35 CET 2006 [mika]
+# Latest change: Sam Mär 03 15:35:38 CET 2007 [mika]
 ################################################################################
 
-TIPSFILE='/usr/share/grml-tips/grml_tips'
+use strict;
+use Pod::Usage;
 
-if ! [ -r "$TIPSFILE" ] ; then
-   echo "Error: $TIPSFILE not found. Exiting." >&2
-   exit 1
-fi
+=head1 NAME
 
-if [ -x /usr/bin/agrep ] ; then
-   if [ -n "$1" ] ; then
-     agrep -d "^-- $" -i "$1" $TIPSFILE && echo "" || \
-     ( echo "Sorry, could not find a tip for '$1'. :-(" >&2
-       echo 'If you want to submit a tip please mail it to tips@grml.org - thank you!' >&2
-       exit 1 )
-   else
-     echo "Usage: $0 <keyword>" >&2 ; exit 1
-   fi
-else # workaround solution for systems without agrep :-/
-  if [ -n "$1" ] ; then
-     TIP=$(awk "BEGIN { RS = \"-- \" } /$1/" "$TIPSFILE")
-     if [ -n "$TIP" ] ; then
-        echo "$TIP"
-     else
-        echo "Sorry, could not find a tip for '$1'. :-(" >&2
-        echo 'If you want to submit a tip please mail it to tips@grml.org - thank you!' >&2
-        exit 1
-     fi
-  else
-    echo "Usage: $0 <keyword>" >&2 ; exit 1
-  fi
-fi
+B<grml-tips> - query a signature file for a specific keyword and display results
+
+=head1 SYNOPSIS
+
+B<grml-tips> [OPTION] I<keyword>
+
+=head1 DESCRIPTION
+
+This manual page documents briefly the B<grml-tips> command.
+
+=head1 OPTIONS
+
+=over 8
+
+=item B<--help>
+
+Print this help and exit.
+
+=back
+
+=head1 EXAMPLES
+
+=over 8
+
+=item B<grml-tips> I<ntfs>
+
+Query grml-tips file for tips / hints including keyword  "ntfs".
+
+=item B<grml-tips> I<.>
+
+Display all available B<grml-tips> at once.
+
+=back
+
+=head1 FILES
+
+/usr/share/grml-tips/grml_tips
+
+Signature file containing the tips.
+
+=head1 SEE ALSO
+
+L<grml(1)>
+
+=head1 AUTHOR
+
+grml-tips was written by Alexander Wirt <formorer@grml.org>
+
+=cut
+
+
+my $grml_tips = '/usr/share/grml-tips/grml_tips';
+my $pattern = shift;
+
+if ($pattern eq '') {
+    pod2usage( {
+	    -message => 'No search pattern provided',
+	    -exitval => -1, });
+} elsif ($pattern eq  '--help') {
+    pod2usage();
+}
+
+my @tips;
+my $fh;
+if (! open ($fh, '<', "$grml_tips")) {
+	print "Error: $grml_tips not found.\nExiting.";
+	exit -1;
+}
+
+my $tip = '';
+my $tip_flag = 0;
+
+while (my $line = <$fh>) {
+    if ($line !~ /^--/) {
+	$tip .= $line;
+    } else {
+	if ( "$tip" =~ /$pattern/m ) {
+	    $tip .= $line;
+	    print "$tip";
+	    $tip = '';
+	    $tip_flag = 1;
+	} else {
+	    $tip = '';
+	}
+    }
+}
+close($fh);
+
+print "Sorry, could not find a tip for '$pattern'. :-(\n"
+    . "If you want to submit a tip please mail it to tips\@grml.org - thank "
+    . "you!\n\n" unless $tip_flag;
 
 ## END OF FILE #################################################################
