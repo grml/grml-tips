@@ -5,6 +5,7 @@ Maintainer: Michael Prokop <mika@grml.org>
 Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.7.2
 XS-Vcs-hg: http://hg.grml.org/grml-tips
+XS-Vcs-Browser: http://hg.grml.org/grml-tips
 
 Package: grml-tips
 Architecture: all
