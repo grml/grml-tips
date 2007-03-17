@@ -1,6 +1,7 @@
 grml-tips (0.3.24) unstable; urgency=low
 
   * Fix script so it matches only lines with '^-- $'.
+  * Adjusted script so it matches case-insensitive.
 
  -- Michael Prokop <mika@grml.org>  Sat, 17 Mar 2007 16:00:48 +0100
 
