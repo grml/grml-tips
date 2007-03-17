@@ -1,3 +1,9 @@
+grml-tips (0.3-23) unstable; urgency=low
+
+  * Add "configure timezone" tip. [Closes: issue157]
+
+ -- Michael Prokop <mika@grml.org>  Sat, 17 Mar 2007 15:21:47 +0100
+
 grml-tips (0.3-22) unstable; urgency=low
 
   * Rewrite of grml-tips script to get rid of (non-free) agrep.

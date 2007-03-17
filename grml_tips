@@ -2456,3 +2456,68 @@ the following commands:
 % hg pull -u http://hg.intevation.org/mercurial/crew
 % make local
 -- 
+Configure timezone
+==================
+
+Available bootoptions relevant in live-cd mode:
+-----------------------------------------------
+
+* utc: set UTC, if your system clock is set to UTC (GMT)
+* gmt: set UTC, if your system clock is set to UTC (GMT) [like bootoption utc]
+* tz=$option: set timezone to corresponding $option, usage example:
+  tz=Europe/Vienna
+
+Configuration options relevant on harddisk installation:
+--------------------------------------------------------
+
+* Use the tzconfig utility to set the local timezone:
+
+  # tzconfig
+
+  which adjusts /etc/timezone and /etc/localtime according
+  to the provided information.
+
+* /etc/default/rcS: set variable UTC according to your needs,
+  whether your system clock is set to UTC (UTC='yes') or
+  not (UTC='no')
+
+* /etc/localtime: adjust zoneinfo according to your needs:
+
+  # ln -sf /usr/share/zoneinfo/$WHATEVER_YOU_WANT /etc/localtime
+
+  The zoneinfo directory contains the time zone files that were
+  compiled by zic. The files contain information such as rules
+  about DST. They allow the kernel to convert UTC UNIX time into
+  appropriate local dates and times. Use the zdump utility to
+  print current time and date (in the specified time zone).
+
+* /etc/adjtime: This file is used e.g. by the adjtimex function,
+  which can smoothly adjust system time while the system runs
+
+* If you change the time (using 'date --set ...', ntpdate,...)
+  it is worth setting also the hardware clock to the correct time:
+
+  # hwclock --hctosys [--utc]
+
+  Remember to add the --utc -option if the hardware clock is set
+  to UTC!
+
+Still problems?
+---------------
+
+Check your current settings via:
+
+  cat /etc/timezone
+  zdump /etc/localtime
+  echo $TZ
+  hwclock --show
+  grep hwclock /etc/runlevel.conf
+  grep '^UTC' /etc/default/rc
+
+Further information:
+--------------------
+
+  hwclock(8) tzselect(1) tzconfig(8)
+  http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html
+  http://wiki.debian.org/TimeZoneChanges
+-- 
