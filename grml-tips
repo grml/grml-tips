@@ -85,7 +85,7 @@ my $tip = '';
 my $tip_flag = 0;
 
 while (my $line = <$fh>) {
-    if ($line !~ /^--/) {
+    if ($line !~ /^-- $/) {
 	$tip .= $line;
     } else {
 	if ( "$tip" =~ /$pattern/m ) {

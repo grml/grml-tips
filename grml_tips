@@ -2516,7 +2516,6 @@ Check your current settings via:
 
 Further information:
 --------------------
-
   hwclock(8) tzselect(1) tzconfig(8)
   http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html
   http://wiki.debian.org/TimeZoneChanges

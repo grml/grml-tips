@@ -1,3 +1,9 @@
+grml-tips (0.3.24) unstable; urgency=low
+
+  * Fix script so it matches only lines with '^-- $'.
+
+ -- Michael Prokop <mika@grml.org>  Sat, 17 Mar 2007 16:00:48 +0100
+
 grml-tips (0.3.23) unstable; urgency=low
 
   * Add "configure timezone" tip. [Closes: issue157]
