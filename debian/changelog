@@ -1,6 +1,7 @@
-grml-tips (0.3-23) unstable; urgency=low
+grml-tips (0.3.23) unstable; urgency=low
 
   * Add "configure timezone" tip. [Closes: issue157]
+  * Change version schema from x.y-z to x.y.z.
 
  -- Michael Prokop <mika@grml.org>  Sat, 17 Mar 2007 15:21:47 +0100
 
