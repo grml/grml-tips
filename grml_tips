@@ -1758,6 +1758,8 @@ Start X and lock console via exiting:
 -- 
 Which process is writing to disk and/or causes the disk to spin up?
 
+First of all use lsof to check what's going on. Does not help? ->
+
 # echo 1 > /proc/sys/vm/block_dump
 
 The command sets a sysctl to cause the kernel to log all disk
