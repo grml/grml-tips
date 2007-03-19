@@ -1,3 +1,10 @@
+grml-tips (0.3.25) unstable; urgency=low
+
+  * Fix timezone tip: it's not 'hwclock --hctosys' but 'hwclock --systohc'
+    of course, thanks - Paul Weaver!
+
+ -- Michael Prokop <mika@grml.org>  Mon, 19 Mar 2007 10:06:13 +0100
+
 grml-tips (0.3.24) unstable; urgency=low
 
   * Fix script so it matches only lines with '^-- $'.

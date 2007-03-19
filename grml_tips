@@ -2497,7 +2497,7 @@ Configuration options relevant on harddisk installation:
 * If you change the time (using 'date --set ...', ntpdate,...)
   it is worth setting also the hardware clock to the correct time:
 
-  # hwclock --hctosys [--utc]
+  # hwclock --systohc [--utc]
 
   Remember to add the --utc -option if the hardware clock is set
   to UTC!
