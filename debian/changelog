@@ -1,3 +1,9 @@
+grml-tips (0.3.26) unstable; urgency=low
+
+  * Update block_dump tip, merge the two existing tips.
+
+ -- Michael Prokop <mika@grml.org>  Mon, 19 Mar 2007 19:53:14 +0100
+
 grml-tips (0.3.25) unstable; urgency=low
 
   * Fix timezone tip: it's not 'hwclock --hctosys' but 'hwclock --systohc'

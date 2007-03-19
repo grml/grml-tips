@@ -1756,12 +1756,14 @@ Start X and lock console via exiting:
 
 % startx 2>~/.xsession-errors &| exit
 -- 
-Which process is writing to disk?
+Which process is writing to disk and/or causes the disk to spin up?
 
 # echo 1 > /proc/sys/vm/block_dump
 
-Warning: you must disable syslogd before you do this, or you must
-make sure that kernel output is not logged.
+The command sets a sysctl to cause the kernel to log all disk
+writes. Please notice that there is a lot of data.  So please
+disable syslogd/syslog-ng before you do this, or you must make
+sure that kernel output is not logged.
 
 When you're done, disable block dump using:
 # echo 0 > /proc/sys/vm/block_dump
@@ -1769,6 +1771,10 @@ When you're done, disable block dump using:
 Alternative:
 laptop-mode-tools provides a tool named lm-profiler (laptop mode profiler)
 which handles block_dump on its own.
+
+See: $KERNEL-SOURCE/Documentation/laptop-mode.txt
+
+Also take a look at event-viewer(8) which is part of grml-debugtools.
 -- 
 Install initrd via initramfs-tools for currently running kernel:
 
@@ -2379,17 +2385,6 @@ EOF
 
 Start dnsmasq finally:
 # Restart dnsmasq
--- 
-Find out which process(es) cause the disk to spin up:
-
-# echo 1 > /proc/sys/vm/block_dump
-
-The command sets a sysctl to cause the kernel to log all disk
-writes. Please notice that there is a lot of data.
-
-See: $KERNEL-SOURCE/Documentation/laptop-mode.txt
-
-Also take a look at event-viewer(8).
 -- 
 Display stats about memory allocations performed by a program:
 
