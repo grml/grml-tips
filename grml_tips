@@ -2077,10 +2077,13 @@ xfs without vol_id:
 # xfs_admin -l /dev/sda1
 
 reiserfs without vol_id:
-# debugreiserfs /dev/sda1 | grep UUID
+# debugreiserfs /dev/sda1 | grep -i label
+
+jfs without vol_id:
+# jfs_tune -l /dev/sda1 | grep -i label
 
 reiser4 without vol_id:
-# debugfs.reiser4 /dev/sda1 | grep uuid
+# debugfs.reiser4 /dev/sda1 | grep -i label
 -- 
 Check filesystem's UUID:
 
@@ -2088,24 +2091,25 @@ generic way:
 # vol_id -u /dev/sda1
 
 ext2/3 without vol_id:
-# dumpe2fs /dev/sda1 | grep UUID
+# dumpe2fs /dev/sda1 | grep -i UUID
 
 xfs without vol_id:
 # xfs_admin -u /dev/sda1
 
 reiserfs without vol_id:
-# debugreiserfs /dev/sda1 | grep LABEL
+# debugreiserfs /dev/sda1 | grep -i UUID
 
 reiser4 without vol_id:
-# debugfs.reiser4 /dev/sda1 | grep label
+# debugfs.reiser4 /dev/sda1 | grep -i UUID
 -- 
-Change a FS-LABEL:
+Change a filesystem's LABEL:
 
 swap:
 # mkswap -L $LABEL /dev/sda1
 
 ext2/ext3:
 # e2label /dev/sda1 $LABEL
+# tune2fs -L $LABEL /dev/sda1
 
 reiserfs:
 # reiserfstune -l $LABEL /dev/sda1
@@ -2121,7 +2125,7 @@ fat/vfat:
 # mlabel -s i:$LABEL
 
 ntfs:
-# ntfslabel /dev/sda1 /dev/sda1
+# ntfslabel $LABEL /dev/sda1
 -- 
 Disable pdiffs feature of APT:
 
