@@ -2099,6 +2099,30 @@ reiserfs without vol_id:
 reiser4 without vol_id:
 # debugfs.reiser4 /dev/sda1 | grep label
 -- 
+Change a FS-LABEL:
+
+swap:
+# mkswap -L $LABEL /dev/sda1
+
+ext2/ext3:
+# e2label /dev/sda1 $LABEL
+
+reiserfs:
+# reiserfstune -l $LABEL /dev/sda1
+
+jfs:
+# jfs_tune -L $LABEL /dev/sda1
+
+xfs:
+# xfs_admin -L $LABEL /dev/sda1
+
+fat/vfat:
+# echo 'drive i: file="/dev/sda1"' >> ~/.mtoolsrc
+# mlabel -s i:$LABEL
+
+ntfs:
+# ntfslabel /dev/sda1 /dev/sda1
+-- 
 Disable pdiffs feature of APT:
 
 Permanent:
