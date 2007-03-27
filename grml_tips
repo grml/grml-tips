@@ -704,9 +704,9 @@ Write back the guessed table:
 Develop, test and use exploit code with the Metasploit Framework:
 
 cd /tmp
-wget http://www.metasploit.com/tools/framework-2.7-snapshot.tar.gz
-unp framework-2.7-snapshot.tar.gz
-cd framework*
+wget http://framework-mirrors.metasploit.com/msf/downloader/framework-3.0.tar.gz
+unp framework-3.0.tar.gz
+cd framework-3.0
 ./msfcli
 -- 
 Useful documentation:

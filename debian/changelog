@@ -1,3 +1,9 @@
+grml-tips (0.3.28) unstable; urgency=low
+
+  * Update metasploit tip (adjust new upstream version URL).
+
+ -- Michael Prokop <mika@grml.org>  Wed, 28 Mar 2007 00:23:52 +0200
+
 grml-tips (0.3.27) unstable; urgency=low
 
   * Added 'Change a FS-LABEL' tip.
