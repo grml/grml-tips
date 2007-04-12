@@ -2546,3 +2546,8 @@ Further information:
   http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html
   http://wiki.debian.org/TimeZoneChanges
 -- 
+Recorder shellscript session using script:
+
+% script -t 2>~/upgrade.time -a ~/upgrade.script
+% scriptreplay ~/upgrade.time ~/upgrade.script
+-- 

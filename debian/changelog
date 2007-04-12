@@ -1,3 +1,9 @@
+grml-tips (0.3.29) unstable; urgency=low
+
+  * Add 'script' tip.
+
+ -- Michael Prokop <mika@grml.org>  Thu, 12 Apr 2007 12:55:55 +0200
+
 grml-tips (0.3.28) unstable; urgency=low
 
   * Update metasploit tip (adjust new upstream version URL).
