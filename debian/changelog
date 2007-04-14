@@ -1,3 +1,9 @@
+grml-tips (0.3.30) unstable; urgency=low
+
+  * Integrate 'dpkg-reconfigure tzdata' in timezone-tip.
+
+ -- Michael Prokop <mika@grml.org>  Sat, 14 Apr 2007 11:22:55 +0200
+
 grml-tips (0.3.29) unstable; urgency=low
 
   * Add 'script' tip.

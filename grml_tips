@@ -2500,7 +2500,11 @@ Configuration options relevant on harddisk installation:
   # tzconfig
 
   which adjusts /etc/timezone and /etc/localtime according
-  to the provided information.
+  to the provided information. Running:
+
+  # dpkg-reconfigure tzdata
+
+  might be useful as well.
 
 * /etc/default/rcS: set variable UTC according to your needs,
   whether your system clock is set to UTC (UTC='yes') or
