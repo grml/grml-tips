@@ -124,6 +124,7 @@ if (!$tip_flag) {
 		if ( -f '/etc/grml_version' ) {
 			open (my $fh, '<', '/etc/grml_version') or die "Could not open /etc/grml_version: $!";
 			$version = <$fh>; 
+			chomp $version; 
 			close ($fh); 
 		} else {
 			$version = 'unknown'; 
