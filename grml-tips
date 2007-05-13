@@ -110,7 +110,7 @@ if (!$tip_flag) {
 	"The grml team will write tips for the most requested and useful keywords.\n",
 	"To use this feature you'll need a working networking connection.\n",
 	"No personal data will be transmitted to the database.\n\n",
-	"Send \"$pattern\" to grml's keyword database? [y|N]";
+	"Send \"$pattern\" to grml's keyword database? [y|N] ";
 
 	ReadMode 4; # Turn off controls keys
 	my $x; 
@@ -126,6 +126,11 @@ if (!$tip_flag) {
 			$version = <$fh>; 
 			chomp $version; 
 			close ($fh); 
+		} elsif ( -f '/etc/debian_version') {
+			open (my $fh, '<', '/etc/debian_version') or die "Could not open /etc/debian_version: $!"; 
+			$version = <$fh>;
+			chomp $version;
+			close ($fh);
 		} else {
 			$version = 'unknown'; 
 		}
@@ -140,7 +145,7 @@ if (!$tip_flag) {
 		if ($res->is_success) {
 			my $content =  $res->decoded_content;
 			if ($content =~ /Submission received/) {
-				print "'$pattern' submitted\n";
+				print "Keyword '$pattern' has been submitted to grml's keyword database.\nThanks.";
 			} else {
 				print "Your pattern could not be submitted.\n",
 				      "Please file a bug against grml-tips at ",
@@ -152,6 +157,9 @@ if (!$tip_flag) {
 		}
 
 
+	} else {
+		print "'$pattern' has not been sent to grml's keyword database as requested.\n";
+		print "If you want to submit a tip please mail it to tips\@grml.org - thank you!\n";
 	}
 }
 
