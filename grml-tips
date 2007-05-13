@@ -105,10 +105,10 @@ while (my $line = <$fh>) {
 close($fh);
 
 if (!$tip_flag) {
-	print "Sorry, could not find a tip for '$pattern'. :-(\n",
+	print "Sorry, could not find a tip for '$pattern'. :-(\n\n",
     	"Do you want to submit the keyword '$pattern' to grml's keyword database?\n",
 	"The grml team will write tips for the most requested and useful keywords.\n",
-	"To use this feature you'll need a working networking connection.\n",
+	"To use and contribute to this feature you'll need a working networking connection.\n",
 	"No personal data will be transmitted to the database.\n\n",
 	"Send \"$pattern\" to grml's keyword database? [y|N] ";
 
@@ -145,11 +145,11 @@ if (!$tip_flag) {
 		if ($res->is_success) {
 			my $content =  $res->decoded_content;
 			if ($content =~ /Submission received/) {
-				print "Keyword '$pattern' has been submitted to grml's keyword database.\nThanks.";
+				print "Keyword '$pattern' has been submitted to grml's keyword database.\nThanks.\n";
 			} else {
 				print "Your pattern could not be submitted.\n",
 				      "Please file a bug against grml-tips at ",
-				      "http://bts.grml.org.\n",
+				      "http://bts.grml.org/\n",
 				      "Thanks!\n";
 			}
 		} else {
