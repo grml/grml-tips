@@ -10,6 +10,10 @@
 use strict;
 use Pod::Usage;
 
+use Term::ReadKey;
+use Time::HiRes;	
+use LWP::UserAgent;
+
 =head1 NAME
 
 B<grml-tips> - query a signature file for a specific keyword and display results
@@ -100,8 +104,54 @@ while (my $line = <$fh>) {
 }
 close($fh);
 
-print "Sorry, could not find a tip for '$pattern'. :-(\n"
-    . "If you want to submit a tip please mail it to tips\@grml.org - thank "
-    . "you!\n\n" unless $tip_flag;
+if (!$tip_flag) {
+	print "Sorry, could not find a tip for '$pattern'. :-(\n",
+    	"Do you want to submit the keyword '$pattern' to grml's keyword database?\n",
+	"The grml team will write tips for the most requested and useful keywords.\n",
+	"To use this feature you'll need a working networking connection.\n",
+	"No personal data will be transmitted to the database.\n\n",
+	"Send \"$pattern\" to grml's keyword database? [y|N]";
+
+	ReadMode 4; # Turn off controls keys
+	my $x; 
+	while (not defined ($x = ReadKey(-1))) {
+		Time::HiRes::sleep(0.5);
+	}
+	ReadMode 0; # Reset tty mode before exiting
+	print "\n\n";
+	if ($x =~ /(y|j)/i) {
+		my $version; 
+		if ( -f '/etc/grml_version' ) {
+			open (my $fh, '<', '/etc/grml_version') or die "Could not open /etc/grml_version: $!";
+			$version = <$fh>; 
+			close ($fh); 
+		} else {
+			$version = 'unknown'; 
+		}
+		my $ua = new LWP::UserAgent;
+		$ua->agent("grml-tips 0.0 "); # set the HTTP 'browser' type
+		my $res = 
+			$ua->post('http://deb.grml.org/~formorer/submissions/keyword.cgi', 
+					[ 'version' => $version,
+					'keyword' => $pattern
+					],
+				 );
+		if ($res->is_success) {
+			my $content =  $res->decoded_content;
+			if ($content =~ /Submission received/) {
+				print "'$pattern' submitted\n";
+			} else {
+				print "Your pattern could not be submitted.\n",
+				      "Please file a bug against grml-tips at ",
+				      "http://bts.grml.org.\n",
+				      "Thanks!\n";
+			}
+		} else {
+			print "Could not submitt '$pattern': " . $res->status_line . "\n";
+		}
+
+
+	}
+}
 
 ## END OF FILE #################################################################
