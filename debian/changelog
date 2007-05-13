@@ -1,3 +1,9 @@
+grml-tips (0.4.0) unstable; urgency=low
+
+  * Added some further UTF-8 tips.
+
+ -- Michael Prokop <mika@grml.org>  Sun, 13 May 2007 12:12:22 +0200
+
 grml-tips (0.3.30) unstable; urgency=low
 
   * Integrate 'dpkg-reconfigure tzdata' in timezone-tip.

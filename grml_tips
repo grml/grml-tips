@@ -1088,7 +1088,7 @@ EOF
 See also: http://www.debian.org/releases/stable/i386/apcs04.html.en
 Avoid all of the above steps - use grml-debootstrap(8) instead!
 -- 
-Convert files from Unicode / UTF to ISO:
+Convert files from Unicode / UTF-8 to ISO:
 
 % iconv -f utf8 -t iso-8859-15 < utffile > isofile
 
@@ -2554,4 +2554,18 @@ Recorder shellscript session using script:
 
 % script -t 2>~/upgrade.time -a ~/upgrade.script
 % scriptreplay ~/upgrade.time ~/upgrade.script
+-- 
+Test UTF-8 capabilities of terminal:
+
+wget http://melkor.dnp.fmph.uniba.sk/~garabik/debian-utf8/download/UTF-8-demo.txt.gz
+zcat UTF-8-demo.txt.gz
+
+or:
+
+wget http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
+cat UTF-8-test.txt
+-- 
+UTF-8 at grml / some general information regarding Unicde/UTF-8:
+
+  http://wiki.grml.org/doku.php?id=utf8
 -- 
