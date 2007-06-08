@@ -2148,7 +2148,7 @@ Restore the backup using unzsplit:
 
 More usage examples: man zsplit + man unzsplit
 -- 
-Measure network performance using ipserf
+Measure network performance using iperf:
 
 Server side:
 % iperf -s -V
@@ -2569,3 +2569,53 @@ UTF-8 at grml / some general information regarding Unicde/UTF-8:
 
   http://wiki.grml.org/doku.php?id=utf8
 -- 
+
+This allows one ssh connection attepmt per minute per source ip, with a initial
+burst of 10.  The available burst is like a counter which is initialised with
+10. Every connection attempt decrements the counter, and every minute where the
+connection limit of one per minute is not overstepped the counter is
+incremented by one.  If the burst counter is exhausted the real rate limit
+comes into play. This gives you 11 connectionattepmts in the first minute
+before blocked for 10minutes.  After 10 minutes block the game restarts.
+
+Hint: you could set the burst value to 5 and the block time to only 5 minutes
+to achive the same average connection rate but with halve the block time.
+
+iptables -A inet_in -p tcp --syn --dport 22 -m hashlimit --hashlimit-name ssh \
+         --hashlimit 1/minute \ --hashlimit-burst 10 --hashlimit-mode srcip   \
+         --hashlimit-htable-expire 600000 -j ACCEPT
+iptables -A inet_in -p tcp --dport 22 -m state --state NEW -j REJECT
+-- 
+Tunnel a specific connection via socat:
+
+On the client:
+% socat TCP4-LISTEN:8003 TCP4:gateway:500
+
+On the gateway:
+# socat TCP4-LISTEN:500,fork TCP4:target:$PORT
+
+Using localhost:8003 on the client uses the tunnel now.
+-- 
+Set date:
+
+# date --set=060916102007
+
+where the bits are month(2)/day(2)/hour(2)/minute(2)/year(4)
+
+Set date using a relative date:
+
+# date -s '+3 mins'
+
+or
+
+# date -s '+tomorrow'
+
+Display a specific relative date:
+
+# date -d '+5 days -2 hours'
+
+Don't forget to set hardware clock via:
+
+# hwlock -w
+-- 
+
