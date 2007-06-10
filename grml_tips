@@ -2618,4 +2618,13 @@ Don't forget to set hardware clock via:
 
 # hwlock -w
 -- 
+Booting grml via network / PXE:
 
+Start grml-terminalserver on a system with network access
+and where grml is running:
+
+# grml-terminalserver
+
+Then booting your client(s) via PXE should work without
+any further work.
+-- 

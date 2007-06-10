@@ -1,5 +1,7 @@
 grml-tips (0.4.1) unstable; urgency=low
 
+  * The "let's support storing unmatched keywords in a database" release.
+    Thanks, formorer!
   * Added some further tips.
   * Fixed typo in iperf tip, thanks for spotting - Jan-Pieter Jacobs!
 
