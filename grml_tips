@@ -2628,3 +2628,8 @@ and where grml is running:
 Then booting your client(s) via PXE should work without
 any further work.
 -- 
+Debugging SSL communications:
+
+% openssl s_client -connect webmail.grml.org:993
+
+# ssldump -a -A -H -i eth0
