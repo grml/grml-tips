@@ -2630,6 +2630,46 @@ any further work.
 -- 
 Debugging SSL communications:
 
-% openssl s_client -connect webmail.grml.org:993
+% openssl s_client -connect server.adress:993
+
+or
 
 # ssldump -a -A -H -i eth0
+
+See http://prefetch.net/articles/debuggingssl.html for more details.
+-- 
+Remove bootmanager from MBR:
+
+# lilo -M /dev/hda -s /dev/null
+-- 
+Rewrite grub to MBR:
+
+# mount /mnt/sda1
+# grub-install --recheck --no-floppy --root-directory=/mnt/sda1 /dev/sda
+-- 
+Rewrite lilo to MBR:
+
+# mount /mnt/hda1
+# lilo -r /mnt/hda1
+-- 
+Create screenshot of plain/real console - tty1:
+# fbgrab -c 1 screeni.png
+-- 
+Create screenshot when running X:
+
+% scrot
+
+Tip: use the gkrellshoot plugin when using gkrellm
+-- 
+Redirect all connections to hostA:portA to hostB:portB, where hostA and hostB are
+different networks:
+
+Run the following commands on hostA:
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A PREROUTING -p tcp --dport portA -j DNAT --to hostB:portB
+iptables -A FORWARD -i eth0 -o eth0 -d hostB -p tcp --dport portB -j ACCEPT
+iptables -A FORWARD -i eth0 -o eth0 -s hostB -p tcp --sport portB -j ACCEPT
+iptables -t nat -A POSTROUTING -p tcp -d hostB --dport portB -j SNAT --to-source hostA
+-- 
+
