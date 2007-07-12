@@ -2653,6 +2653,7 @@ Rewrite lilo to MBR:
 # lilo -r /mnt/hda1
 -- 
 Create screenshot of plain/real console - tty1:
+
 # fbgrab -c 1 screeni.png
 -- 
 Create screenshot when running X:
