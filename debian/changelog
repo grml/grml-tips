@@ -1,3 +1,9 @@
+grml-tips (0.4.3) unstable; urgency=low
+
+  * Added LinuxBIOS tip.
+
+ -- Michael Prokop <mika@grml.org>  Mon, 16 Jul 2007 21:16:13 +0200
+
 grml-tips (0.4.2) unstable; urgency=low
 
   * Added some further tips (SSL debugging, lilo/grub, screenshot,...).

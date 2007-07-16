@@ -2673,4 +2673,19 @@ iptables -A FORWARD -i eth0 -o eth0 -d hostB -p tcp --dport portB -j ACCEPT
 iptables -A FORWARD -i eth0 -o eth0 -s hostB -p tcp --sport portB -j ACCEPT
 iptables -t nat -A POSTROUTING -p tcp -d hostB --dport portB -j SNAT --to-source hostA
 -- 
+Flash BIOS without DOS/Windows:
 
+Dump flash info and set the flash chip to writable:
+# flashrom
+
+Backup the original BIOS:
+# flashrom -r backup.bin
+
+Notice: the following step will overwrite your current BIOS!
+So make sure you really know what you are doing.
+
+Flash the BIOS image:
+# flashrom -wv newbios.bin
+
+Also check out LinuxBIOS: http://linuxbios.org/
+-- 
