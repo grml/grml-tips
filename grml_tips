@@ -1715,7 +1715,7 @@ GET http://www.google.com HTTP/1.0 [press enter twice]
 Adjust system for use of qemu with kqemu:
 
 Make sure you have all you need:
-# apt-get update ; apt-get install qemu grml-kerneladdons-$KERNELVERSION
+# aptitude update ; aptitude install qemu kqemu-modules-$(uname -r)
 
 Then set up kqemu:
 
