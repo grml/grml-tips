@@ -584,6 +584,10 @@ Save live audio stream to file:
 or
 
 % mencoder mms://file.wmv -o $FILE -ovc copy -oac copy
+
+or
+
+% mimms mms://file.wmv
 -- 
 Merge video files:
 
