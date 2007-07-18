@@ -2689,3 +2689,85 @@ Flash the BIOS image:
 
 Also check out LinuxBIOS: http://linuxbios.org/
 -- 
+Enable shadow passwords:
+
+# shadowconfig on
+-- 
+Set up an IPv6 tunneln on grml:
+
+# ipv6-tunnel start
+-- 
+Set up console newsreader slrn for use with Usenet:
+
+% grml-slrn
+-- 
+Calculate with IPv6 addresses:
+
+% ipv6calc
+
+For usage examples refer to manpage ipv6calc(8).
+-- 
+Common network debugging tools for use with IPv6:
+
+% ping6
+% tracepath6
+% traceroute6
+% tracert6
+% nc6
+% tcpspray6
+-- 
+Set up NFS (Network File System):
+
+Server-side
+~~~~~~~~~~~
+Make sure the relevant services are running on the server side:
+
+# /etc/init.d/portmap start
+# /etc/init.d/nfs-common start
+# /etc/init.d/nfs-kernel-server start
+
+Export shares via /etc/exports:
+
+/backups 192.168.1.100/24(rw,wdelay,no_root_squash,async,subtree_check)
+
+... or manually export a directory running:
+
+# exportfs -o rw,wdelay,no_root_squash,async,subtree_check 192.168.1.100:/backups
+
+and unexport a share running:
+
+# exportfs -u 192.168.1.100:/backups
+
+and every time when you modify /etc/exports file run
+
+# exportfs -ra
+
+Display what NFS components are running:
+
+# rpcinfo -p
+
+Display list of exported shares:
+
+# exportfs -v
+or
+# showmount -e
+
+Client-side
+~~~~~~~~~~~
+Make sure the relevant services are running on the client side:
+
+# /etc/init.d/portmap start
+# /etc/init.d/nfs-common start
+
+Verify that the server allows you to access its RPC/NFS services:
+
+# rpcinfo -p server_name
+
+Check what directories the server exports:
+
+# showmount -e server_name
+
+On the client side you can use something like the following in /etc/fstab:
+
+192.168.1.101:/backups /mnt/nfs nfs defaults,users,wsize=8192,rsize=8192 0 0
+-- 
