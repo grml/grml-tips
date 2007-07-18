@@ -2771,3 +2771,11 @@ On the client side you can use something like the following in /etc/fstab:
 
 192.168.1.101:/backups /mnt/nfs nfs defaults,users,wsize=8192,rsize=8192 0 0
 -- 
+Mount a cloop file:
+
+# aptitude install cloop-src
+# m-a a-i cloop-src
+
+# modprobe cloop file=/path/to/cloop/file
+# mount -r -t iso9660 /dev/cloop /mnt/test
+-- 

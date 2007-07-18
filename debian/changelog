@@ -1,7 +1,7 @@
 grml-tips (0.4.3) unstable; urgency=low
 
-  * Added tips for LinuxBIOS, usenet, ipv6, NFS and shadow passwords
-    as requested by keywords database. :)
+  * Added tips for LinuxBIOS, usenet, ipv6, NFS, shadow passwords
+    and cloop (thanks Rhonda) as requested by keywords database. :)
 
  -- Michael Prokop <mika@grml.org>  Mon, 16 Jul 2007 21:16:13 +0200
 
