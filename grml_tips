@@ -2795,7 +2795,15 @@ Print two pages on one in a PDF file:
 Concatenate, extract pages/parts, encrypt/decrypt,
 compress PDFs using 'pdftk'.
 -- 
-Extract text from PostScript and PDF files:
+Read a PS/PDF file on console:
 
 % pstotext file.pdf
+
+or on plain framebuffer console in graphical mode:
+
+% pdf2ps file.pdf ; ps2png file.ps file.png ; fbi file.png
+
+or
+
+% fbgs file.pdf
 -- 
