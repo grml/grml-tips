@@ -2783,3 +2783,19 @@ Mount a cloop file:
 # modprobe cloop file=/path/to/cloop/file
 # mount -r -t iso9660 /dev/cloop /mnt/test
 -- 
+Create a PS/PDF of a plaintext file:
+
+% a2ps --medium A4dj -E -o output.ps input_file
+% ps2pdf output.ps
+-- 
+Print two pages on one in a PDF file:
+
+% pdfnup --nup 2x1 input.pdf
+
+Concatenate, extract pages/parts, encrypt/decrypt,
+compress PDFs using 'pdftk'.
+-- 
+Extract text from PostScript and PDF files:
+
+% pstotext file.pdf
+-- 
