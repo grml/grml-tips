@@ -2807,3 +2807,7 @@ or
 
 % fbgs file.pdf
 -- 
+Bypass the password of a PDF file:
+
+% gs -q -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile=output.pdf input.pdf -c quit
+-- 
