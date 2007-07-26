@@ -1,3 +1,10 @@
+grml-tips (0.4.4) unstable; urgency=low
+
+  * Added tips:
+    - record sound via rec
+
+ -- Michael Prokop <mika@grml.org>  Fri, 27 Jul 2007 00:41:33 +0200
+
 grml-tips (0.4.3) unstable; urgency=low
 
   * Added tips for LinuxBIOS, usenet, ipv6, NFS, shadow passwords
