@@ -2838,3 +2838,7 @@ Record sound:
 
 This will record a AIFF audio file.
 -- 
+Change passphrase / password of an existing SSH key:
+
+% ssh-keygen -p
+-- 
