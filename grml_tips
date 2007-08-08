@@ -1094,7 +1094,7 @@ Avoid all of the above steps - use grml-debootstrap(8) instead!
 -- 
 Convert files from Unicode / UTF-8 to ISO:
 
-% iconv -f utf8 -t iso-8859-15 < utffile > isofile
+% iconv -c -f utf8 -t iso-8859-15 < utffile > isofile
 
 and vice versa:
 
@@ -1278,8 +1278,7 @@ Write a Windows 2000/XP/2003 MBR to device:
 Use a Vodafone 3G Datacard (UMTS) with Linux:
 
 Plug in your vodafone card and check in syslog whether the appropriate
-(probably /dev/ttyUSB0 or /dev/noz0 when using newer vodafone cards) has
-been created. If so run:
+(probably /dev/ttyUSB0 or /dev/noz0) has been created. If so run:
 
 # gcom -d $DEVICE
 # wvdial --config /etc/wvdial.conf.umts $PROFILE
@@ -1294,8 +1293,28 @@ Usage examples:
 # gcom -d /dev/noz0
 # wvdial --config /etc/wvdial.conf.umts dreiusb
 
-Notice: newer vodafone cards require the nozomi driver. Run 'modprobe nozomi' on
-your grml system.
+If you receive invalid DNS nameservers when connecting, like:
+
+[...]
+--> primary   DNS address 10.11.12.13
+--> secondary DNS address 10.11.12.14
+
+just provide a working nameserver to resolvconf via:
+
+# echo "nameserver 80.120.17.70" | resolvconf -a ppp0
+
+Notice: some vodafone cards require the nozomi driver (run 'modprobe nozomi' on
+your grml system), some other ones require the sierra driver (run
+'modprobe sierra').
+
+If your device isn't supported by usbserial yet, manually provide vendor and
+product ID when loading the usbserial module. Usage example:
+
+% lsusb
+[...]
+Bus 004 Device 008: ID 1199:6813 Sierra Wireless, Inc.
+
+# modprobe usbserial vendor=0x1199 product=0x6813
 -- 
 hdparm - get/set hard disk parameters
 
@@ -2817,4 +2836,3 @@ Record sound:
 
 This will record a AIFF audio file.
 -- 
-

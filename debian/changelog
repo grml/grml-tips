@@ -1,8 +1,9 @@
 grml-tips (0.4.4) unstable; urgency=low
 
-  * Added tips:
-    - record sound via rec
-
+  * Added tip 'record sound via rec', updated
+    'Convert files from Unicode / UTF-8 to ISO' and
+    'Use a Vodafone 3G Datacard (UMTS) with Linux'.
+  
  -- Michael Prokop <mika@grml.org>  Fri, 27 Jul 2007 00:41:33 +0200
 
 grml-tips (0.4.3) unstable; urgency=low
