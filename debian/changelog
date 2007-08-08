@@ -2,7 +2,8 @@ grml-tips (0.4.4) unstable; urgency=low
 
   * Added tip 'record sound via rec', updated
     'Convert files from Unicode / UTF-8 to ISO' and
-    'Use a Vodafone 3G Datacard (UMTS) with Linux'.
+    'Use a Vodafone 3G Datacard (UMTS) with Linux' and
+    mention ssh-keygen in ssh-copy-id tip.
   
  -- Michael Prokop <mika@grml.org>  Fri, 27 Jul 2007 00:41:33 +0200
 

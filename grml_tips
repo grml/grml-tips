@@ -663,7 +663,9 @@ to get a list of all supported trees
 -- 
 Transfer your SSH public key to another host:
 
-% ssh-copy-id -i ~/.ssh/id_dsa.pub user@remote-system
+% ssh-keygen   # if you don't have a key yet
+[...]
+% ssh-copy-id -i ~/.ssh/id_rsa.pub user@remote-system
 or
 % cat $HOME/.ssh/id_rsa.pub  | ssh user@remote-system 'cat >> .ssh/authorized_keys'
 -- 
