@@ -2842,3 +2842,8 @@ Change passphrase / password of an existing SSH key:
 
 % ssh-keygen -p
 -- 
+Enable syntax highlighting in nano:
+
+Just uncomment the include directives for your respective
+language at the bottom of the file /etc/nanorc
+-- 
