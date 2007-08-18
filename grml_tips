@@ -43,12 +43,6 @@ Configure network:
 
 # grml-network
 -- 
-Boot grml via network:
-
-# grml-terminalserver
-
-See: man grml-terminalserver + http://grml.org/terminalserver/
--- 
 Deactivate error correction of zsh:
 
 % NOCOR=1 zsh
@@ -2652,6 +2646,8 @@ and where grml is running:
 
 Then booting your client(s) via PXE should work without
 any further work.
+
+See: man grml-terminalserver + http://grml.org/terminalserver/
 -- 
 Debugging SSL communications:
 
@@ -2846,4 +2842,28 @@ Enable syntax highlighting in nano:
 
 Just uncomment the include directives for your respective
 language at the bottom of the file /etc/nanorc
+-- 
+Create netboot package for grml-terminalserver:
+
+# sh /usr/share/doc/grml-terminalserver/examples/create-netboot
+-- 
+Rotate pictures:
+
+Using the 'Orientation' tag of the Exif header, rotate
+the image so that it is upright:
+% jhead -autorot *.jpg
+
+Manually rotate a picture:
+% convert -rotate 270 input.jpg output.jpg
+-- 
+Rename files based on the information inside their exif header:
+
+% jhead -n%Y-%m-%d_%Hh%M_%f *.jpg
+
+This will rename a file named img_2071.jpg to something like:
+
+2007-08-17_10h38_img_2071.jpg
+
+if it was shot at 10:38 o'clock on 2007-08-17 (according to
+the information inside the exif header).
 -- 

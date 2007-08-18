@@ -3,6 +3,8 @@ grml-tips (0.4.5) unstable; urgency=low
   * Added tips:
     - Change passphrase / password of an existing SSH key
     - Enabling syntax highlighting in nano [Closes: issue50]
+    - Create netboot package for grml-terminalserver
+    - Rotate pictures
 
  -- Michael Prokop <mika@grml.org>  Wed,  8 Aug 2007 21:46:46 +0200
 
