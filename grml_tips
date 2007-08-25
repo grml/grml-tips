@@ -2867,3 +2867,9 @@ This will rename a file named img_2071.jpg to something like:
 if it was shot at 10:38 o'clock on 2007-08-17 (according to
 the information inside the exif header).
 -- 
+Calculate network / netmask:
+
+Usage examples:
+% ipcalc 10.0.0.28 255.255.255.0
+% ipcalc 10.0.0.0/24
+-- 

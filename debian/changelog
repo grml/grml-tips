@@ -3,6 +3,7 @@ grml-tips (0.4.6) unstable; urgency=low
   * Added tips:
     - Create netboot package for grml-terminalserver
     - Rotate pictures
+    - Calculate network / netmask
 
  -- Michael Prokop <mika@grml.org>  Sat, 18 Aug 2007 23:48:05 +0200
 
