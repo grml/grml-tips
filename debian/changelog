@@ -1,3 +1,9 @@
+grml-tips (0.4.7) unstable; urgency=low
+
+  * Added blacklist tip.
+
+ -- Michael Prokop <mika@grml.org>  Sun,  9 Sep 2007 00:16:28 +0200
+
 grml-tips (0.4.6) unstable; urgency=low
 
   * Added tips:

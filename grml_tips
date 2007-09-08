@@ -2873,3 +2873,19 @@ Usage examples:
 % ipcalc 10.0.0.28 255.255.255.0
 % ipcalc 10.0.0.0/24
 -- 
+Blacklist a kernel module:
+
+# blacklist <name_of_kernel_module>
+
+-> running 'blacklist hostap_cs' for example will generate an
+entry like this in /etc/modprobe.d/grml:
+
+blacklist hostap_cs
+alias hostap_cs off
+
+To remove the module from the blacklist again just invoke:
+
+# unblacklist <name_of_kernel_module>
+
+or manually remove the entry from /etc/modprobe.d/grml.
+-- 
