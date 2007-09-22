@@ -2889,3 +2889,7 @@ To remove the module from the blacklist again just invoke:
 
 or manually remove the entry from /etc/modprobe.d/grml.
 -- 
+Create a Debian package of a perl module:
+
+% dh-make-perl --cpan Acme::Smirch --build
+-- 

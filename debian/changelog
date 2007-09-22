@@ -1,15 +1,11 @@
-grml-tips (0.4.7) unstable; urgency=low
-
-  * Added blacklist tip.
-
- -- Michael Prokop <mika@grml.org>  Sun,  9 Sep 2007 00:16:28 +0200
-
 grml-tips (0.4.6) unstable; urgency=low
 
   * Added tips:
     - Create netboot package for grml-terminalserver
     - Rotate pictures
     - Calculate network / netmask
+    - Blacklist tip.
+    - Create Debian package of perl module.
 
  -- Michael Prokop <mika@grml.org>  Sat, 18 Aug 2007 23:48:05 +0200
 
