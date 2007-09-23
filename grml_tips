@@ -657,7 +657,7 @@ to get a list of all supported trees
 -- 
 Transfer your SSH public key to another host:
 
-% ssh-keygen   # if you don't have a key yet
+% ssh-keygen   # ssh-keygen / ssh-key-gen: if you don't have a key yet
 [...]
 % ssh-copy-id -i ~/.ssh/id_rsa.pub user@remote-system
 or
@@ -2847,6 +2847,12 @@ Create netboot package for grml-terminalserver:
 
 # sh /usr/share/doc/grml-terminalserver/examples/create-netboot
 -- 
+To boot grml via network (PXE) check out grml-terminalserver:
+
+# grml-terminalserver
+
+See http://grml.org/terminalserver/ for more details.
+-- 
 Rotate pictures:
 
 Using the 'Orientation' tag of the Exif header, rotate
@@ -2892,4 +2898,35 @@ or manually remove the entry from /etc/modprobe.d/grml.
 Create a Debian package of a perl module:
 
 % dh-make-perl --cpan Acme::Smirch --build
+-- 
+The Magic SysRq Keys (SysReq or Sys Req, short for System Request):
+
+To reboot your system using the SysRq keys just hold down the Alt and
+SysRq (Print Screen) key while pressing the keys REISUB ("Raising
+Elephants Is So Utterly Boring").
+
+R = take the keyboard out of raw mode
+E = terminates all processes (except init)
+I = kills all processes (except init)
+S = synchronizes the disk(s)
+U = remounts all filesystems read-only
+B = reboot the system
+
+Notice: use O instead of B for poweroff.
+
+Or write the sequence to /proc/sysrq-trigger instead:
+
+# for i in r e i s u b ; do echo $i > /proc/sysrq-trigger ; done
+
+To enable or disable SysRq calls:
+
+# echo 0 > /proc/sys/kernel/sysrq
+# echo 1 > /proc/sys/kernel/sysrq
+
+See http://en.wikipedia.org/wiki/Magic_SysRq_key for more details.
+-- 
+Memtest / memcheck:
+
+Just boot your grml Live-CD with "memtest" to execute a memcheck/memtest
+with Memtest86+.
 -- 

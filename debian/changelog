@@ -4,8 +4,10 @@ grml-tips (0.4.6) unstable; urgency=low
     - Create netboot package for grml-terminalserver
     - Rotate pictures
     - Calculate network / netmask
-    - Blacklist tip.
-    - Create Debian package of perl module.
+    - Blacklist tip
+    - Create Debian package of perl module
+    - SysRq Keys
+    - Memcheck/memtest
 
  -- Michael Prokop <mika@grml.org>  Sat, 18 Aug 2007 23:48:05 +0200
 
