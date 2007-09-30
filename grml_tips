@@ -2930,3 +2930,52 @@ Memtest / memcheck:
 Just boot your grml Live-CD with "memtest" to execute a memcheck/memtest
 with Memtest86+.
 -- 
+Tunnel TCP-Traffic through DNS using dns2tcp:
+
+Server-side:
+~~~~~~~~~~~~
+1. Create necessary DNS-Records:
+dnstun.example.com.     3600    IN      NS      host.example.com.
+dnstun.example.com.     3600    IN      A       192.168.1.1
+host.example.com.       3600    IN      A       192.168.1.1
+
+2. Configure dns2tcpd on host.example.com.:
+# cat /etc/dns2tcpd.conf 
+listen = 192.168.1.1          #the ip dnstun should listen on
+port = 53                     #" port " " " "
+user = nobody
+chroot = /tmp
+domain = dnstun.example.com.  # the zone as specified inside dns
+ressources = ssh:127.0.0.1:22 # available resources
+
+3. Start the daemon:
+# cat > /etc/default/dns2tcp << EOF
+# Set ENABLED to 1 if you want the init script to start dns2tcpd.
+ENABLED=1
+USER=nobody
+EOF
+# /etc/init.d/dns2tcp start
+
+Client-side:
+~~~~~~~~~~~~
+You have two possibilities:
+- Use the DNS inside your network (DNS must allow resolving for external domains)
+# grep nameserver /etc/resolv.conf 
+nameserver 172.16.42.1
+# dns2tcpc -z dnstun.example.com 172.16.42.1
+Available connection(s) : 
+        ssh
+# dns2tcpc -r ssh -l 2222 -z dnstun.example.com 172.16.42.1 &
+Listenning on port : 2222
+# ssh localhost -p 2222
+user@host.example.com:~#
+
+- Directly contact the endpoint (port 53 UDP must be allowed outgoing)
+# dns2tcpc -z dnstun.example.com dnstun.example.com
+Available connection(s) : 
+        ssh
+# dns2tcpc -r ssh -l 2222 -z dnstun.example.com dnstun.example.com &
+Listenning on port : 2222
+# ssh localhost -p 2222
+user@host.example.com:~#
+-- 

@@ -1,3 +1,10 @@
+grml-tips (0.4.7) unstable; urgency=low
+
+  * Added tips:
+    - dns2tcp [thanks, Moritz Augsburger!]
+
+ -- Michael Prokop <mika@grml.org>  Sun, 30 Sep 2007 17:27:18 +0200
+
 grml-tips (0.4.6) unstable; urgency=low
 
   * Added tips:
