@@ -2966,7 +2966,7 @@ nameserver 172.16.42.1
 Available connection(s) : 
         ssh
 # dns2tcpc -r ssh -l 2222 -z dnstun.example.com 172.16.42.1 &
-Listenning on port : 2222
+Listening on port : 2222
 # ssh localhost -p 2222
 user@host.example.com:~#
 
@@ -2978,4 +2978,7 @@ Available connection(s) :
 Listenning on port : 2222
 # ssh localhost -p 2222
 user@host.example.com:~#
+
+Notice: using 'ssh -D 8080 ..' you will get a socks5-proxy listening on
+localhost:8080 which you can use to tunnel everything through your "dns-uplink".
 -- 
