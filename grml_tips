@@ -2982,3 +2982,22 @@ user@host.example.com:~#
 Notice: using 'ssh -D 8080 ..' you will get a socks5-proxy listening on
 localhost:8080 which you can use to tunnel everything through your "dns-uplink".
 -- 
+Configure a MadWifi device for adhoc mode:
+
+Disable the autocreation of athX devices:
+# echo "options ath_pci autocreate=none" > /etc/modprobe.d/madwifi
+
+Remove the autocreated device for now:
+# wlanconfig ath0 destroy
+
+Configuration in /etc/network/interfaces:
+
+iface ath0 inet static
+  madwifi-base wifi0
+  madwifi-mode adhoc
+  ...
+
+Hints:
+  - Do not use interface names without ending 0 (otherwise startup fails).
+  - Only chooss unique names for interfaces.
+-- 
