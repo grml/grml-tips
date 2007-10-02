@@ -2941,7 +2941,7 @@ host.example.com.       3600    IN      A       192.168.1.1
 
 2. Configure dns2tcpd on host.example.com.:
 # cat /etc/dns2tcpd.conf 
-listen = 192.168.1.1          #the ip dnstun should listen on
+listen = 192.168.1.1          #the ip dns2tcpd should listen on
 port = 53                     #" port " " " "
 user = nobody
 chroot = /tmp
