@@ -2651,7 +2651,8 @@ See: man grml-terminalserver + http://grml.org/terminalserver/
 -- 
 Debugging SSL communications:
 
-% openssl s_client -connect server.adress:993
+% openssl s_client -connect server.adress:993 > output_file
+% openssl x509 -noout -text -in output_file
 
 or
 

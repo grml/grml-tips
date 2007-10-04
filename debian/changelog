@@ -3,6 +3,7 @@ grml-tips (0.4.7) unstable; urgency=low
   [ Michael Prokop ]
   * Added tips:
     - dns2tcp [thanks, Moritz Augsburger!]
+    - extend openssl tip
 
   [ Michael Gebetsroither ]
   * Added tips:
