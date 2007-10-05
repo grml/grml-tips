@@ -1311,6 +1311,10 @@ product ID when loading the usbserial module. Usage example:
 Bus 004 Device 008: ID 1199:6813 Sierra Wireless, Inc.
 
 # modprobe usbserial vendor=0x1199 product=0x6813
+
+To get a list of available providers execute:
+
+# gcom -s -d /dev/ttyUSB0 /usr/share/doc/gcom/examples/operator
 -- 
 hdparm - get/set hard disk parameters
 
