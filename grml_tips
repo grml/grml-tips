@@ -3006,3 +3006,6 @@ Hints:
   - Do not use interface names without ending 0 (otherwise startup fails).
   - Only chooss unique names for interfaces.
 -- 
+Find dangling symlinks using zsh:
+
+% ls **/*(-@)

@@ -5,6 +5,7 @@ grml-tips (0.4.7) unstable; urgency=low
     - dns2tcp [thanks, Moritz Augsburger!]
     - extend openssl tip
     - extend gcom tip
+    - find dangling symlinks using zsh
 
   [ Michael Gebetsroither ]
   * Added tips:
