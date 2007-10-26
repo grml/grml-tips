@@ -3009,3 +3009,39 @@ Hints:
 Find dangling symlinks using zsh:
 
 % ls **/*(-@)
+-- 
+approx with runit supervision
+
+# apt-get install approx runit
+
+Add user approxlog for the logging daemon
+# adduser --system --home /nonexistent --no-create-home approxlog
+
+Create config directory
+# mkdir /etc/sv/approx
+
+Use /var/run/sv.approx as supervise directories
+# ln -s /var/run/sv.approx /etc/sv/approx/supervise
+
+# cat /etc/sv/approx/run
+# #!/bin/sh
+echo 'approx starting'
+exec approx -f 2>&1
+
+You normally do not need a logging service for approx, because it loggs
+to syslog too. So just for completion.
+# mkdir -p /etc/sv/approx/log
+# ln -s /var/run/sv.approx.log /etc/sv/approx/log/supervise
+# cat /etc/sv/approx/log/run
+#!/bin/sh
+set -e
+LOG="/var/log/approx"
+test -d "$LOG" || mkdir -p -m2750 "$LOG" && chown approxlog:adm "$LOG"
+exec chpst -uapproxlog svlogd -tt -v "$LOG"
+
+Now activate the new approx service (will be started within 5s)
+# ln -s /etc/sv/approx/ /var/service/
+
+Make the runit managed approx available with init-script interface.
+# dpkg-divert --local --rename /etc/init.d/approx
+# ln -s /usr/bin/sv /etc/init.d/approx

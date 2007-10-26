@@ -10,8 +10,9 @@ grml-tips (0.4.7) unstable; urgency=low
   [ Michael Gebetsroither ]
   * Added tips:
     - Configure a MadWifi device for adhoc mode
+    - approx with runit supervision
 
- -- Michael Gebetsroither <gebi@grml.org>  Tue, 02 Oct 2007 13:32:27 +0200
+ -- Michael Gebetsroither <michael.geb@gmx.at>  Fri, 26 Oct 2007 21:15:37 +0000
 
 grml-tips (0.4.6) unstable; urgency=low
 
