@@ -6,6 +6,7 @@ grml-tips (0.4.7) unstable; urgency=low
     - extend openssl tip
     - extend gcom tip
     - find dangling symlinks using zsh
+    - remote-reboot via SysRQ
 
   [ Michael Gebetsroither ]
   * Added tips:
