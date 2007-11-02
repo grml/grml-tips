@@ -10,7 +10,7 @@ XS-Vcs-Browser: http://hg.grml.org/grml-tips
 
 Package: grml-tips
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libwww-perl
 Description: search for tips and hints via a keyword
  The provided script grml-tips queries a signature file
  for a specific keyword and displays results on stdout.

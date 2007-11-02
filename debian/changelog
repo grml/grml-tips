@@ -1,3 +1,9 @@
+grml-tips (0.4.8) unstable; urgency=low
+
+  * Add libwww-perl to depends.
+
+ -- Michael Prokop <mika@grml.org>  Sat, 03 Nov 2007 00:29:58 +0100
+
 grml-tips (0.4.7) unstable; urgency=low
 
   [ Michael Prokop ]
