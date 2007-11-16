@@ -3057,3 +3057,11 @@ umount -l /cdrom
 eject /dev/cdrom
 echo b > /proc/sysrq-trigger
 -- 
+Show what happens on /dev/sda0:
+
+# mount the debugfs to relay kernel info to userspace
+mount -t debugfs none /sys/kernel/debug
+
+# is a convenient wrapper arround blktrace and blkparse
+btrace /dev/sda0
+-- 
