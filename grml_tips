@@ -3065,3 +3065,26 @@ mount -t debugfs none /sys/kernel/debug
 # is a convenient wrapper arround blktrace and blkparse
 btrace /dev/sda0
 -- 
+Convert Flash to Avi:
+
+% ffmpeg -i input.flv output.avi
+-- 
+Usage example for cryptsetup / -luks encrypted partition on LVM:
+
+volume group name:   x61
+logical volume name: home
+
+echo "grml-crypt_home /dev/mapper/x61-home none luks" >> /etc/crypttab
+Start cryptdisks
+mount /dev/mapper/grml-crypt_home /mnt/test
+-- 
+fdisk/parted/... complains with something like
+'unable to open /dev/sda - unrecognised disk label'?!
+
+See http://grml.org/faq/#fdisk =>
+
+* use /sbin/fdisk.distrib from util-linux
+* switch to sfdisk, cfdisk,...
+* use parted's mklabel command (but please read the
+  parted manual before executing this command)
+-- 

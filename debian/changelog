@@ -1,9 +1,16 @@
 grml-tips (0.4.9) unstable; urgency=low
 
-  * Added tip(s):
+  [ Michael Gebetsroither ]
+  * Added tip:
     - Show what happens on /dev/sda0
 
- -- Michael Gebetsroither <gebi@grml.org>  Fri, 16 Nov 2007 11:53:55 +0100
+  [ Michael Prokop ]
+  * Added tips:
+    - Convert Flash to Avi
+    - Tip regarding the "unrecognised disk label" problem of fdisk
+    - Usage example for cryptsetup / -luks encrypted partition on LVM
+
+ -- Michael Prokop <mika@grml.org>  Sat, 09 Feb 2008 17:21:28 +0100
 
 grml-tips (0.4.8) unstable; urgency=low
 
