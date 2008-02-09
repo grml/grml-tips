@@ -5,6 +5,7 @@ grml-tips (0.4.9) unstable; urgency=low
     - Show what happens on /dev/sda0
 
   [ Michael Prokop ]
+  * Bump Standard-Version to 3.7.3 (no further changes).
   * Added tips:
     - Convert Flash to Avi
     - Tip regarding the "unrecognised disk label" problem of fdisk
