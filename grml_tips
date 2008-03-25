@@ -3088,3 +3088,15 @@ See http://grml.org/faq/#fdisk =>
 * use parted's mklabel command (but please read the
   parted manual before executing this command)
 -- 
+dmraid - support for SW-RAID / FakeRAID controllers
+like Highpoint HPT and Promise FastTrack
+
+Activate all software RAID sets discovered:
+# dmraid -ay
+
+Deactivates all active software RAID sets:
+# dmraid  -an
+
+Discover all software RAID devices supported on the system:
+# dmraid -r
+-- 
