@@ -3100,3 +3100,7 @@ Deactivates all active software RAID sets:
 Discover all software RAID devices supported on the system:
 # dmraid -r
 -- 
+Extract winmail.dat:
+
+% ytnef winmail.dat
+-- 

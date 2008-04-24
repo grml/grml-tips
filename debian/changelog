@@ -1,6 +1,7 @@
 grml-tips (0.4.10) unstable; urgency=low
 
   * Added tip for dmraid.
+  * Added tip for ytnef/winmail.dat.
 
  -- Michael Prokop <mika@grml.org>  Tue, 25 Mar 2008 10:04:11 +0100
 
