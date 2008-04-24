@@ -3102,5 +3102,9 @@ Discover all software RAID devices supported on the system:
 -- 
 Extract winmail.dat:
 
+List content:
 % ytnef winmail.dat
+
+Extract files to current directory:
+% ytnef -f . winmail.dat
 -- 
