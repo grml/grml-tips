@@ -2719,7 +2719,7 @@ Enable shadow passwords:
 
 # shadowconfig on
 -- 
-Set up an IPv6 tunneln on grml:
+Set up an IPv6 tunnel on grml:
 
 # ipv6-tunnel start
 -- 
