@@ -3108,3 +3108,17 @@ List content:
 Extract files to current directory:
 % ytnef -f . winmail.dat
 -- 
+Approx - Debian package proxy/cacher howto
+
+% apt-get install approx
+% echo 'debian  http://ftp.de.debian.org/debian' >>/etc/approx/approx.conf
+% Restart approx
+
+Add your new approx to sources.list
+
+eg.
+deb http://localhost:9999/debian  unstable  main contrib non-free
+
+use approx in grml-debootstrap like:
+% grml-debootstrap -r lenny -t /dev/sda1 -m http://127.0.0.1:9999/debian
+-- 
