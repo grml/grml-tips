@@ -573,11 +573,15 @@ echo -e "s/\r//g" > dos2unix.sed; sed -f dos2unix.sed < dosfile > unixfile
 -- 
 Save live audio stream to file:
 
-% mplayer -ao pcm:file=$FILE
+% mplayer -ao pcm:file=$FILE $URL
+-- 
+Save live stream to file:
+
+% mplayer -dumpfile $FILE -dumpstream $STREAM
 
 or
 
-% mencoder mms://file.wmv -o $FILE -ovc copy -oac copy
+% mencoder mms://$URL -o $FILE -ovc copy -oac copy
 
 or
 

@@ -1,3 +1,9 @@
+grml-tips (0.4.12) unstable; urgency=low
+
+  * Update streaming tips.
+
+ -- Michael Prokop <mika@grml.org>  Sat, 06 Sep 2008 19:01:32 +0200
+
 grml-tips (0.4.11) unstable; urgency=low
 
   * Add dependency on libterm-readkey-perl.
