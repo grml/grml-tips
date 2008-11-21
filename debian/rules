@@ -27,12 +27,12 @@ install:
 	install -m 755 grml-tips debian/grml-tips/usr/bin/grml-tips
 	install -m 644 grml_tips debian/grml-tips/usr/share/grml-tips/grml_tips
 
-# Build architecture-independent files here.
-binary-indep: install
-# We have nothing to do by default.
-
 # Build architecture-dependent files here.
 binary-arch: install
+# We have nothing to do by default.
+
+# Build architecture-independent files here.
+binary-indep: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs 

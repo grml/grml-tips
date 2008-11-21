@@ -3,8 +3,11 @@ grml-tips (0.4.12) unstable; urgency=low
   * Update streaming tips.
   * Update metasploit tip.
   * Add simple webserver with python tip.
+  * Update VCS headers.
+  * Remove homepage from long description.
+  * Update debian/rules regarding binary-arch-rules-but-pkg-is-arch-indep.
 
- -- Michael Prokop <mika@grml.org>  Fri, 21 Nov 2008 13:25:14 +0100
+ -- Michael Prokop <mika@grml.org>  Fri, 21 Nov 2008 13:28:08 +0100
 
 grml-tips (0.4.11) unstable; urgency=low
 
