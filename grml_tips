@@ -708,9 +708,9 @@ Write back the guessed table:
 Develop, test and use exploit code with the Metasploit Framework:
 
 cd /tmp
-wget http://framework-mirrors.metasploit.com/msf/downloader/framework-3.0.tar.gz
-unp framework-3.0.tar.gz
-cd framework-3.0
+wget http://spool.metasploit.com/releases/framework-3.2.tar.gz
+unp framework-3.2.tar.gz
+cd framework-3.2
 ./msfcli
 -- 
 Useful documentation:
@@ -2320,8 +2320,6 @@ host2% hg merge # merge changes into your working directory
 Set up a CGI server on your webserver:
 % cp hgwebdir.cgi ~/public_html/hg/index.cgi
 % $EDITOR ~/public_html/hg/index.cgi # adjust the defaults
-
-Mercurial repositories of grml can be found at http://hg.grml.org/
 -- 
 Download binary codecs for mplayer:
 
@@ -3125,4 +3123,8 @@ deb http://localhost:9999/debian  unstable  main contrib non-free
 
 use approx in grml-debootstrap like:
 % grml-debootstrap -r lenny -t /dev/sda1 -m http://127.0.0.1:9999/debian
+-- 
+Simple webserver with python
+
+% python -m SimpleHTTPServer
 -- 

@@ -1,8 +1,10 @@
 grml-tips (0.4.12) unstable; urgency=low
 
   * Update streaming tips.
+  * Update metasploit tip.
+  * Add simple webserver with python tip.
 
- -- Michael Prokop <mika@grml.org>  Sat, 06 Sep 2008 19:01:32 +0200
+ -- Michael Prokop <mika@grml.org>  Fri, 21 Nov 2008 13:25:14 +0100
 
 grml-tips (0.4.11) unstable; urgency=low
 
