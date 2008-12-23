@@ -1,3 +1,9 @@
+grml-tips (0.4.13) unstable; urgency=low
+
+  * Update ms-sys tip.
+
+ -- Michael Prokop <mika@grml.org>  Tue, 23 Dec 2008 16:16:04 +0100
+
 grml-tips (0.4.12) unstable; urgency=low
 
   * Update streaming tips.
