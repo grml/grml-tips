@@ -1,3 +1,12 @@
+grml-tips (0.4.14) unstable; urgency=low
+
+  * Add 'Upgrade only packages from the grml-stable Debian repository'.
+  * Debian package updates:
+    - Bump Standard Version to 5
+    - Bump Compat Version to 5
+
+ -- Michael Prokop <mika@grml.org>  Tue, 16 Jun 2009 16:20:21 +0200
+
 grml-tips (0.4.13) unstable; urgency=low
 
   * Update ms-sys tip.

@@ -3132,7 +3132,13 @@ deb http://localhost:9999/debian  unstable  main contrib non-free
 use approx in grml-debootstrap like:
 % grml-debootstrap -r lenny -t /dev/sda1 -m http://127.0.0.1:9999/debian
 -- 
-Simple webserver with python
+Simple webserver with python:
 
 % python -m SimpleHTTPServer
+-- 
+Upgrade only packages from the grml-stable Debian repository:
+
+echo 'deb http://deb.grml.org/ grml-stable main' > /etc/apt/grml-stable.list
+apt-get -o Dir::Etc::SourceList=/etc/apt/grml-stable.list update
+apt-get upgrade
 -- 
