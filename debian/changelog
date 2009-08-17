@@ -1,3 +1,10 @@
+grml-tips (0.4.15) unstable; urgency=low
+
+  * Update 'Upgrade only packages from the grml-stable Debian repository'
+    tip for /etc/apt/sources.list.d layout.
+
+ -- Michael Prokop <mika@grml.org>  Mon, 17 Aug 2009 13:33:20 +0200
+
 grml-tips (0.4.14) unstable; urgency=low
 
   * Add 'Upgrade only packages from the grml-stable Debian repository'.

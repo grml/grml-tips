@@ -3139,6 +3139,6 @@ Simple webserver with python:
 Upgrade only packages from the grml-stable Debian repository:
 
 echo 'deb http://deb.grml.org/ grml-stable main' > /etc/apt/grml-stable.list
-apt-get -o Dir::Etc::SourceList=/etc/apt/grml-stable.list update
+apt-get -o Dir::Etc::sourcelist=/etc/apt/grml-stable.list -o Dir::Etc::sourceparts=/doesnotexist update
 apt-get upgrade
 -- 
