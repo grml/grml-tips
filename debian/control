@@ -2,7 +2,7 @@ Source: grml-tips
 Section: grml
 Priority: optional
 Maintainer: Michael Prokop <mika@grml.org>
-Build-Depends: debhelper (>= 4.0.0)
+Build-Depends: debhelper (>= 5)
 Standards-Version: 3.8.3
 Homepage: http://git.grml.org/?p=grml-tips.git
 Vcs-git: git://git.grml.org/grml-tips.git

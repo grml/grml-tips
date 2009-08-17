@@ -3,8 +3,9 @@ grml-tips (0.4.15) unstable; urgency=low
   * Update 'Upgrade only packages from the grml-stable Debian repository'
     tip for /etc/apt/sources.list.d layout.
   * Bump Standard Version to 3.8.3.
+  * Build-Depend on dh >=5.
 
- -- Michael Prokop <mika@grml.org>  Mon, 17 Aug 2009 13:34:06 +0200
+ -- Michael Prokop <mika@grml.org>  Mon, 17 Aug 2009 13:34:58 +0200
 
 grml-tips (0.4.14) unstable; urgency=low
 
