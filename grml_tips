@@ -1105,7 +1105,7 @@ Assign static setup for network cards (eth0 and eth1) via udev:
 First method - manual:
 ~~~~~~~~~~~~~~~~~~~~~~
 Get information for SYSFS address:
-# udevinfo -a -p /sys/class/net/eth0/ | grep address
+# udevadm info -a -p /sys/class/net/eth0/ | grep address
 
 Then create udev rules:
 # cat /etc/udev/network.rules
@@ -3149,4 +3149,19 @@ Install Centos into a directory:
 Install Fedora into a directory:
 
 % febootstrap fedora-11 target_directory
+-- 
+Use Nessus / OpenVAS (remote network security auditor):
+
+Install software packages:
+# apt-get update
+# apt-get install openvas-client openvas-server openvas-plugins-base openvas-plugins-dfsg
+
+Add a user:
+# openvas-adduser
+
+Start openvas server (takes a while):
+# Start openvas-server
+
+Invoke client as user:
+% OpenVAS-Client
 -- 

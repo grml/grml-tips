@@ -1,3 +1,11 @@
+grml-tips (0.4.17) unstable; urgency=low
+
+  * Replace 'udevinfo' with 'udevadm info'.
+  * Add Nessus/OpenVAS tip. [Closes: issue591], [Closes: issue663] and
+    [Closes: issue690]
+
+ -- Michael Prokop <mika@grml.org>  Mon, 19 Oct 2009 17:42:36 +0200
+
 grml-tips (0.4.16) unstable; urgency=low
 
   * Add 'Installing Fedora/Centos to a directory'
@@ -118,7 +126,7 @@ grml-tips (0.4.4) unstable; urgency=low
     'Convert files from Unicode / UTF-8 to ISO' and
     'Use a Vodafone 3G Datacard (UMTS) with Linux' and
     mention ssh-keygen in ssh-copy-id tip.
-  
+
  -- Michael Prokop <mika@grml.org>  Fri, 27 Jul 2007 00:41:33 +0200
 
 grml-tips (0.4.3) unstable; urgency=low
@@ -292,7 +300,7 @@ grml-tips (0.3-9) unstable; urgency=low
   * Updated grml-tips.
   * Use "Architecture: all" in debian/control to support architectures
     not running on x86 as well.
-  * Bumb Standard Version to 3.7.2 (no further changes). 
+  * Bumb Standard Version to 3.7.2 (no further changes).
 
  -- Michael Prokop <mika@grml.org>  Wed,  1 Nov 2006 11:29:56 +0100
 
