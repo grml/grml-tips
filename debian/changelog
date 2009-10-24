@@ -1,3 +1,9 @@
+grml-tips (0.4.18) unstable; urgency=low
+
+  * Update URL in 'Test UTF-8 capabilities of terminal'.
+
+ -- Michael Prokop <mika@grml.org>  Sat, 24 Oct 2009 14:27:15 +0200
+
 grml-tips (0.4.17) unstable; urgency=low
 
   * Replace 'udevinfo' with 'udevadm info'.

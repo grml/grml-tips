@@ -2590,7 +2590,7 @@ Recorder shellscript session using script:
 -- 
 Test UTF-8 capabilities of terminal:
 
-wget http://melkor.dnp.fmph.uniba.sk/~garabik/debian-utf8/download/UTF-8-demo.txt.gz
+wget http://www.linux-cjk.net/Console/garabik/UTF-8-demo.txt.gz
 zcat UTF-8-demo.txt.gz
 
 or:
