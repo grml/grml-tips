@@ -1,3 +1,10 @@
+grml-tips (0.4.19) unstable; urgency=low
+
+  * Add 'Find packages not available from any active apt repository'.
+  * Update 'Create netboot package for grml-terminalserver'.
+
+ -- Michael Prokop <mika@grml.org>  Mon, 26 Oct 2009 15:09:12 +0100
+
 grml-tips (0.4.18) unstable; urgency=low
 
   * Update URL in 'Test UTF-8 capabilities of terminal'.

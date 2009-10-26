@@ -2860,7 +2860,7 @@ language at the bottom of the file /etc/nanorc
 -- 
 Create netboot package for grml-terminalserver:
 
-# sh /usr/share/doc/grml-terminalserver/examples/create-netboot
+# bash /usr/share/doc/grml-terminalserver/examples/create-netboot
 -- 
 To boot grml via network (PXE) check out grml-terminalserver:
 
@@ -3164,4 +3164,8 @@ Start openvas server (takes a while):
 
 Invoke client as user:
 % OpenVAS-Client
+-- 
+Find packages not available from any active apt repository:
+
+% apt-show-versions | awk '/No available version in archive/{print $1}'
 -- 
