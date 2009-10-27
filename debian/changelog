@@ -1,3 +1,10 @@
+grml-tips (0.4.20) unstable; urgency=low
+
+  * Add 'Simple mailserver with python'.
+  * Update gcom tip regarding switch to comgt (thanks, Ralf Moll).
+
+ -- Michael Prokop <mika@grml.org>  Tue, 27 Oct 2009 21:28:13 +0100
+
 grml-tips (0.4.19) unstable; urgency=low
 
   * Add 'Find packages not available from any active apt repository'.

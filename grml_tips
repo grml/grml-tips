@@ -1288,18 +1288,21 @@ Use a Vodafone 3G Datacard (UMTS) with Linux:
 Plug in your vodafone card and check in syslog whether the appropriate
 (probably /dev/ttyUSB0 or /dev/noz0) has been created. If so run:
 
-# gcom -d $DEVICE
+# comgt -d $DEVICE
 # wvdial --config /etc/wvdial.conf.umts $PROFILE
 
 Usage examples:
-# gcom -d /dev/ttyUSB0
+# comgt -d /dev/ttyUSB0
 # wvdial --config /etc/wvdial.conf.umts a1usb
 
-# gcom -d /dev/noz0
+# comgt -d /dev/noz0
 # wvdial --config /etc/wvdial.conf.umts tmnozomi
 
-# gcom -d /dev/noz0
+# comgt -d /dev/noz0
 # wvdial --config /etc/wvdial.conf.umts dreiusb
+
+# comgt -d /dev/ttyACM0
+# wvdial --config /etc/wvdial.conf.umts yesss
 
 If you receive invalid DNS nameservers when connecting, like:
 
@@ -1326,7 +1329,7 @@ Bus 004 Device 008: ID 1199:6813 Sierra Wireless, Inc.
 
 To get a list of available providers execute:
 
-# gcom -s -d /dev/ttyUSB0 /usr/share/doc/gcom/examples/operator
+# comgt -s -d /dev/ttyUSB0 /etc/comgt/operator
 -- 
 hdparm - get/set hard disk parameters
 
@@ -3168,4 +3171,8 @@ Invoke client as user:
 Find packages not available from any active apt repository:
 
 % apt-show-versions | awk '/No available version in archive/{print $1}'
+-- 
+Simple mailserver with python:
+
+% python -m smtpd -n -c DebuggingServer localhost:1025
 -- 
