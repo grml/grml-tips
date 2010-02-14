@@ -2106,38 +2106,38 @@ See also: http://www.debian.org/doc/manuals/apt-howto/ch-basico.en.html
 Check filesystem's LABEL:
 
 generic way:
-# vol_id -l /dev/sda1
+# blkid /dev/sda1
 
-ext2/3 without vol_id:
+ext2/3 without blkid:
 # dumpe2fs /dev/sda1 | grep "Filesystem volume name"
 
-xfs without vol_id:
+xfs without blkid:
 # xfs_admin -l /dev/sda1
 
-reiserfs without vol_id:
+reiserfs without blkid:
 # debugreiserfs /dev/sda1 | grep -i label
 
-jfs without vol_id:
+jfs without blkid:
 # jfs_tune -l /dev/sda1 | grep -i label
 
-reiser4 without vol_id:
+reiser4 without blkid:
 # debugfs.reiser4 /dev/sda1 | grep -i label
 -- 
 Check filesystem's UUID:
 
 generic way:
-# vol_id -u /dev/sda1
+# blkid /dev/sda1
 
-ext2/3 without vol_id:
+ext2/3 without blkid:
 # dumpe2fs /dev/sda1 | grep -i UUID
 
-xfs without vol_id:
+xfs without blkid:
 # xfs_admin -u /dev/sda1
 
-reiserfs without vol_id:
+reiserfs without blkid:
 # debugreiserfs /dev/sda1 | grep -i UUID
 
-reiser4 without vol_id:
+reiser4 without blkid:
 # debugfs.reiser4 /dev/sda1 | grep -i UUID
 -- 
 Change a filesystem's LABEL:
