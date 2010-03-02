@@ -1,8 +1,9 @@
 grml-tips (0.4.21) unstable; urgency=low
 
   * Add 'Extract MP3 from Flash file', thanks gebi.
+  * Bump Standards-Version to 3.8.4 (no further changes).
 
- -- Michael Prokop <mika@grml.org>  Tue, 02 Mar 2010 03:28:55 +0100
+ -- Michael Prokop <mika@grml.org>  Tue, 02 Mar 2010 03:29:40 +0100
 
 grml-tips (0.4.20) unstable; urgency=low
 
