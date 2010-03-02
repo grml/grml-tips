@@ -3081,6 +3081,10 @@ btrace /dev/sda0
 Convert Flash to Avi:
 
 % ffmpeg -i input.flv output.avi
+
+Extract MP3 from Flash file:
+
+% for i in *.flv; do ffmpeg -i $i -acodec copy ${i%.flv}.mp3 ; done
 -- 
 Usage example for cryptsetup / -luks encrypted partition on LVM:
 

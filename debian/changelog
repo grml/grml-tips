@@ -1,3 +1,9 @@
+grml-tips (0.4.21) unstable; urgency=low
+
+  * Add 'Extract MP3 from Flash file', thanks gebi.
+
+ -- Michael Prokop <mika@grml.org>  Tue, 02 Mar 2010 03:28:55 +0100
+
 grml-tips (0.4.20) unstable; urgency=low
 
   * Add 'Simple mailserver with python'.
