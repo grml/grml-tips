@@ -627,7 +627,7 @@ Read BIOS:
 -- 
 Read HTTP via netcat:
 
-echo -e "GET / HTTP/1.0\r\n\r\n" | netcat $DOMAIN 80
+echo -e "GET / HTTP/1.1\r\nHost: $DOMAIN\r\n\r\n" | netcat $DOMAIN 80
 -- 
 Get X ressources for specific program:
 
