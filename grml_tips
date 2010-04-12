@@ -3180,3 +3180,6 @@ Simple mailserver with python:
 
 % python -m smtpd -n -c DebuggingServer localhost:1025
 -- 
+finger via netcat:
+
+echo $USER | nc $HOST 79
