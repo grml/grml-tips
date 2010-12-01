@@ -3183,3 +3183,10 @@ Simple mailserver with python:
 finger via netcat:
 
 echo $USER | nc $HOST 79
+-- 
+Install Archlinux using Grml:
+
+https://wiki.archlinux.org/index.php/Install_from_Existing_Linux
+or
+wget http://tokland.googlecode.com/svn/trunk/archlinux/arch-bootstrap.sh
+-- 
