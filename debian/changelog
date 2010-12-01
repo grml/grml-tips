@@ -1,3 +1,18 @@
+grml-tips (0.5.0) unstable; urgency=low
+
+  [ Gerfried Fuchs ]
+  * [66608fa] fix "HTTP via netcat" entry
+  * [5ea3699] makes the netcat tip work with virtual hosts, too (closes:
+    http://identi.ca/notice/28215173)
+  * [436d7fb] finger via netcat tip
+
+  [ Michael Prokop ]
+  * [3f7e12f] Bump Standards-Version to 3.9.1.
+  * [7acb006] Add 'Install Archlinux using Grml' - thanks to Gregor
+    Perner
+
+ -- Michael Prokop <mika@grml.org>  Thu, 02 Dec 2010 00:00:55 +0100
+
 grml-tips (0.4.21) unstable; urgency=low
 
   * Add 'Extract MP3 from Flash file', thanks gebi.
