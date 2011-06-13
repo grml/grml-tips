@@ -4,7 +4,6 @@
 # Authors:       grml-team (grml.org), (c) Michael Prokop <mika@grml.org>, (c) Alexander Wirt <formorer@grml.org>
 # Bug-Reports:   see http://grml.org/bugs/
 # License:       This file is licensed under the GPL v2.
-# Latest change: Sam Mär 03 15:35:38 CET 2007 [mika]
 ################################################################################
 
 use strict;
@@ -14,6 +13,7 @@ use feature 'say';
 use Term::ReadKey;
 use Time::HiRes;
 use LWP::UserAgent;
+use Getopt::Long;
 
 =head1 NAME
 
@@ -21,7 +21,7 @@ B<grml-tips> - query a signature file for a specific keyword and display results
 
 =head1 SYNOPSIS
 
-B<grml-tips> [OPTION] I<keyword>
+B<grml-tips> [OPTION] I<searchpattern|tag>
 
 =head1 DESCRIPTION
 
@@ -34,6 +34,10 @@ This manual page documents briefly the B<grml-tips> command.
 =item B<--help>
 
 Print this help and exit.
+
+=item B<--tagsonly>
+
+Match on tags only instead of the whole tip 
 
 =back
 
@@ -68,20 +72,29 @@ grml-tips was written by Alexander Wirt <formorer@grml.org>
 =cut
 
 my $grml_tips = '/usr/share/grml-tips/grml_tips';
+
+my $help;
+my $tagsonly;
+
+my $result = GetOptions (
+    "help" => \$help,
+    "tagsonly" => \$tagsonly
+);
+
 my $pattern   = shift;
 
-if ( $pattern eq '' ) {
-    pod2usage(
-        {   -message => 'No search pattern provided',
-            -exitval => -1,
-        }
-    );
-}
-elsif ( $pattern eq '--help' ) {
-    pod2usage();
-}
+#help if pattern is missing;
+pod2usage(
+    {   -message => 'No search pattern provided',
+        -exitval => -1,
+    }
+) unless $pattern;
+
+#help if help is wanted
+pod2usage() if $help;
 
 my @tips;
+
 if ( !open( my $fh, '<', "$grml_tips" ) ) {
     say STDERR "Error: File \"$grml_tips\" not found.";
     say STDERR "Exiting.";
@@ -96,19 +109,26 @@ else {
             $tip .= $line;
         }
         else {
+            my $header = "Grml Tip Number $tips_found\n";
+            my $line = "-" x ( length($header) - 1 ) . "\n\n";
+
             $tips_found++;
-            if ( $tip =~ /$pattern/mi ) {
-
-                #$tip .= $line;
-
-                my $header = "Grml Tip Number $tips_found\n";
-                my $line = "-" x ( length($header) - 1 ) . "\n\n";
-
-                push @tips, $header . $line . $tip . "\n";
+            if ($tagsonly) {
+                #extract tags from tip
+                my ($tag) = $tip =~ /^Tags: (.*)$/m;
+                my @tags = split(/[, ]+/, $tag);
+                if (grep(/^$pattern$/i, @tags) ) {
+                    push @tips, $header . $line . $tip . "\n";
+                }
                 $tip = '';
-            }
-            else {
-                $tip = '';
+            } else {
+                if ( $tip =~ /$pattern/mi ) {
+                    push @tips, $header . $line . $tip . "\n";
+                    $tip = '';
+                }
+                else {
+                    $tip = '';
+                }
             }
         }
     }

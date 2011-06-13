@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+# Filename:      grml-tips-tags
+# Purpose:       Extract available patterns from grml-tips file
+# Authors:       grml-team (grml.org), (c) Michael Prokop <mika@grml.org>, (c) Alexander Wirt <formorer@grml.org>
+# Bug-Reports:   see http://grml.org/bugs/
+# License:       This file is licensed under the GPL v2.
+################################################################################
+
+use strict;
+
+my $grml_tips = '/usr/share/grml-tips/grml_tips';
+open (my $fh, '<', $grml_tips) or die "Could not open $grml_tips: $!";
+
+my @tags;
+
+while (my $line = <$fh>) {
+    next unless $line =~ /^Tags: (.*)$/;
+    push @tags, split(/[, ]+/, $1);
+}
+
+#make tags unique
+my %seen = ();
+@tags = grep { ! $seen{$_} ++ } @tags;
+
+print join("\n", @tags) . "\n";
