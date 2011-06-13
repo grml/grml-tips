@@ -10,9 +10,9 @@
 use strict;
 use Pod::Usage;
 
-use feature 'say'; 
+use feature 'say';
 use Term::ReadKey;
-use Time::HiRes;	
+use Time::HiRes;
 use LWP::UserAgent;
 
 =head1 NAME
@@ -67,111 +67,128 @@ grml-tips was written by Alexander Wirt <formorer@grml.org>
 
 =cut
 
-
 my $grml_tips = '/usr/share/grml-tips/grml_tips';
-my $pattern = shift;
+my $pattern   = shift;
 
-if ($pattern eq '') {
-    pod2usage( {
-	    -message => 'No search pattern provided',
-	    -exitval => -1, });
-} elsif ($pattern eq  '--help') {
+if ( $pattern eq '' ) {
+    pod2usage(
+        {   -message => 'No search pattern provided',
+            -exitval => -1,
+        }
+    );
+}
+elsif ( $pattern eq '--help' ) {
     pod2usage();
 }
 
 my @tips;
-if (! open (my $fh, '<', "$grml_tips")) {
-	say STDERR "Error: File \"$grml_tips\" not found.";
-	say STDERR "Exiting.";
-	exit -1;
-} else {
-	my $tip = '';
+if ( !open( my $fh, '<', "$grml_tips" ) ) {
+    say STDERR "Error: File \"$grml_tips\" not found.";
+    say STDERR "Exiting.";
+    exit -1;
+}
+else {
+    my $tip = '';
 
-	my $tips_found = 0; 
-	while (my $line = <$fh>) {
-		if ($line !~ /^-- $/) {
-			$tip .= $line;
-		} else {
-			$tips_found++; 
-			if ( $tip =~ /$pattern/mi ) {
-				#$tip .= $line;
+    my $tips_found = 0;
+    while ( my $line = <$fh> ) {
+        if ( $line !~ /^-- $/ ) {
+            $tip .= $line;
+        }
+        else {
+            $tips_found++;
+            if ( $tip =~ /$pattern/mi ) {
 
-				my $header = "Grml Tip Number $tips_found\n";
-				my $line = "-" x (length($header) -1 ) . "\n\n"; 
+                #$tip .= $line;
 
-				push @tips, $header . $line . $tip . "\n"; 
-				$tip = '';
-			} else {
-				$tip = '';
-			}
-		}
-	}
-	close($fh);
+                my $header = "Grml Tip Number $tips_found\n";
+                my $line = "-" x ( length($header) - 1 ) . "\n\n";
+
+                push @tips, $header . $line . $tip . "\n";
+                $tip = '';
+            }
+            else {
+                $tip = '';
+            }
+        }
+    }
+    close($fh);
 }
 
 if (@tips) {
-	if (! open (my $fh, '|-', 'less -FRX') ) {
-		say @tips; 
-	} else {
-		say $fh @tips;
-	}
-}else {
-	say "Sorry, could not find a tip for '$pattern'. :-(\n\n",
-    	"Do you want to submit the keyword '$pattern' to grml's keyword database?\n",
-	"The grml team will write tips for the most requested and useful keywords.\n",
-	"To use and contribute to this feature you'll need a working networking connection.\n",
-	"No personal data will be transmitted to the database.\n\n",
-	"Send \"$pattern\" to grml's keyword database? [y|N] ";
+    if ( !open( my $fh, '|-', 'less -FRX' ) ) {
+        say @tips;
+    }
+    else {
+        say $fh @tips;
+    }
+}
+else {
+    say "Sorry, could not find a tip for '$pattern'. :-(\n\n",
+        "Do you want to submit the keyword '$pattern' to grml's keyword database?\n",
+        "The grml team will write tips for the most requested and useful keywords.\n",
+        "To use and contribute to this feature you'll need a working networking connection.\n",
+        "No personal data will be transmitted to the database.\n\n",
+        "Send \"$pattern\" to grml's keyword database? [y|N] ";
 
-	ReadMode 4; # Turn off controls keys
-	my $x; 
-	while (not defined ($x = ReadKey(-1))) {
-		Time::HiRes::sleep(0.5);
-	}
-	ReadMode 0; # Reset tty mode before exiting
-	print "\n\n";
-	if ($x =~ /(y|j)/i) {
-		my $version; 
-		if ( -f '/etc/grml_version' ) {
-			open (my $fh, '<', '/etc/grml_version') or die "Could not open /etc/grml_version: $!";
-			$version = <$fh>; 
-			chomp $version; 
-			close ($fh); 
-		} elsif ( -f '/etc/debian_version') {
-			open (my $fh, '<', '/etc/debian_version') or die "Could not open /etc/debian_version: $!"; 
-			$version = <$fh>;
-			chomp $version;
-			close ($fh);
-		} else {
-			$version = 'unknown'; 
-		}
-		my $ua = new LWP::UserAgent;
-		$ua->agent("grml-tips 0.0 "); # set the HTTP 'browser' type
-		my $res = 
-			$ua->post('http://deb.grml.org/~formorer/submissions/keyword.cgi', 
-					[ 'version' => $version,
-					'keyword' => $pattern
-					],
-				 );
-		if ($res->is_success) {
-			my $content =  $res->decoded_content;
-			if ($content =~ /Submission received/) {
-				say "Keyword '$pattern' has been submitted to grml's keyword database.\nThanks.";
-			} else {
-				say "Your pattern could not be submitted.\n",
-				      "Please file a bug against grml-tips at ",
-				      "http://bts.grml.org/\n",
-				      "Thanks!";
-			}
-		} else {
-			print "Could not submitt '$pattern': " . $res->status_line . "\n";
-		}
+    ReadMode 4;    # Turn off controls keys
+    my $x;
+    while ( not defined( $x = ReadKey(-1) ) ) {
+        Time::HiRes::sleep(0.5);
+    }
+    ReadMode 0;    # Reset tty mode before exiting
+    print "\n\n";
+    if ( $x =~ /(y|j)/i ) {
+        my $version;
+        if ( -f '/etc/grml_version' ) {
+            open( my $fh, '<', '/etc/grml_version' )
+                or die "Could not open /etc/grml_version: $!";
+            $version = <$fh>;
+            chomp $version;
+            close($fh);
+        }
+        elsif ( -f '/etc/debian_version' ) {
+            open( my $fh, '<', '/etc/debian_version' )
+                or die "Could not open /etc/debian_version: $!";
+            $version = <$fh>;
+            chomp $version;
+            close($fh);
+        }
+        else {
+            $version = 'unknown';
+        }
+        my $ua = new LWP::UserAgent;
+        $ua->agent("grml-tips 0.0 ");    # set the HTTP 'browser' type
+        my $res = $ua->post(
+            'http://deb.grml.org/~formorer/submissions/keyword.cgi',
+            [   'version' => $version,
+                'keyword' => $pattern
+            ],
+        );
+        if ( $res->is_success ) {
+            my $content = $res->decoded_content;
+            if ( $content =~ /Submission received/ ) {
+                say
+                    "Keyword '$pattern' has been submitted to grml's keyword database.\nThanks.";
+            }
+            else {
+                say "Your pattern could not be submitted.\n",
+                    "Please file a bug against grml-tips at ",
+                    "http://bts.grml.org/\n",
+                    "Thanks!";
+            }
+        }
+        else {
+            print "Could not submitt '$pattern': " . $res->status_line . "\n";
+        }
 
-
-	} else {
-		print "'$pattern' has not been sent to grml's keyword database as requested.\n";
-		print "If you want to submit a tip please mail it to tips\@grml.org - thank you!\n";
-	}
+    }
+    else {
+        print
+            "'$pattern' has not been sent to grml's keyword database as requested.\n";
+        print
+            "If you want to submit a tip please mail it to tips\@grml.org - thank you!\n";
+    }
 }
 
 ## END OF FILE #################################################################
