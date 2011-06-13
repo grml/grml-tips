@@ -10,6 +10,7 @@
 use strict;
 use Pod::Usage;
 
+use feature 'say'; 
 use Term::ReadKey;
 use Time::HiRes;	
 use LWP::UserAgent;
@@ -79,33 +80,37 @@ if ($pattern eq '') {
 }
 
 my @tips;
-my $fh;
-if (! open ($fh, '<', "$grml_tips")) {
-	print "Error: $grml_tips not found.\nExiting.";
+if (! open (my $fh, '<', "$grml_tips")) {
+	say STDERR "Error: File \"$grml_tips\" not found.";
+	say STDERR "Exiting.";
 	exit -1;
-}
+} else {
+	my $tip = '';
 
-my $tip = '';
-my $tip_flag = 0;
-
-while (my $line = <$fh>) {
-    if ($line !~ /^-- $/) {
-	$tip .= $line;
-    } else {
-	if ( "$tip" =~ /$pattern/mi ) {
-	    $tip .= $line;
-	    print "$tip";
-	    $tip = '';
-	    $tip_flag = 1;
-	} else {
-	    $tip = '';
+	while (my $line = <$fh>) {
+		if ($line !~ /^-- $/) {
+			$tip .= $line;
+		} else {
+			if ( $tip =~ /$pattern/mi ) {
+				$tip .= $line;
+				push @tips, $tip; 
+				$tip = '';
+			} else {
+				$tip = '';
+			}
+		}
 	}
-    }
+	close($fh);
 }
-close($fh);
 
-if (!$tip_flag) {
-	print "Sorry, could not find a tip for '$pattern'. :-(\n\n",
+if (@tips) {
+	if (! open (my $fh, '|-', 'less -FRX') ) {
+		say @tips; 
+	} else {
+		say $fh @tips;
+	}
+}else {
+	say "Sorry, could not find a tip for '$pattern'. :-(\n\n",
     	"Do you want to submit the keyword '$pattern' to grml's keyword database?\n",
 	"The grml team will write tips for the most requested and useful keywords.\n",
 	"To use and contribute to this feature you'll need a working networking connection.\n",
@@ -145,12 +150,12 @@ if (!$tip_flag) {
 		if ($res->is_success) {
 			my $content =  $res->decoded_content;
 			if ($content =~ /Submission received/) {
-				print "Keyword '$pattern' has been submitted to grml's keyword database.\nThanks.\n";
+				say "Keyword '$pattern' has been submitted to grml's keyword database.\nThanks.";
 			} else {
-				print "Your pattern could not be submitted.\n",
+				say "Your pattern could not be submitted.\n",
 				      "Please file a bug against grml-tips at ",
 				      "http://bts.grml.org/\n",
-				      "Thanks!\n";
+				      "Thanks!";
 			}
 		} else {
 			print "Could not submitt '$pattern': " . $res->status_line . "\n";
