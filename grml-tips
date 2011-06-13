@@ -87,13 +87,19 @@ if (! open (my $fh, '<', "$grml_tips")) {
 } else {
 	my $tip = '';
 
+	my $tips_found = 0; 
 	while (my $line = <$fh>) {
 		if ($line !~ /^-- $/) {
 			$tip .= $line;
 		} else {
+			$tips_found++; 
 			if ( $tip =~ /$pattern/mi ) {
-				$tip .= $line;
-				push @tips, $tip; 
+				#$tip .= $line;
+
+				my $header = "Grml Tip Number $tips_found\n";
+				my $line = "-" x (length($header) -1 ) . "\n\n"; 
+
+				push @tips, $header . $line . $tip . "\n"; 
 				$tip = '';
 			} else {
 				$tip = '';
