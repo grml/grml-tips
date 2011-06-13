@@ -7,8 +7,14 @@
 ################################################################################
 
 use strict;
+use Getopt::Long;
 
 my $grml_tips = '/usr/share/grml-tips/grml_tips';
+
+my $result = GetOptions (
+        "tipsfile=s" => \$grml_tips
+);
+
 open (my $fh, '<', $grml_tips) or die "Could not open $grml_tips: $!";
 
 my @tags;

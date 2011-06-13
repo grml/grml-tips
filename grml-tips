@@ -39,6 +39,10 @@ Print this help and exit.
 
 Match on tags only instead of the whole tip 
 
+=item B<--tipsfile TIPSFILE>
+
+Use TIPSFILE instead of /usr/share/grml-tips/grml_tips
+
 =back
 
 =head1 EXAMPLES
@@ -75,10 +79,12 @@ my $grml_tips = '/usr/share/grml-tips/grml_tips';
 
 my $help;
 my $tagsonly;
+my $tipsfile; 
 
 my $result = GetOptions (
     "help" => \$help,
-    "tagsonly" => \$tagsonly
+    "tagsonly" => \$tagsonly,
+    "tipsfile=s" => \$grml_tips, 
 );
 
 my $pattern   = shift;
