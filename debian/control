@@ -7,6 +7,8 @@ Standards-Version: 3.9.2
 Homepage: http://git.grml.org/?p=grml-tips.git
 Vcs-git: git://git.grml.org/grml-tips.git
 Vcs-Browser: http://git.grml.org/?p=grml-tips.git
+Origin: Grml
+Bugs: mailto:bugs@grml.org
 
 Package: grml-tips
 Architecture: all
