@@ -1,3 +1,14 @@
+grml-tips (0.5.2) unstable; urgency=low
+
+  [ Alexander Wirt ]
+  * [2ab2a3b] Code cleanup and use less as pager
+  * [a0382fb] Add a nice header for every tip
+
+  [ Christian Hofstaedtler ]
+  * [2a19047] Add debian/control headers Origin, Bugs
+
+ -- Michael Prokop <mika@grml.org>  Sat, 26 Nov 2011 20:06:22 +0100
+
 grml-tips (0.5.1) unstable; urgency=low
 
   [ Michael Prokop ]
