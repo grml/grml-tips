@@ -1,3 +1,15 @@
+grml-tips (0.6.0) grml-testing; urgency=low
+
+  [ Alexander Wirt ]
+  * [873c857] Run perltidy -pbp
+  * [2a798f2] Support tags for individual tips
+  * [376af34] Allow configuration of tipsfile path
+
+  [ Ulrich Dangel ]
+  * [28c33c0] Add initial tags to data file
+
+ -- Christian Hofstaedtler <ch@grml.org>  Tue, 06 Dec 2011 22:44:47 +0100
+
 grml-tips (0.5.2) unstable; urgency=low
 
   [ Alexander Wirt ]
