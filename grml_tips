@@ -3469,3 +3469,28 @@ https://wiki.archlinux.org/index.php/Install_from_Existing_Linux
 or
 wget http://tokland.googlecode.com/svn/trunk/archlinux/arch-bootstrap.sh
 -- 
+Export blockdevices via AoE (ATA over Ethernet):
+
+% vblade -m 11:22:33:44:55:66 160 2 eth0 /dev/sdb1
+
+Allow the host with the mac address 11:22:33:44:55:66 to access /dev/sdb1
+via eth0, using the shelf and slot numbers 160 and 2. These numbers are
+arbitrary but should be unique within the network.
+
+A word of warning: AoE is prone to all kind of nasty ethernet attacks,
+especially arp spoofing. Do not use in hostile networks.
+
+Tags: aoe, blockdevice, export, server
+-- 
+Access blockdevices via AoE (ATA over Ethernet):
+
+% sudo aoe-discover
+
+and the device should show up under /dev/etherd/. If your shelf and
+slot numbers re 160 and 2 the device will be /dev/etherd/e160.2
+
+A word of warning: AoE is prone to all kind of nasty ethernet attacks,
+especially arp spoofing. Do not use in hostile networks.
+
+Tags: aoe, blockdevice, export, client
+-- 
