@@ -1,3 +1,10 @@
+grml-tips (0.6.1) grml-testing; urgency=low
+
+  [ Ulrich Dangel ]
+  * [b5156b2] Add tips for AoE (ATA over Ethernet).
+
+ -- Michael Prokop <mika@grml.org>  Tue, 20 Dec 2011 20:18:24 +0100
+
 grml-tips (0.6.0) grml-testing; urgency=low
 
   [ Alexander Wirt ]
