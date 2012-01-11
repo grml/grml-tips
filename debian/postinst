@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+if [ -x /usr/bin/grml-tips-tags ]
+then
+	echo -n "Generating grml-tips tag database: "
+	if grml-tips-tags
+	then
+		echo "Ok"
+	else
+		echo "Failed"
+	fi
+fi
+
+ #DEBHELPER#
+ exit 0
