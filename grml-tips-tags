@@ -24,9 +24,12 @@ while (my $line = <$fh>) {
     push @tags, split(/[, ]+/, $1);
 }
 
+close ($fh);
 #make tags unique
 my %seen = ();
 @tags = grep { ! $seen{$_} ++ } @tags;
 
+open (my $fh, '>', '/usr/share/grml-tips/tags') 
+	or die "Could not open '/usr/share/grml-tips/tags' for writing: $!"
 print $fh join("\n", @tags) . "\n";
 close($fh)
