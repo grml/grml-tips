@@ -1,9 +1,9 @@
 #!/bin/sh -e
 
-if [ -x /usr/bin/grml-tips-tags ]
+if [ -x /usr/lib/grml-tips/grml-tips-tags ]
 then
 	echo -n "Generating grml-tips tag database: "
-	if grml-tips-tags
+	if /usr/lib/grml-tips/grml-tips-tags
 	then
 		echo "Ok"
 	else
