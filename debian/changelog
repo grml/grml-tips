@@ -1,3 +1,25 @@
+grml-tips (0.6.2) grml-testing; urgency=low
+
+  [ Alexander Wirt ]
+  * [b463afe] Really write to tags file and close fh
+  * [6c9feec] install grml-tips-tags
+  * [691fd5b] Write into tag file
+  * [ebcc0d9] Add missing ;
+  * [fe95fb2] Generate tag db after installation
+  * [0660aa0] Move grml-tips-tags to /usr/lib/grml-tips
+
+  [ Michael Prokop ]
+  * [75d4324] postinst: fix error handling if actions fails and adjust
+    code indention
+  * [ac8434a] debian/rules: run build target before installing files
+  * [4f133a8] Provide debian/postrm to get rid of tag database on package
+    removals
+  * [8115213] debian/rules: add usr/lib/grml-tips to dh_installdirs to fix
+    build failure
+  * [e5351c5] Fix typo in tags (languae->language) - thx ft for spotting
+
+ -- Michael Prokop <mika@grml.org>  Wed, 11 Jan 2012 18:25:54 +0100
+
 grml-tips (0.6.1) grml-testing; urgency=low
 
   [ Ulrich Dangel ]
