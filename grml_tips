@@ -601,7 +601,7 @@ or
 # loadkeys i386/qwertz/de-latin1-nodeadkeys.kmap.gz # console
 % setxkbmap de                                      # X11
 
-Tags: languae, keyboard, configuration
+Tags: language, keyboard, configuration
 -- 
 Switch setting of caps-control key (switch between ctrl + shift) on keyboard:
 
