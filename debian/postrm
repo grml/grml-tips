@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+case "$1" in
+  purge)
+    if [ -r /usr/share/grml-tips/tags ] ; then
+      echo "Removing grml-tips tag database file /usr/share/grml-tips/tags"
+      rm -f /usr/share/grml-tips/tags
+    fi
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0
