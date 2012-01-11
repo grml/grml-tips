@@ -18,7 +18,7 @@ clean:
 	dh_clean 
 	rm -f grml-tips.1
 
-install:
+install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k 
