@@ -28,4 +28,5 @@ while (my $line = <$fh>) {
 my %seen = ();
 @tags = grep { ! $seen{$_} ++ } @tags;
 
-print join("\n", @tags) . "\n";
+print $fh join("\n", @tags) . "\n";
+close($fh)
