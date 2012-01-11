@@ -22,7 +22,7 @@ install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k 
-	dh_installdirs usr/bin usr/share/grml-tips
+	dh_installdirs usr/bin usr/share/grml-tips usr/lib/grml-tips
 
 	install -m 755 grml-tips debian/grml-tips/usr/bin/grml-tips
 	install -m 755 grml-tips-tags debian/grml-tips/usr/lib/grml-tips/grml-tips-tags
