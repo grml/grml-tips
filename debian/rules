@@ -25,6 +25,7 @@ install:
 	dh_installdirs usr/bin usr/share/grml-tips
 
 	install -m 755 grml-tips debian/grml-tips/usr/bin/grml-tips
+	install -m 755 grml-tips-tags debian/grml-tips/usr/bin/grml-tips-tags
 	install -m 644 grml_tips debian/grml-tips/usr/share/grml-tips/grml_tips
 
 # Build architecture-dependent files here.
