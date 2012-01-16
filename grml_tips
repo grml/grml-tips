@@ -503,7 +503,7 @@ Grep with highlighting:
 % grep --color=auto ...
 % hgrep ...
 
-Tags: grep, color, highlighte
+Tags: grep, color, highlight
 -- 
 Extract matches when grepping:
 
