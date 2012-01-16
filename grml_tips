@@ -416,13 +416,13 @@ Play movie:
 
 % mplayer /path/to/movie
 
-Tags: movie
+Tags: movie, mplayer
 -- 
 Use webcam with mplayer:
 
 % mplayer tv:// -tv driver=v4l:width=352:height=288:outfmt=yv12:device=/dev/video0
 
-Tags: webcam
+Tags: webcam, mplayer
 -- 
 Powerful network discovery tool:
 
