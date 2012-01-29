@@ -1,3 +1,12 @@
+grml-tips (0.6.4) grml-testing; urgency=low
+
+  [ Ulrich Dangel ]
+  * [b318971] Fix small typo in tag
+  * [c12a0a1] Fix typo in donation tag
+  * [58e9e85] Add mplayer tag
+
+ -- Michael Prokop <mika@grml.org>  Sun, 29 Jan 2012 13:26:28 +0100
+
 grml-tips (0.6.3) grml-testing; urgency=low
 
   * [6365875] Update Blog URL. Thanks to Markus Ulrich
