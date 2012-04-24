@@ -281,10 +281,9 @@ Online documentation:
 
 Tags: info, grml, grml-info, documentation
 -- 
-Mount ntfs partition (read-write):
+Mount NTFS partition (read-write):
 
-# modprobe fuse
-# ntfsmount /dev/hda1 /mnt/hda1
+# mount.ntfs-3g /dev/sda1 /mnt/sda1
 
 Tags: ntfs, mount
 -- 
