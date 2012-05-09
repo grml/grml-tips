@@ -768,14 +768,6 @@ or
 
 Tags: ssh, ssh key, public key, ssh-copy-id, ssh-keygen
 -- 
-Update /etc/fstab entries:
-
-# grml-rebuildfstab
-
-See "man grml-rebuildfstab" for more details about
-generation of /etc/fstab (including stuff like
-fs LABELs / UUIDs,...).
--- 
 Fetch and potentially change SCSI device parameters:
 
 # sdparm /dev/sda
@@ -1118,120 +1110,6 @@ Tags: ssh, sshfs, network, mount, directory, remote, fuse
 Install Gentoo using grml:
 
 See http://www.gentoo.org/doc/en/altinstall.xml
--- 
-Install (plain) Debian (sarge release) via grml:
-
-Assuming you want to install Debian to sda1:
-
-mkfs.ext3 /dev/sda1           # make an ext3 filesystem on /dev/sda1
-mount -o rw,suid,dev /dev/sda1 /mnt/test # now mount the new partition
-debootstrap sarge /mnt/test ftp://ftp.tugraz.at/mirror/debian # get main packages from a debian-mirror
-chroot /mnt/test /bin/bash    # let's chroot into the new system
-mount -t devpts none /dev/pts # ...otherwise running base-config might fail ("Terminated" or "openpty failed")
-mount -t proc   none /proc    # make sure we also have a mounted /proc
-base-config                   # now configure some main settings
-vi /etc/mkinitrd/mkinitrd.conf # adjust $ROOT (to /dev/sda1) for your new partition, autodetection will fail in chroot
-cd /dev ; ./MAKEDEV generic                                # make sure we have all necessary devices for lilo
-apt-get install lilo linux-image-2.6.12-1-386              # install lilo and a kernel which fits your needs
-cp /usr/share/doc/lilo/examples/conf.sample /etc/lilo.conf # let's use a template
-vi /etc/lilo.conf && lilo                                  # adjust the file for your needs and run lilo afterwards
-umount /proc ; umount /dev/pts                             # we do not need them any more
-exit                                                       # now leave chroot
-cp /etc/hosts /etc/fstab /mnt/test/etc/           # you might want to take the existing files...
-cp /etc/network/interfaces /mnt/test/etc/network/ # ...from the running grml system for your new system
-umount /mnt/test && reboot    # unmount partition and reboot...
-
-See also: http://www.debian.org/releases/stable/i386/apcs04.html.en
-Avoid all of the above steps - use grml-debootstrap(8) instead!
-
-Tags: manual, installation, debian, debootstrap
--- 
-Install (plain) Debian (etch release) via grml
-
-Assuming you want to install Debian to sda1:
-
-mkfs.ext3 /dev/sda1           # make an ext3 filesystem on /dev/sda1
-mount -o rw,suid,dev /dev/sda1 /mnt/test # now mount the new partition
-debootstrap etch /mnt/test ftp://ftp.tugraz.at/mirror/debian # get main packages from a debian-mirror
-chroot /mnt/test /bin/bash    # let's chroot into the new system
-mount -t proc   none /proc    # make sure we have a mounted /proc
-apt-get install locales console-data  # install locales
-dpkg-reconfigure locales console-data # adjust locales to your needs
-apt-get install vim most zsh screen less initrd-tools file grub     \
-        usbutils pciutils bzip2 sysfsutils dhcp3-client resolvconf  \
-        strace lsof w3m # install useful software
-apt-get install linux-headers-2.6-686 linux-image-686  # install current kernel
-
-echo "127.0.0.1       localhost" > /etc/hosts   # adjust /etc/hosts and network:
-cat >> /etc/network/interfaces << EOF
-iface lo inet loopback
-iface eth0 inet dhcp
-auto lo
-auto eth0
-EOF
-
-ln -sf /usr/share/zoneinfo/Europe/Vienna /etc/localtime # adjust timezone and /etc/fstab:
-cat >> /etc/fstab << EOF
-sysfs          /sys         sysfs   auto                       0   0
-proc           /proc        proc    defaults                   0   0
-/dev/sda1      /            ext3    defaults,errors=remount-ro 0   1
-/dev/sda2      none         swap    sw                         0   0
-/dev/cdrom     /mnt/cdrom0  iso9660 ro,user,noauto             0   0
-EOF
-passwd             # set password of user root
-
-mkdir /boot/grub   # setup grub
-cp /usr/share/doc/grub/examples/menu.lst /boot/grub
-cat >> /boot/grub/menu.lst << EOF
-title           Debian Etch, kernel 2.6.18-3-686 (on /dev/sda1)
-root            (hd0,0)
-kernel          /boot/vmlinuz-2.6.18-3-686 root=/dev/sda1 ro
-initrd          /boot/initrd.img-2.6.18-3-686
-EOF
-vim /boot/grub/menu.lst               # adjust grub configuration to your needs
-cd /dev && MAKEDEV generic            # create default devices
-cp -i /usr/lib/grub/i386-pc/* /boot/grub/ # copy stage-files to /boot/grub/
-grub install  # now install grub, run in grub-cmdline following commands:
-> root (hd0,0)
-> setup (hd0)
-> quit
-umount -a # unmount all filesystems in chroot and finally:
-exit      # exit the chroot and:
-reboot
-
-If you want to use lilo instead of grub take a look at
-/usr/share/doc/lilo/examples/conf.sample or use the following template:
-
-cat > /etc/lilo.conf << EOF
-# This allows booting from any partition on disks with more than 1024 cylinders.
-lba32
-
-# Specifies the boot device
-boot=/dev/sda1
-
-# Specifies the device that should be mounted as root.
-root=/dev/sda1
-
-# use Debian on software raid:
-# raid-extra-boot=mbr-only
-
-install=text
-# prompt
-timeout=1
-map=/boot/map
-vga=normal
-
-image=/boot/vmlinuz-2.6.18-grml
-        label="2.6.18-grml"
-        #append="...."
-        read-only
-        initrd=/boot/initrd.img-2.6.18-grml
-EOF
-
-See also: http://www.debian.org/releases/stable/i386/apcs04.html.en
-Avoid all of the above steps - use grml-debootstrap(8) instead!
-
-Tags: manual, installation, debian, debootstrap, howto
 -- 
 Convert files from Unicode / UTF-8 to ISO:
 
@@ -3415,7 +3293,7 @@ eg.
 deb http://localhost:9999/debian  unstable  main contrib non-free
 
 use approx in grml-debootstrap like:
-% grml-debootstrap -r lenny -t /dev/sda1 -m http://127.0.0.1:9999/debian
+% grml-debootstrap -r squeeze -t /dev/sda1 -m http://127.0.0.1:9999/debian
 -- 
 Simple webserver with python:
 
