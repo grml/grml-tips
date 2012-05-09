@@ -1,3 +1,12 @@
+grml-tips (0.7.0) grml-testing; urgency=low
+
+  * [ff65db1] Replace ntfsmount command with mount.ntfs-3g
+  * [04fbfa1] Drop deprecated HTML headers
+  * [ba9b747] Drop deprecated tips (grml-rebuildfstab, sarge + etch)
+  * [d73af13] Bump Standards-Version to 3.9.3.
+
+ -- Michael Prokop <mika@grml.org>  Wed, 09 May 2012 12:37:20 +0200
+
 grml-tips (0.6.4) grml-testing; urgency=low
 
   [ Ulrich Dangel ]
