@@ -29,10 +29,7 @@ cat >> $OUTFILE << EOF
 <link rel="home" href="/" title="grml.org" />
 <link rel="help" href="/features/" title="About" />
 <link rel="author" href="/team/" title="Team" />
-<link rel="contents" href="/sitemap/" title="Sitemap" />
-<link rel="search" href="/search/" title="Search" />
 <link rel="icon" href="/favicon.png" type="image/png" />
-<meta http-equiv="content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
 <link rel="stylesheet" href="/style.css" type="text/css" />
 </head>
 <body>
