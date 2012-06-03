@@ -1,50 +1,3 @@
-Install grml to harddisk:
-
-# grml2hd
-
-Notice: You can pre-select the partition for the partition selector
-and mbr dialogs inside grml2hd using:
-# grml2hd /dev/hda1 -mbr /dev/hda
-
-See: man grml2hd + http://grml.org/grml2hd/
-
-Tags: grml2hd, installation
--- 
-Install grml on software RAID level 1:
-
-Create /dev/md0 (and some more /dev/md* devices) first of all:
-# cd /dev && MAKEDEV dev
-
-Create RAID:
-# mdadm --create --verbose /dev/md0 --level=raid1 \
-        --raid-devices=2   /dev/hda1  /dev/hdc1
-
-Finally install grml on it:
-# SWRAID='mbr-only' grml2hd /dev/md0 -mbr /dev/md0
-
-See: man grml2hd + http://grml.org/grml2hd/
-
-Tags: grml2hd, installation, mdadm, raid
--- 
-Install grml in non interactive mode with grml2hd:
-
-Adjust configuration as needed:
-# vim /etc/grml2hd/config
-
-Then execute:
-
-# GRML2HD_NONINTERACTIVE=yes grml2hd
-
-or run:
-
-# grml2hd -i
-
-Use with care and only if you really know what you are doing!
-
-See: man grml2hd + http://grml.org/grml2hd/
-
-Tags: grml2hd, installation
--- 
 Configure network:
 
 # grml-network
@@ -100,53 +53,6 @@ Configure mutt:
 % grml-mutt
 
 Tags: mutt
--- 
-Configure mutt-ng / muttng:
-
-% grml-muttng
-
-Tags: muttng
--- 
-Set up Inode-PPTP connection:
-
-# grml-pptp-inode
-or
-# grml-pptp-xdsl-students
-
-Tags: pptp, inode, xdsl
--- 
-Set up VPN / WLAN connection at TUG (TU Graz):
-
-Set ESSID and request for ip-address via DHCP:
-# iwconfig $DEVICE essid tug
-# dhclient $DEVICE
-
-Now run the main script:
-# grml-vpnc-tugraz
-
-After running the script an init script is available:
-
-# /etc/init.d/vpnctug [start|stop]
-
-Tags: tug
--- 
-Set up PPTP connection at VCG (Virtual Campus Graz):
-
-# grml-pptp-vcgraz
-
-Tags: pptp, vcg
--- 
-Set up VPN:
-
-# grml-vpn <options>
-
-Usage example:
-
-# grml-vpn -k 2005 add 1000 192.168.20.1 192.168.20.2
-
-See: man grml-vpn
-
-Tags: grml, vpn, network
 -- 
 Use encrypted files / partitions:
 
@@ -219,8 +125,8 @@ Start X window system (XFree86 / Xorg / X.org):
 Usage examples:
 
 % grml-x fluxbox
-% grml-x -mode '1024x768' wmii
-% grml-x -nosync wm-ng
+% grml-x -mode '1024x768' fluxbox
+% grml-x -nosync
 
 Tags: grml-x, x11, xorg, graphic
 -- 
@@ -332,12 +238,6 @@ See: man wipe
 Also take a look at shred(1), sfill(1) and http://dban.sourceforge.net/
 
 Tags: delete, secure, wipe, shred
--- 
-Use grml on Samsung X20 laptop:
-
-# apt-get install grml-samsung-x20
-
-See: http://www.michael-prokop.at/computer/samsung_x20.html
 -- 
 Development information regarding grml:
 
@@ -514,12 +414,6 @@ Output text as sound:
 
 % say 'ghroummel'
 % xsay            # when running X and text selected via mouse
--- 
-Adjust a grml harddisk (grml2hd) installation:
-
-# grml2hd-utils
-
-Tags: grml2hd, configuration, installation
 -- 
 Get information on movie files:
 
