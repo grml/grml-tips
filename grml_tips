@@ -3199,9 +3199,13 @@ echo 'deb http://deb.grml.org/ grml-stable main' > /etc/apt/grml-stable.list
 apt-get -o Dir::Etc::sourcelist=/etc/apt/grml-stable.list -o Dir::Etc::sourceparts=/doesnotexist update
 apt-get upgrade
 -- 
-Install Centos into a directory:
+Install Centos 6 (x86_64) into a directory:
 
-% febootstrap centos-5 directory http://mirror.centos.org/centos-5/5.3/os/i386/
+% febootstrap centos-6 directory http://mirror.centos.org/centos-6/6.2/os/x86_64/
+
+Install Centos 6 (i386) into a directory:
+
+% febootstrap centos-6 directory http://mirror.centos.org/centos-6/6.2/os/i386/
 -- 
 Install Fedora into a directory:
 
