@@ -1,3 +1,11 @@
+grml-tips (0.7.1) grml-testing; urgency=low
+
+  [ Markus Ulrich ]
+  * [a79b328] Drop tips for removed grml-tools (grml2hd, grml-muttng,
+    grml-vpn)
+
+ -- Michael Prokop <mika@grml.org>  Mon, 10 Sep 2012 09:16:19 +0200
+
 grml-tips (0.7.0) grml-testing; urgency=low
 
   * [ff65db1] Replace ntfsmount command with mount.ntfs-3g
