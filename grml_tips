@@ -1900,13 +1900,13 @@ Demo:
 
 cfdisk /dev/hda                           # create a partition with type 8e (lvm)
 pvcreate /dev/hda2                        # create a physical volume
-vgcreate resize_me /dev/hda2              # create volume group
-lvcreate -n resize_me -L100 resize_me     # create a logical volume
-mkfs.ext3 /dev/resize_me/resize_me        # now create a new filesystem
-mount /dev/resize_me/resize_me /mnt/test  # mount the new fs for demonstrating online resizing
+vgcreate vg0 /dev/hda2                    # create volume group
+lvcreate -n resize_me -L1G vg0            # create a logical volume
+mkfs.ext3 /dev/mapper/vg0-resize_me       # now create a new filesystem
+mount /dev/mapper/vg0-resize_me /mnt/test # mount the new fs for demonstrating online resizing
 df -h                                     # check the size of the partition
-lvextend -L+100M /dev/resize_me/resize_me # let's extend the logical volume
-resize2fs /dev/resize_me/resize_me        # and finally resize the filesystem
+lvextend -L+2G /dev/mapper/vg0-resize_me  # let's extend the logical volume
+resize2fs -p /dev/mapper/vg0-resize_me    # and finally resize the filesystem
 df -h                                     # recheck the size of the partition
 
 This also works for Software-RAID. Demo:
