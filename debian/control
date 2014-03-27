@@ -12,7 +12,10 @@ Bugs: mailto:bugs@grml.org
 
 Package: grml-tips
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, libwww-perl, libterm-readkey-perl
+Depends: libterm-readkey-perl,
+         libwww-perl,
+         ${misc:Depends},
+         ${shlibs:Depends}
 Description: search for tips and hints via a keyword
  The provided script grml-tips queries a signature file
  for a specific keyword and displays results on stdout.
