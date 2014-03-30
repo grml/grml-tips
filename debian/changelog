@@ -1,3 +1,11 @@
+grml-tips (0.7.2) grml-testing; urgency=medium
+
+  * [04de04c] Bump Standards-Version to 3.9.5
+  * [4f5515a] Run wrap-and-sort -a on debian directory
+  * [f8bda6b] ext3 online resizing: use different name for VG + LV
+
+ -- Michael Prokop <mika@grml.org>  Sun, 30 Mar 2014 10:53:33 +0200
+
 grml-tips (0.7.1) grml-testing; urgency=low
 
   [ Markus Ulrich ]
