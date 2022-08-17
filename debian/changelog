@@ -1,3 +1,9 @@
+grml-tips (0.7.3) grml-testing; urgency=medium
+
+  * [5a4dc01] Drop debian/compat and switch to debhelper-compat approach
+
+ -- Michael Prokop <mika@grml.org>  Wed, 17 Aug 2022 13:26:08 +0200
+
 grml-tips (0.7.2) grml-testing; urgency=medium
 
   * [04de04c] Bump Standards-Version to 3.9.5
