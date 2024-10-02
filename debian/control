@@ -4,9 +4,9 @@ Priority: optional
 Maintainer: Michael Prokop <mika@grml.org>
 Build-Depends: debhelper-compat (= 12),
 Standards-Version: 3.9.5
-Homepage: http://git.grml.org/?p=grml-tips.git
-Vcs-git: git://git.grml.org/grml-tips.git
-Vcs-Browser: http://git.grml.org/?p=grml-tips.git
+Homepage: https://github.com/grml/grml-tips
+Vcs-git: https://github.com/grml/grml-tips.git
+Vcs-Browser: https://github.com/grml/grml-tips
 Origin: Grml
 Bugs: mailto:bugs@grml.org
 
