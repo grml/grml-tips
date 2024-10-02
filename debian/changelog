@@ -1,3 +1,15 @@
+grml-tips (0.8.0) grml-testing; urgency=medium
+
+  * [e6a2b71] Disable submission feature for unknown patterns
+  * [51f4950] Update Homepage and VCs-* headers for switch to github.com
+  * [d162fca] Bump Standards-Version to 4.7.0
+  * [27db5d0] Add debian/source/format
+  * [e76d08c] Switch to minimal debhelper approach
+  * [70f0afa] debian: run wrap-and-sort -tas
+  * [19a586e] Convert debian/copyright to machine-readable format
+
+ -- Michael Prokop <mika@grml.org>  Wed, 02 Oct 2024 18:31:36 +0200
+
 grml-tips (0.7.3) grml-testing; urgency=medium
 
   * [5a4dc01] Drop debian/compat and switch to debhelper-compat approach
