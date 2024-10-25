@@ -6,7 +6,7 @@ Build-Depends:
  debhelper-compat (= 12),
 Standards-Version: 4.7.0
 Homepage: https://github.com/grml/grml-tips
-Vcs-git: https://github.com/grml/grml-tips.git
+Vcs-Git: https://github.com/grml/grml-tips.git
 Vcs-Browser: https://github.com/grml/grml-tips
 Origin: Grml
 Bugs: mailto:bugs@grml.org
