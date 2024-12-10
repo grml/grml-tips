@@ -1146,13 +1146,6 @@ Get specific information for /dev/ice:
 
 Tags: hardware, info, cd burn
 -- 
-Create devices in /dev on udev:
-
-For example create md devices (/dev/md0, /dev/md1,...):
-# cd /dev ; WRITE_ON_UDEV=1 ./MAKEDEV md
-
-Tags: raid, device
--- 
 Identify network device (NIC):
 
 # ethtool -i $DEVICE
