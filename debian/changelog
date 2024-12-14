@@ -1,3 +1,10 @@
+grml-tips (0.8.2) grml-testing; urgency=medium
+
+  [ Michael Prokop ]
+  * [f17a98d] Drop tip which referes to MAKEDEV which no longer exists
+
+ -- Chris Hofstaedtler <ch@grml.org>  Sat, 14 Dec 2024 13:07:52 +0100
+
 grml-tips (0.8.1) grml-testing; urgency=medium
 
   [ Chris Hofstaedtler ]
