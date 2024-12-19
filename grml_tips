@@ -3258,3 +3258,29 @@ especially arp spoofing. Do not use in hostile networks.
 
 Tags: aoe, blockdevice, export, client
 -- 
+Check notebook's battery status:
+
+% acpi -b
+
+or
+
+% cat /sys/class/power_supply/BAT0/capacity
+
+Tags: client, notebook
+-- 
+Change notebook's screen brightness:
+
+% echo $brightness > /sys/class/backlight/intel_backlight/brightness
+
+The max brightness can be shown with:
+
+% cat /sys/class/backlight/intel_backlight/max_brightness
+
+The current brightness can be shown with:
+
+% cat /sys/class/backlight/intel_backlight/brightness
+
+Note: change "intel_backlight" according to your device.
+
+Tags: client, notebook
+-- 
