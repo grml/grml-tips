@@ -1,3 +1,10 @@
+grml-tips (0.8.3) grml-testing; urgency=medium
+
+  [ Darshaka Pathirana ]
+  * [48075ef] Add some tips for a Lenovo X1 notebook
+
+ -- Chris Hofstaedtler <ch@grml.org>  Tue, 21 Jan 2025 01:33:29 +0100
+
 grml-tips (0.8.2) grml-testing; urgency=medium
 
   [ Michael Prokop ]
