@@ -1,3 +1,9 @@
+grml-tips (0.8.4) grml-testing; urgency=medium
+
+  * [813aa94] html/Makefile: remove scp leftovers
+
+ -- Chris Hofstaedtler <ch@grml.org>  Tue, 04 Mar 2025 23:38:16 +0100
+
 grml-tips (0.8.3) grml-testing; urgency=medium
 
   [ Darshaka Pathirana ]
