@@ -1,3 +1,4 @@
+-- 
 Configure network:
 
 # grml-network
@@ -2620,22 +2621,25 @@ UTF-8 at grml / some general information regarding Unicde/UTF-8:
 
   http://wiki.grml.org/doku.php?id=utf8
 -- 
+Limit SSH connection attempts
 
-This allows one ssh connection attepmt per minute per source ip, with a initial
-burst of 10.  The available burst is like a counter which is initialised with
+This allows one SSH connection attempt per minute per source IP, with an initial
+burst of 10. The available burst is like a counter which is initialised with
 10. Every connection attempt decrements the counter, and every minute where the
 connection limit of one per minute is not overstepped the counter is
-incremented by one.  If the burst counter is exhausted the real rate limit
-comes into play. This gives you 11 connectionattepmts in the first minute
-before blocked for 10minutes.  After 10 minutes block the game restarts.
+incremented by one. If the burst counter is exhausted, the real rate limit
+comes into play. This gives you 11 connection attempts in the first minute
+before being blocked for 10 minutes. After the 10 minutes block, the game restarts.
 
 Hint: you could set the burst value to 5 and the block time to only 5 minutes
-to achive the same average connection rate but with halve the block time.
+to achieve the same average connection rate but with halve the block time.
 
 iptables -A inet_in -p tcp --syn --dport 22 -m hashlimit --hashlimit-name ssh \
          --hashlimit 1/minute \ --hashlimit-burst 10 --hashlimit-mode srcip   \
          --hashlimit-htable-expire 600000 -j ACCEPT
 iptables -A inet_in -p tcp --dport 22 -m state --state NEW -j REJECT
+
+Tags: network
 -- 
 Tunnel a specific connection via socat:
 
