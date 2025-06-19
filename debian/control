@@ -18,6 +18,10 @@ Depends:
  libwww-perl,
  ${misc:Depends},
  ${shlibs:Depends},
+Breaks:
+ grml-etc-core (<< 0.19.20)
+Replaces:
+ grml-etc-core (<< 0.19.20)
 Description: search for tips and hints via a keyword
  The provided script grml-tips queries a signature file
  for a specific keyword and displays results on stdout.
