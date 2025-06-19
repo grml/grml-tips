@@ -2,3 +2,4 @@ grml-tips /usr/bin/
 grml-tips-tags /usr/lib/grml-tips/
 grml_tips /usr/share/grml-tips/
 grml_tips /usr/share/grml-tips/
+usr/share/zsh/vendor-completions/_grml-tips usr/share/zsh/vendor-completions/
