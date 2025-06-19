@@ -1,3 +1,13 @@
+grml-tips (0.8.5) grml-testing; urgency=medium
+
+  [ Darshaka Pathirana ]
+  * [015b41c] Make grml-tips start with 1 and add title to Tip #216
+
+  [ Chris Hofstaedtler ]
+  * [5add84b] Import completion for grml-tips from grml-etc-core
+
+ -- Chris Hofstaedtler <ch@grml.org>  Fri, 20 Jun 2025 01:57:27 +0200
+
 grml-tips (0.8.4) grml-testing; urgency=medium
 
   * [813aa94] html/Makefile: remove scp leftovers
