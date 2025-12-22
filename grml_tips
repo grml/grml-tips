@@ -3155,6 +3155,10 @@ See http://grml.org/faq/#fdisk =>
 dmraid - support for SW-RAID / FakeRAID controllers
 like Highpoint HPT and Promise FastTrack
 
+Note: needs a Grml ISO from before 2024, as dmraid itself was
+removed from Debian. Allegedly, mdadm can also assemble FakeRAID
+arrays.
+
 Activate all software RAID sets discovered:
 # dmraid -ay
 
