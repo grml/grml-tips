@@ -10,6 +10,7 @@ Vcs-Git: https://github.com/grml/grml-tips.git
 Vcs-Browser: https://github.com/grml/grml-tips
 Origin: Grml
 Bugs: mailto:bugs@grml.org
+X-Style: black
 
 Package: grml-tips
 Architecture: all
@@ -19,9 +20,9 @@ Depends:
  ${misc:Depends},
  ${shlibs:Depends},
 Breaks:
- grml-etc-core (<< 0.19.20)
+ grml-etc-core (<< 0.19.20),
 Replaces:
- grml-etc-core (<< 0.19.20)
+ grml-etc-core (<< 0.19.20),
 Description: search for tips and hints via a keyword
  The provided script grml-tips queries a signature file
  for a specific keyword and displays results on stdout.
