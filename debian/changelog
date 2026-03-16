@@ -1,3 +1,9 @@
+grml-tips (0.8.6) grml-testing; urgency=medium
+
+  * [a769210] tip dmraid: note 2024 removal
+
+ -- Chris Hofstaedtler <ch@grml.org>  Mon, 16 Mar 2026 15:54:20 +0100
+
 grml-tips (0.8.5) grml-testing; urgency=medium
 
   [ Darshaka Pathirana ]
